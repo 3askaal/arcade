@@ -26,7 +26,7 @@ export const GameContext = createContext<GameContextType>(GameContextDefaults)
 export const GameProvider = ({ children }: any) => {
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
 
-  const Provider: any = selectedGame && PROVIDERS[selectedGame]
+  const SelectedProvider: any = selectedGame && PROVIDERS[selectedGame]
 
   return (
     <GameContext.Provider
@@ -35,9 +35,9 @@ export const GameProvider = ({ children }: any) => {
         setSelectedGame,
       }}
     >
-      <Provider>
+      <SelectedProvider>
         {children}
-      </Provider>
+      </SelectedProvider>
     </GameContext.Provider>
   )
 }
