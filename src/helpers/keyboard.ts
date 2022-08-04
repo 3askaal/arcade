@@ -1,20 +1,20 @@
 import { useContext } from "react"
 import useMousetrap from "react-hook-mousetrap"
-import { GameContext } from "../context"
+import { TetrisContext } from "../modules/tetris/TetrisContext"
 
 export function useKeyboardBindings() {
   const {
     gameOver,
     gamePaused,
     setGamePaused,
-    moveX,
-    drop,
-    rotate
-  } = useContext(GameContext)
+    onMoveX,
+    onDrop,
+    onRotate
+  } = useContext(TetrisContext)
 
-  useMousetrap('left', () => (!gameOver && !gamePaused) && moveX('left'))
-  useMousetrap('right', () => (!gameOver && !gamePaused) && moveX('right'))
-  useMousetrap('space', () => (!gameOver && !gamePaused) && drop())
-  useMousetrap('shift', () => (!gameOver && !gamePaused) && rotate())
+  useMousetrap('left', () => (!gameOver && !gamePaused) && onMoveX('left'))
+  useMousetrap('right', () => (!gameOver && !gamePaused) && onMoveX('right'))
+  useMousetrap('space', () => (!gameOver && !gamePaused) && onDrop())
+  useMousetrap('shift', () => (!gameOver && !gamePaused) && onRotate())
   useMousetrap('escape', () => !gameOver && setGamePaused(!gamePaused))
 }

@@ -24,7 +24,7 @@ const PROVIDERS: any = {
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
 export const GameProvider = ({ children }: any) => {
-  const [selectedGame, setSelectedGame] = useState<string | null>(null)
+  const [selectedGame, setSelectedGame] = useState<string | null>('tetris')
 
   const SelectedProvider = selectedGame && PROVIDERS[selectedGame]
 

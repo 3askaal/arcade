@@ -1,7 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { Select, Text, Box, keyGen } from '3oilerplate'
-import { sampleSize, filter } from 'lodash'
-import { DIFFICULTY_OPTIONS } from '../../constants'
+import React, { useState } from 'react'
+import { Select } from '3oilerplate'
 // import { TrickContext } from '../../context'
 // import { Trick } from '../../components'
 
@@ -19,7 +17,7 @@ export const SettingsPanel = () => {
     <>
       <Select
         block
-        options={DIFFICULTY_OPTIONS}
+        options={[]}
         value={settings.difficulty}
         onChange={(value: number) => setSettings({ difficulty: value })}
       />

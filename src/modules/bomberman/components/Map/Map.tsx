@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { SMap, SMapStone, SMapCharacter, SMapBrick, SMapBomb } from './Map.styled'
-import { GameContext } from '../../context'
 import { Explosion } from '../Explosion/Explosion'
+import { BombermanContext } from '../../BombermanContext'
 
 export const Map = ({ style, blocks } : any) => {
-  const { grid, bombs, explosions, players }: any = useContext(GameContext)
+  const { grid, bombs, explosions, players }: any = useContext(BombermanContext)
 
   const getBombs = () => {
     return bombs ? Object.values(bombs).filter(({ bomb }: any) => bomb) : []

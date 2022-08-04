@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Box } from '3oilerplate'
 import { SMap, SMapSnake, SMapFood } from './Map.styled'
-import { GameContext } from '../../context'
+import { SnakeContext } from '../../SnakeContext'
 
 export const Map = () => {
-  const { gameOver, settings, snake, food } = useContext(GameContext)
+  const { gameOver, settings, snake, food } = useContext(SnakeContext)
 
   const blockSizeX = 100 / settings.mode.width
   const blockSizeY = 100 / settings.mode.height

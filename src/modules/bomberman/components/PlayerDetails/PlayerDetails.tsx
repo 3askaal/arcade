@@ -9,10 +9,10 @@ import {
   Crosshair
 } from 'react-feather'
 import isMobile from 'is-mobile'
-import { GameContext } from '../../context'
+import { BombermanContext } from '../../BombermanContext'
 
 export const PlayerDetails = ({ onMove, onBomb, player }: any) => {
-  const { settings } = useContext(GameContext)
+  const { settings } = useContext(BombermanContext)
 
   const playerIndex = settings.type === 'online' ? 1 : player.index
 

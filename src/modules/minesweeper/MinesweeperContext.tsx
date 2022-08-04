@@ -1,8 +1,8 @@
-import React, { createContext, memo, useCallback, useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { useIntervalWhen } from 'rooks';
-import { IGameMode, IGrid, IPosition, ISettings } from '../types';
-import { generateGrid } from '../helpers/generate';
-import { flag, reveal } from '../helpers/grid';
+import { IGameMode, IGrid, IPosition, ISettings } from './types';
+import { generateGrid } from './generate';
+import { flag, reveal } from './mutations';
 
 interface MinesweeperContextType {
   settings: ISettings;

@@ -1,8 +1,8 @@
 import React, { createContext, useReducer, useRef, useState } from 'react'
-import { IGrid, ISettings } from '../types';
-import { generateSnake } from '../helpers/generate';
-import { useInterval } from '../helpers/interval';
+import { IGrid, ISettings } from './types';
+import { generateSnake } from './generate';
 import { last, random } from 'lodash';
+import { useInterval } from '../../helpers/interval';
 
 interface IPosition {
   x?: number;

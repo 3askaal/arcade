@@ -3,15 +3,16 @@ import { Box, Container, Wrapper, Label, Button, Select, Spacer, ElementGroup } 
 import { useHistory, useParams } from 'react-router-dom'
 import { v4 as uuid } from 'uuid';
 import { PlayersPanel } from './PlayersPanel'
-import { GameContext, SocketContext } from '../../context'
-import { CONFIG } from '../../config/config'
+import { BombermanContext } from '../../BombermanContext'
 import { Copy, Clipboard } from 'react-feather';
 import copy from 'copy-to-clipboard';
+import { SocketContext } from '../../SocketContext';
+import { CONFIG } from '../../config';
 
 const SetupView = () => {
   const history = useHistory()
   const { roomId } = useParams<any>()
-  const { players, onStartGame, settings, setSettings } = useContext(GameContext)
+  const { players, onStartGame, settings, setSettings } = useContext(BombermanContext)
   const { socket, createRoom, joinRoom, startGame }: any = useContext(SocketContext)
   const [activePanel] = useState('players')
   const [isCopied, setIsCopied] = useState(false)

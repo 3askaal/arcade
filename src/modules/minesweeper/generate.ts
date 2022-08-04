@@ -1,5 +1,5 @@
 import { times, sampleSize, random } from 'lodash'
-import { ISettings } from '../types'
+import { ISettings } from './types'
 
 export const generateEasterEgg = ({ mode }: ISettings) => {
   let newGrid: any = {}

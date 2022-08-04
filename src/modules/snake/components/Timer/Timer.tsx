@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { Box } from '3oilerplate'
 import moment from 'moment'
-import { GameContext } from '../../context'
+import { SnakeContext } from '../../SnakeContext'
 
 export const Timer = ({ s }: any) => {
-  const { currentTime }: any = useContext(GameContext)
+  const { currentTime }: any = useContext(SnakeContext)
 
   const getTimeLabel = () => {
     return moment.utc(currentTime || 0).format('m:ss')

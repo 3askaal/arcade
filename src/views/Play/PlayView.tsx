@@ -2,22 +2,22 @@ import React, { useContext, useEffect } from 'react'
 import { Box, Container, Wrapper, Popup, Text, Button } from '3oilerplate'
 import ReactGA from 'react-ga4'
 import { Controls, Map, Score } from '../../components'
-import { GameContext } from '../../context'
 import { useKeyboardBindings } from '../../helpers/keyboard'
+import { TetrisContext } from '../../modules/tetris/TetrisContext'
 
 const PlayView = () => {
   const {
-    onStartGame,
+    start,
     gameOver,
     gamePaused,
     setGamePaused,
-  } = useContext(GameContext)
+  } = useContext(TetrisContext)
 
   useKeyboardBindings()
 
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: "/play" });
-    onStartGame()
+    start()
   }, [])
 
   return (
@@ -42,7 +42,7 @@ const PlayView = () => {
       { gameOver && (
         <Popup
           actions={[
-            <Button data-testid="restart" onClick={() => onStartGame()}>Restart</Button>
+            <Button data-testid="restart" onClick={() => start()}>Restart</Button>
           ]}
         >
           <Text s={{ width: '100%', textAlign: 'center' }}>Game over! Click restart to play again.</Text>

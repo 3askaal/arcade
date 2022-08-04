@@ -1,8 +1,7 @@
 import React, { createContext, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import ReactGA4 from 'react-ga4'
-import { groupBy, includes, sum } from 'lodash'
-import { Block, generateShape, Shape } from '../helpers/generate';
-import { useInterval } from '../helpers/interval';
+import { useInterval } from '../../helpers/interval';
+import { Block, generateShape, Shape } from './generate';
 import { checkBlocks, moveX, moveY, rotate } from './mutations';
 
 export interface Dimensions {
