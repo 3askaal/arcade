@@ -8,7 +8,7 @@ interface IPosition {
   x?: number;
   y?: number;
 }
-interface GameContextType {
+interface SnakeContextType {
   settings: ISettings;
   grid: IGrid | null;
   snake: IPosition[];
@@ -16,7 +16,7 @@ interface GameContextType {
   [key: string]: any;
 }
 
-export const GameContext = createContext<GameContextType>({
+export const SnakeContext = createContext<SnakeContextType>({
   settings: {
     mode: {
       width: 12,
@@ -28,7 +28,7 @@ export const GameContext = createContext<GameContextType>({
   currentTime: 0,
 })
 
-export const GameProvider = ({ children }: any) => {
+export const SnakeProvider = ({ children }: any) => {
   const [settings, setSettings] = useState({
     mode: {
       width: 32,
@@ -148,7 +148,7 @@ export const GameProvider = ({ children }: any) => {
   }, !gameOver ? 100 : null)
 
   return (
-    <GameContext.Provider
+    <SnakeContext.Provider
       value={{
         onStartGame,
         settings,
@@ -165,6 +165,6 @@ export const GameProvider = ({ children }: any) => {
       }}
     >
       {children}
-    </GameContext.Provider>
+    </SnakeContext.Provider>
   )
 }

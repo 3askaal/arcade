@@ -4,7 +4,7 @@ import { IGameMode, IGrid, IPosition, ISettings } from '../types';
 import { generateGrid } from '../helpers/generate';
 import { flag, reveal } from '../helpers/grid';
 
-interface GameContextType {
+interface MinesweeperContextType {
   settings: ISettings;
   grid: IGrid | null;
   remainingBlocks: number | null;
@@ -17,7 +17,7 @@ export const GAME_MODES: {[key: string]: IGameMode} = {
   expert: { width: 30, height: 16, mines: 99 },
 }
 
-export const GameContext = createContext<GameContextType>({
+export const MinesweeperContext = createContext<MinesweeperContextType>({
   settings: {
     mode: GAME_MODES.intermediate
   },
@@ -26,7 +26,7 @@ export const GameContext = createContext<GameContextType>({
   currentTime: 0
 })
 
-export const GameProvider = ({ children }: any) => {
+export const MinesweeperProvider = ({ children }: any) => {
   const [settings, setSettings] = useState({ mode: GAME_MODES.intermediate })
   const [grid, setGrid] = useState<IGrid | null>(null)
   const [gameActive, setGameActive] = useState(false)
@@ -89,7 +89,7 @@ export const GameProvider = ({ children }: any) => {
   }
 
   return (
-    <GameContext.Provider
+    <MinesweeperContext.Provider
       value={{
         onStartGame,
         settings,
@@ -109,6 +109,6 @@ export const GameProvider = ({ children }: any) => {
       }}
     >
       {children}
-    </GameContext.Provider>
+    </MinesweeperContext.Provider>
   )
 }

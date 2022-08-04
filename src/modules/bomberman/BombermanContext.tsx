@@ -8,7 +8,7 @@ import { Socket } from 'socket.io-client';
 import { IBomb, IExplosion, IGrid, IPlayer, ISettings } from '../types';
 import { generateGrid, generatePlayers } from '../helpers/generate';
 
-interface GameContextType {
+interface BombermanContextType {
   socket?: Socket;
 
   blocks?: number;
@@ -27,7 +27,7 @@ interface GameContextType {
 
 
 
-export const GameContext = createContext<GameContextType>({
+export const BombermanContext = createContext<BombermanContextType>({
   settings: {
     type: 'local'
   },
@@ -44,7 +44,7 @@ interface BombActionPayload {
   playerIndex: number;
 }
 
-export const GameProvider = ({ children }: any) => {
+export const BombermanProvider = ({ children }: any) => {
   const history = useHistory()
   const { socket } = useSocket()
   const [players, setPlayers] = useState<IPlayer[]>([])
@@ -148,7 +148,7 @@ export const GameProvider = ({ children }: any) => {
   }
 
   return (
-    <GameContext.Provider
+    <BombermanContext.Provider
       value={{
         onStartGame,
         onGameMove,
@@ -173,6 +173,6 @@ export const GameProvider = ({ children }: any) => {
       }}
     >
       {children}
-    </GameContext.Provider>
+    </BombermanContext.Provider>
   )
 }
