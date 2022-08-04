@@ -1,7 +1,6 @@
 import React from 'react';
-import { queryByTestId, render } from '../../tests';
+import { render } from '../../tests';
 import { Map } from './Map';
-import styled from 'styled-components'
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
