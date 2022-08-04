@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import useMousetrap from "react-hook-mousetrap"
-import { GameContext } from "../context"
 
 export function useKeyboardBindings() {
   useMousetrap('w', () => {})

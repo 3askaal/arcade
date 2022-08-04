@@ -7,10 +7,10 @@ import {
   ChevronDown,
 } from 'react-feather'
 import isMobile from 'is-mobile'
-import { GameContext } from '../../context'
+import { SnakeContext } from '../../SnakeContext'
 
 export const Controls = () => {
-  const { changeDirection } = useContext(GameContext)
+  const { changeDirection } = useContext(SnakeContext)
 
   return (
     <SControls>

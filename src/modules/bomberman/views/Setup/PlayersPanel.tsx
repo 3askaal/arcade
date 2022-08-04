@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Spacer, Button, Input, Text, ElementGroup } from '3oilerplate'
 import { pullAt, some } from 'lodash'
 import { X as XIcon, Plus as PlusIcon, Check as CheckIcon } from 'react-feather'
-import { CONFIG } from '../../config/config'
-import { GameContext, SocketContext } from '../../context'
+import { CONFIG } from '../../config'
+import { SocketContext } from '../../SocketContext'
+import { BombermanContext } from '../../BombermanContext'
 
 export const PlayersPanel = () => {
-  const { players, setPlayers, settings, getMe, getOpponents }: any = useContext(GameContext)
+  const { players, setPlayers, settings, getMe, getOpponents }: any = useContext(BombermanContext)
   const { socket }: any = useContext(SocketContext)
   const [currentPlayerName, setCurrentPlayerName] = useState<string>('')
   const [error, setError] = useState<string | null>('')

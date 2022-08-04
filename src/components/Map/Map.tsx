@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { SMap, SMapBlock, SMapShape } from './Map.styled'
-import { GameContext } from '../../context'
 import { min } from 'lodash'
+import { TetrisContext } from '../../modules/tetris/TetrisContext'
 
 export const Map = () => {
   const mapRef = useRef<any>(null)
@@ -9,7 +9,7 @@ export const Map = () => {
     dimensions,
     shape,
     blocks
-  } = useContext(GameContext)
+  } = useContext(TetrisContext)
 
   const [blockSize, setBlockSize] = useState(0)
   const [mapDimensions, setMapDimensions] = useState<{ width?: string, height?: string }>({})

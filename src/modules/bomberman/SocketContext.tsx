@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react'
 import { useSocket } from "use-socketio";
 import { Socket } from 'socket.io-client';
-import { GameContext } from '.';
-import { IPlayer } from '../types';
+import { IPlayer } from './types';
+import { BombermanContext } from './BombermanContext';
 
 interface GameContextType {
   socket?: Socket;
@@ -18,7 +18,7 @@ export const SocketProvider = ({ children }: any) => {
     onStartGame,
     onGameBomb,
     onGameMove,
-  } = useContext(GameContext)
+  } = useContext(BombermanContext)
 
   useSocket('room:update', ({ players }) => {
     setPlayers(players.map((player: IPlayer) => ({

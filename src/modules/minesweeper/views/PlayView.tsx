@@ -1,13 +1,14 @@
 import React, { memo, useContext, useEffect } from 'react'
 import { Container, Wrapper, Button, Text, Spacer, Popup } from '3oilerplate'
 import { Smile as SmileIcon, Frown as FrownIcon } from 'react-feather'
-import { Map, Timer } from '../../components'
-import { GameContext } from '../../context'
-import { useKeyboardBindings } from '../../helpers/keyboard'
+import { Map } from '../components/Map/Map'
+import { Timer } from '../components/Timer/Timer'
+import { MinesweeperContext } from '../MinesweeperContext'
+import { useKeyboardBindings } from '../keyboard'
 import ReactGA4 from 'react-ga4'
 
 const PlayView = () => {
-  const { grid, onClick, onStartGame, gameResult, remainingBlocks, settings } = useContext(GameContext)
+  const { grid, onClick, onStartGame, gameResult, remainingBlocks, settings } = useContext(MinesweeperContext)
 
   useKeyboardBindings()
 

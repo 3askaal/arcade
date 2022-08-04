@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Box } from '3oilerplate'
 import moment from 'moment'
-import { GameContext } from '../../context'
+import { MinesweeperContext } from '../../MinesweeperContext'
 import { useIntervalWhen } from 'rooks'
 
 export const Timer = ({ s }: any) => {
-  const { startTime, endTime }: any = useContext(GameContext)
+  const { startTime, endTime }: any = useContext(MinesweeperContext)
   const [currentTime, setCurrentTime] = useState('')
 
   useEffect(() => {

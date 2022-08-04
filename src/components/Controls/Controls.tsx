@@ -8,9 +8,9 @@ import {
   RotateCw
 } from 'react-feather'
 import { isMobile } from 'is-mobile'
-import { GameContext } from '../../context'
 import { useButton } from '@react-aria/button'
 import useBreakpoint from 'use-breakpoint';
+import { TetrisContext } from '../../modules/tetris/TetrisContext'
 
 const BREAKPOINTS = { mobile: 0, desktop: 768 }
 
@@ -32,14 +32,14 @@ export const ControlsButton = ({ onPress, ...props }: any) => {
 }
 
 export const Controls = ({ s }: any) => {
-  const { moveX, drop, rotate } = useContext(GameContext)
+  const { onMoveX, onDrop, onRotate } = useContext(TetrisContext)
   const { breakpoint } = useBreakpoint(BREAKPOINTS, 'desktop');
   const isDesktop = !isMobile({ tablet: true }) && breakpoint === 'desktop'
 
   return (
     <SControls s={s} isDesktop={isDesktop}>
       <ControlsButton
-        onPress={() => moveX('left')}
+        onPress={() => onMoveX('left')}
         type={'MOVE'}
         data-testid="move-left"
         isDesktop={isDesktop}
@@ -47,7 +47,7 @@ export const Controls = ({ s }: any) => {
         <ChevronLeft size={14} />
       </ControlsButton>
       <ControlsButton
-        onPress={() => rotate()}
+        onPress={() => onRotate()}
         type={'SHIFT'}
         data-testid="rotate"
         isDesktop={isDesktop}
@@ -56,7 +56,7 @@ export const Controls = ({ s }: any) => {
         <Box>{ isDesktop ? 'SHIFT' : '' }</Box>
       </ControlsButton>
       <ControlsButton
-        onPress={() => drop()}
+        onPress={() => onDrop()}
         type={'SPACE'}
         data-testid="drop"
         isDesktop={isDesktop}
@@ -65,7 +65,7 @@ export const Controls = ({ s }: any) => {
         <ArrowDown size={14} />
       </ControlsButton>
       <ControlsButton
-        onPress={() => moveX('right')}
+        onPress={() => onMoveX('right')}
         type={'MOVE'}
         data-testid="move-right"
         isDesktop={isDesktop}

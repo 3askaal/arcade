@@ -2,18 +2,17 @@ import React, { useContext, useEffect } from 'react'
 import { Container, Wrapper, Box, Popup, Button, Text } from '3oilerplate'
 import ReactGA from 'react-ga4'
 import { PlayerDetails, Map } from '../../components'
-import { GameContext } from '../../context'
 import ReactGA4 from 'react-ga4'
-import faker from 'faker'
+// import faker from 'faker'
 import { Timer } from '../../components/Timer/Timer'
-import { useKeyboardBindings } from '../../helpers/keyboard'
+import { useKeyboardBindings } from '../../keyboard'
 import { useHistory, useLocation } from 'react-router-dom'
+import { BombermanContext } from '../../BombermanContext'
 
 const PlayView = () => {
   const search = useLocation().search;
   const history = useHistory()
   const {
-    socket,
     players,
     remainingTime,
     onStartGame,
@@ -25,7 +24,7 @@ const PlayView = () => {
     gameOver,
     getWinner,
     getMe,
-  } = useContext(GameContext)
+  } = useContext(BombermanContext)
 
   useKeyboardBindings()
 
@@ -35,7 +34,7 @@ const PlayView = () => {
     const debug = new URLSearchParams(search).get('debug');
 
     if (debug) {
-      setPlayers([{ name: faker.name.firstName(), x: 0, y: 0 }, { name: faker.name.firstName(), x: 0, y: 0 }])
+      // setPlayers([{ name: faker.name.firstName(), x: 0, y: 0 }, { name: faker.name.firstName(), x: 0, y: 0 }])
       onStartGame()
     }
 

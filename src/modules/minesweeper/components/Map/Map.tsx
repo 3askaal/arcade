@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { Box } from '3oilerplate'
 import { SMap, SMapBlock, SMapMine, SMapMineThread } from './Map.styled'
 import { useLongPress } from 'use-long-press'
-import { flag } from '../../helpers/grid'
+import { flag } from '../../mutations'
 import { IGrid, IPosition } from '../../types'
 
 export const Map = ({ grid, gameResult, settings, onClick }: any) => {

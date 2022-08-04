@@ -2,15 +2,14 @@ import React, { createContext, useState } from 'react'
 import { useSocket } from "use-socketio";
 import { useHistory } from 'react-router-dom'
 import ReactGA4 from 'react-ga4'
-import { useInterval } from '../helpers/interval';
-import { generateDamage } from '../helpers/actions';
 import { Socket } from 'socket.io-client';
-import { IBomb, IExplosion, IGrid, IPlayer, ISettings } from '../types';
-import { generateGrid, generatePlayers } from '../helpers/generate';
+import { generateGrid, generatePlayers } from './generate';
+import { generateDamage } from './mutations';
+import { IBomb, IExplosion, IGrid, IPlayer, ISettings } from './types';
+import { useInterval } from '../../helpers/interval';
 
 interface BombermanContextType {
   socket?: Socket;
-
   blocks?: number;
   grid?: IGrid;
   bombs?: IBomb;
@@ -18,14 +17,10 @@ interface BombermanContextType {
   players: IPlayer[];
   settings: ISettings;
   remainingTime?: number;
-
   getOpponents?: any;
   getCurrentPlayer?: any;
-
   [key: string]: any;
 }
-
-
 
 export const BombermanContext = createContext<BombermanContextType>({
   settings: {
@@ -129,7 +124,6 @@ export const BombermanProvider = ({ children }: any) => {
   useInterval(() => {
     setRemainingTime(remainingTime - 1000)
   }, remainingTime ? 1000 : null)
-
 
   const getOpponents = (): any[] => players.filter(({ socketId }: any) => socketId !== socket.id)
 
