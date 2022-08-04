@@ -3,7 +3,7 @@ import ReactGA4 from 'react-ga4'
 import { groupBy, includes, sum } from 'lodash'
 import { Block, generateShape, Shape } from '../helpers/generate';
 import { useInterval } from '../helpers/interval';
-import { checkBlocks, moveX, moveY, rotate } from './actions';
+import { checkBlocks, moveX, moveY, rotate } from './mutations';
 
 export interface Dimensions {
   width: number;
@@ -16,7 +16,7 @@ export interface Score {
   rows: number;
 }
 
-export interface GameContextType {
+export interface TetrisContextType {
   shape: Shape | null;
   setShape: any;
   blocks: Block[];
@@ -26,14 +26,13 @@ export interface GameContextType {
   gameOver: boolean;
   gamePaused: boolean;
   setGamePaused: Dispatch<SetStateAction<boolean>>;
-  onStartGame(initialShape?: Shape): void;
-  drop(): void;
-  moveY(): void;
-  moveX(direction: string): void;
-  rotate(): void;
+  start(initialShape?: Shape): void;
+  onMoveX(direction: string): void;
+  onRotate(): void;
+  onDrop(): void;
 }
 
-export const GameContextDefaults = {
+export const TetrisContextDefaults = {
   shape: generateShape({ height: 36, width: 20 }),
   setShape: () => {},
   blocks: [],
@@ -43,16 +42,15 @@ export const GameContextDefaults = {
   gameOver: false,
   gamePaused: false,
   setGamePaused: () => {},
-  onStartGame: () => {},
-  drop: () => {},
-  moveY: () => {},
-  moveX: () => {},
-  rotate: () => {},
+  start: () => {},
+  onMoveX: () => {},
+  onRotate: () => {},
+  onDrop: () => {},
 }
 
-export const GameContext = createContext<GameContextType>(GameContextDefaults)
+export const TetrisContext = createContext<TetrisContextType>(TetrisContextDefaults)
 
-export const GameProvider = ({ children }: any) => {
+export const TetrisProvider = ({ children }: any) => {
   const [shape, setShapeState] = useState<Shape | null>(generateShape({ height: 36, width: 20 }))
   const [blocks, setBlocksState] = useState<Block[]>([])
   const shapeRef = useRef<any>(null)
@@ -124,7 +122,6 @@ export const GameProvider = ({ children }: any) => {
     if (rotatedShape) setShape(rotatedShape)
   }
 
-
   useEffect(() => {
     const res = checkBlocks(blocksRef.current, score, dimensions)
 
@@ -147,19 +144,18 @@ export const GameProvider = ({ children }: any) => {
   }, [gameOver])
 
   useInterval(() => {
-    moveY()
+    onMoveY()
   }, (!gameOver && !gamePaused) ? 200 : null)
 
   return (
-    <GameContext.Provider
+    <TetrisContext.Provider
       value={{
-        onStartGame,
+        start,
         dimensions,
         gameOver,
-        moveX,
-        moveY,
-        drop,
-        rotate,
+        onMoveX,
+        onDrop,
+        onRotate,
         score,
         blocks,
         setBlocks,
@@ -170,6 +166,6 @@ export const GameProvider = ({ children }: any) => {
       }}
     >
       {children}
-    </GameContext.Provider>
+    </TetrisContext.Provider>
   )
 }
