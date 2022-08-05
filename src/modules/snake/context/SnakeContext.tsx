@@ -36,6 +36,7 @@ export const SnakeProvider = ({ children }: any) => {
   const reset = () => {
     setSnake(generateSnake(dimensions))
     spawnFood()
+    changeDirection('down')
   }
 
   const setSnake = (snake: IPosition[]) => {

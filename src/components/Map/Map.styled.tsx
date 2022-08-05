@@ -8,6 +8,7 @@ export const SMap = s.div(() => ({
   margin: 'auto',
   backgroundColor: brighten('#000', .2),
   boxShadow: '0 0 0 2px ' + brighten('#000', .4),
+  overflow: 'hidden',
 }))
 
 export const SMapShape: any = styled.div.attrs(({ shape, blockSize = 20 }: any) => ({

@@ -44,10 +44,10 @@ export const SnakeMapContent = ({ blockSize }: any) => {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'center',
-            width: `${blockSize}%`,
-            height: `${blockSize}%`,
-            top: `${blockSize * food.y}%`,
-            left: `${blockSize * food.x}%`,
+            width: `${blockSizeX}%`,
+            height: `${blockSizeY}%`,
+            top: `${blockSizeY * food.y}%`,
+            left: `${blockSizeX * food.x}%`,
           }}
         >
           <SMapFood />
