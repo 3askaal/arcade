@@ -27,7 +27,7 @@ const PROVIDERS: any = {
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
 export const GameProvider = ({ children }: any) => {
-  const [selectedGame, setSelectedGame] = useState<string | null>('snake')
+  const [selectedGame, setSelectedGame] = useState<string | null>('tetris')
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
   const [score, setScore] = useState<any>({})
@@ -45,7 +45,7 @@ export const GameProvider = ({ children }: any) => {
   const start = () => {
     setGameOver(null)
     setGameActive(true)
-
+    console.log('lol')
     // ReactGA4.send({
     //   hitType: "pageview",
     //   page: "/play"
@@ -99,6 +99,8 @@ export const GameProvider = ({ children }: any) => {
         setGameActive,
         gameOver,
         setGameOver,
+        score,
+        setScore,
         dimensions
       }}
     >

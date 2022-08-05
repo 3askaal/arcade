@@ -1,5 +1,5 @@
 import { s, darken } from '3oilerplate'
-import { colors } from '../../style'
+import { colors } from '../../../../style'
 
 export const SControls = s.div(({ theme, isDesktop }: any) => ({
   display: 'flex',

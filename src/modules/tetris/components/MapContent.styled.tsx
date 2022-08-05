@@ -1,31 +1,12 @@
-import { s, brighten } from '3oilerplate'
+import { s } from '3oilerplate'
 import chroma from 'chroma-js'
-import styled from 'styled-components'
 
-// export const SMap = s.div(() => ({
-//   display: 'flex',
-//   position: 'relative',
-//   margin: 'auto',
-//   backgroundColor: brighten('#000', .2),
-//   boxShadow: '0 0 0 2px ' + brighten('#000', .4),
-// }))
-
-export const SMapShape: any = styled.div.attrs(({ shape, blockSize = 20 }: any) => ({
-  style: {
-    position: 'absolute',
-    left: `${shape.x * blockSize}px`,
-    top: `${shape.y * blockSize}px`,
-    height: `${shape.height * blockSize}px`,
-    width: `${shape.width * blockSize}px`,
-  }
-}))({})
-
-export const SMapBlock = s.div(({ theme, color = '#fff', dead, blockSize, block }: any) => ({
+export const SMapBlock = s.div(({ theme, color = '#fff', dead, shape, blockSizeX, blockSizeY, block }: any) => ({
   position: 'absolute',
-  top: `${block.y * blockSize}px`,
-  left: `${block.x * blockSize}px`,
-  width: `${blockSize}px`,
-  height: `${blockSize}px`,
+  top: `${(shape?.y * blockSizeY || 0) + block.y * blockSizeY}%`,
+  left: `${(shape?.x * blockSizeX || 0) + block.x * blockSizeX}%`,
+  width: `${blockSizeX}%`,
+  height: `${blockSizeY}%`,
   border: '.15rem solid',
   borderWidth: '.175rem',
   // Light
@@ -36,7 +17,6 @@ export const SMapBlock = s.div(({ theme, color = '#fff', dead, blockSize, block 
   // Dark
   borderLeftColor: chroma(color).darken(1).hex(),
   borderBottomColor: chroma(color).darken(1).hex(),
-  transition: 'all .025s linear',
 
   ...(dead && {
     // Light

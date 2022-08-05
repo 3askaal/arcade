@@ -1,12 +1,15 @@
 import React, { useContext, useEffect } from 'react'
 import { Box, Container, Wrapper, Popup, Text, Button } from '3oilerplate'
-import { Controls, Map, Score } from '../../components'
+import { Map, Score } from '../../components'
 import { GameContext } from '../../context'
+import { Controls } from '../../modules'
 
 const PlayView = () => {
-  const { start, gameOver, gamePaused, setGamePaused } = useContext(GameContext)
+  const { selectedGame, start, gameOver, gamePaused, setGamePaused } = useContext(GameContext)
 
-  useEffect(() => start, [])
+  useEffect(start, [start])
+
+  const CurrentControls = selectedGame && Controls[selectedGame]
 
   return (
     <Wrapper s={{ p: ['s', 'm', 'l'] }}>
@@ -23,7 +26,7 @@ const PlayView = () => {
             justifyContent: 'center',
             mt: 's'
           }}>
-            <Controls />
+            <CurrentControls />
           </Box>
         </Box>
       </Container>
