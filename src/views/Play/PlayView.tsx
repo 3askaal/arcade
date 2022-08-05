@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from 'react'
 import { Box, Container, Wrapper, Popup, Text, Button } from '3oilerplate'
 import ReactGA from 'react-ga4'
 import { Controls, Map, Score } from '../../components'
-import { useKeyboardBindings } from '../../helpers/keyboard'
-import { TetrisContext } from '../../modules/tetris/TetrisContext'
+import { useKeyboardBindings } from '../../modules/tetris/keyboard'
+import { GameContext } from '../../context'
 
 const PlayView = () => {
   const {
@@ -11,7 +11,7 @@ const PlayView = () => {
     gameOver,
     gamePaused,
     setGamePaused,
-  } = useContext(TetrisContext)
+  } = useContext(GameContext)
 
   useKeyboardBindings()
 

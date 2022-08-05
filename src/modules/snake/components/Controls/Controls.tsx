@@ -7,7 +7,7 @@ import {
   ChevronDown,
 } from 'react-feather'
 import isMobile from 'is-mobile'
-import { SnakeContext } from '../../SnakeContext'
+import { SnakeContext } from '../../context/SnakeContext'
 
 export const Controls = () => {
   const { changeDirection } = useContext(SnakeContext)

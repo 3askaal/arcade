@@ -1,12 +1,10 @@
 import React, { createContext, useState } from 'react'
 import { useSocket } from "use-socketio";
 import { useHistory } from 'react-router-dom'
-import ReactGA4 from 'react-ga4'
 import { Socket } from 'socket.io-client';
-import { generateGrid, generatePlayers } from './generate';
-import { generateDamage } from './mutations';
-import { IBomb, IExplosion, IGrid, IPlayer, ISettings } from './types';
-import { useInterval } from '../../helpers/interval';
+import { IBomb, IExplosion, IGrid, IPlayer, ISettings } from '../types';
+import { generateDamage } from '../mutations';
+import { useIntervalWhen } from 'rooks';
 
 interface BombermanContextType {
   socket?: Socket;
@@ -47,24 +45,8 @@ export const BombermanProvider = ({ children }: any) => {
   const [remainingTime, setRemainingTime] = useState<number>(1000)
   const [blocks] = useState(16)
   const [grid, setGrid] = useState<any>({})
-  const [bombs, setBombs] = useState<any>(null)
-  const [explosions, setExplosions] = useState<any>(null)
-
-  const onStartGame = (args?: any) => {
-    console.log('onStartGame')
-    const { grid: newGrid, players: newPlayers, time: remainingTime, roomId } = args || {}
-    setGrid(newGrid || generateGrid(blocks))
-    setPlayers((currentPlayers) => newPlayers || generatePlayers(currentPlayers, blocks))
-    setRemainingTime(remainingTime || 3 * 60 * 1000)
-
-    history.push(`/play/${roomId || 'local'}`);
-
-    ReactGA4.event({
-      category: "actions",
-      action: "game:start",
-      label: players.map(({ name }: any) => name).join(' vs. '),
-    });
-  }
+  const [bombs, setBombs] = useState<any>([])
+  const [explosions, setExplosions] = useState<any>([])
 
   function onGameMove ({ playerIndex, direction, movement }: MoveActionPayload) {
     const newPlayer = { ...players[playerIndex] }
@@ -121,9 +103,9 @@ export const BombermanProvider = ({ children }: any) => {
     }, 3500)
   }
 
-  useInterval(() => {
+  useIntervalWhen(() => {
     setRemainingTime(remainingTime - 1000)
-  }, remainingTime ? 1000 : null)
+  }, 1000, !!remainingTime)
 
   const getOpponents = (): any[] => players.filter(({ socketId }: any) => socketId !== socket.id)
 
@@ -144,7 +126,6 @@ export const BombermanProvider = ({ children }: any) => {
   return (
     <BombermanContext.Provider
       value={{
-        onStartGame,
         onGameMove,
         onGameBomb,
         players,

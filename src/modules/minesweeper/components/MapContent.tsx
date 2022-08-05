@@ -1,19 +1,18 @@
-import React, { useMemo } from 'react'
+import { useContext, useMemo } from "react"
 import { Box } from '3oilerplate'
-import { SMap, SMapBlock, SMapMine, SMapMineThread } from './Map.styled'
-import { useLongPress } from 'use-long-press'
-import { flag } from '../../mutations'
-import { IGrid, IPosition } from '../../types'
+import { SMapBlock, SMapMine, SMapMineThread } from "./MapContent.styled"
+import { MinesweeperContext } from "../context/MinesweeperContext"
+import { useLongPress } from "use-long-press"
+import { flag } from "../mutations"
+import { IGrid, IPosition } from "../types"
 
-export const Map = ({ grid, gameResult, settings, onClick }: any) => {
-  const blockSizeX = 100 / settings.mode.width
-  const blockSizeY = 100 / settings.mode.height
+export const MinesweeperMapContent = ({ blockSize }: any) => {
+  const { grid, gameResult, onClick } = useContext(MinesweeperContext)
   const positions = useMemo(() => Object.values(grid || {}), [grid])
-
   const bindLongPress = useLongPress((e, { context }) => flag(grid as IGrid, context as IPosition));
 
   return (
-    <SMap mode={settings.mode} gameOver={!!gameResult}>
+    <>
       { positions.map((position: any, index: number) => (
         <Box
           key={`block-${index}`}
@@ -23,8 +22,8 @@ export const Map = ({ grid, gameResult, settings, onClick }: any) => {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'center',
-            width: `${blockSizeX}%`,
-            height: `${blockSizeY}%`
+            width: `${blockSize}%`,
+            height: `${blockSize}%`
           }}
         >
           { position.mine ? (
@@ -51,6 +50,6 @@ export const Map = ({ grid, gameResult, settings, onClick }: any) => {
           )}
         </Box>
       )) }
-    </SMap>
+    </>
   )
 }

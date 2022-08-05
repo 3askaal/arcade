@@ -1,13 +1,13 @@
-import React, { createContext, useReducer, useRef, useState } from 'react'
-import { IGrid, ISettings } from './types';
-import { generateSnake } from './generate';
+import React, { createContext, useRef, useState } from 'react'
 import { last, random } from 'lodash';
-import { useInterval } from '../../helpers/interval';
+import { IGrid, ISettings } from '../types';
+import { useIntervalWhen } from 'rooks';
 
 interface IPosition {
   x?: number;
   y?: number;
 }
+
 interface SnakeContextType {
   settings: ISettings;
   grid: IGrid | null;
@@ -45,17 +45,6 @@ export const SnakeProvider = ({ children }: any) => {
   const [food, setFood] = useState<IPosition>({})
   const [direction, setDirection] = useState('down')
   const directionRef = useRef('down')
-
-  const onStartGame = () => {
-    const snake = generateSnake(settings.mode)
-    setSnake(snake)
-    snakeRef.current = snake
-
-    spawnFood()
-
-    setGameOver(null)
-    setCurrentTime(0)
-  }
 
   const setSnake = (snake: IPosition[]) => {
     setSnakeState(snake)
@@ -143,22 +132,19 @@ export const SnakeProvider = ({ children }: any) => {
     return !!snake.find(({ x, y }) => pos.x === x && pos.y === y)
   }
 
-  useInterval(() => {
+  useIntervalWhen(() => {
     moveForward()
-  }, !gameOver ? 100 : null)
+  }, 100, !gameOver)
 
   return (
     <SnakeContext.Provider
       value={{
-        onStartGame,
         settings,
         setSettings,
         grid,
         setGrid,
         snake,
         food,
-        gameOver,
-        setGameOver,
         currentTime,
         setCurrentTime,
         changeDirection,

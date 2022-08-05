@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { Spacer } from '3oilerplate'
 import { SScore } from './Score.styled'
-import { TetrisContext } from '../../modules/tetris/TetrisContext'
+import { GameContext } from '../../context'
 
-export const Score = ({ s }: any) => {
-  const { score } = useContext(TetrisContext)
+export const Score = () => {
+  const { score } = useContext(GameContext)
 
   return (
     <SScore>

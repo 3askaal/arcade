@@ -1,21 +1,21 @@
 import { s, darken } from '3oilerplate'
 import chroma from 'chroma-js'
 
-export const SMap = s.div(({ theme, blocks }: any) => ({
-  display: 'flex',
-  position: 'relative',
-  height: `calc(${blocks}rem + .5rem)`,
-  width: `calc(${blocks}rem + .5rem)`,
-  border: '.25rem solid',
-  // Light
-  borderRightColor: chroma('#fff').darken(0.5).hex(),
-  borderTopColor: chroma('#fff').darken(0.5).hex(),
-  // Middle
-  backgroundColor: chroma('#fff').darken(1).hex(),
-  // Dark
-  borderLeftColor: chroma('#fff').darken(1.5).hex(),
-  borderBottomColor: chroma('#fff').darken(1.5).hex(),
-}))
+// export const SMap = s.div(({ theme, blocks }: any) => ({
+//   display: 'flex',
+//   position: 'relative',
+//   height: `calc(${blocks}rem + .5rem)`,
+//   width: `calc(${blocks}rem + .5rem)`,
+//   border: '.25rem solid',
+//   // Light
+//   borderRightColor: chroma('#fff').darken(0.5).hex(),
+//   borderTopColor: chroma('#fff').darken(0.5).hex(),
+//   // Middle
+//   backgroundColor: chroma('#fff').darken(1).hex(),
+//   // Dark
+//   borderLeftColor: chroma('#fff').darken(1.5).hex(),
+//   borderBottomColor: chroma('#fff').darken(1.5).hex(),
+// }))
 
 export const SMapStone = s.div(({ theme }: any) => ({
   position: 'absolute',

@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import useMousetrap from "react-hook-mousetrap"
-import { BombermanContext } from "./BombermanContext"
-import { SocketContext } from "./SocketContext"
+import { SocketContext } from "./context/SocketContext"
+import { BombermanContext } from "./context/BombermanContext"
 
 export function useKeyboardBindings() {
   const { settings, getMe, onGameMove, onGameBomb } = useContext(BombermanContext)

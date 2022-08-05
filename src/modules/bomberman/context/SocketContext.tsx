@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react'
 import { useSocket } from "use-socketio";
 import { Socket } from 'socket.io-client';
-import { IPlayer } from './types';
+import { IPlayer } from '../types';
 import { BombermanContext } from './BombermanContext';
 
 interface GameContextType {

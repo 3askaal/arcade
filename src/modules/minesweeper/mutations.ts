@@ -1,5 +1,5 @@
 import { uniqBy } from "lodash"
-import { IGrid, IPosition } from "./types"
+import { IGrid, IPosition } from "../../modules/minesweeper/types"
 
 export const isEmptyPosition = (pos: IPosition, countThreads?: boolean) => {
   return (countThreads || !pos.thread) && !pos.mine
