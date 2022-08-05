@@ -10,7 +10,7 @@ import {
 import { isMobile } from 'is-mobile'
 import { useButton } from '@react-aria/button'
 import useBreakpoint from 'use-breakpoint';
-import { TetrisContext } from '../../modules/tetris/TetrisContext'
+import { TetrisContext } from '../../modules/tetris/context/TetrisContext'
 
 const BREAKPOINTS = { mobile: 0, desktop: 768 }
 

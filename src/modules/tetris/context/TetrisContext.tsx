@@ -1,8 +1,9 @@
-import React, { createContext, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import React, { createContext, Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
 import ReactGA4 from 'react-ga4'
-import { useInterval } from '../../helpers/interval';
-import { Block, generateShape, Shape } from './generate';
-import { checkBlocks, moveX, moveY, rotate } from './mutations';
+import { useIntervalWhen } from 'rooks';
+import { GameContext } from '../../../context';
+import { Block, generateShape, Shape } from '../generate';
+import { checkBlocks, moveX, moveY, rotate } from '../mutations';
 
 export interface Dimensions {
   width: number;
@@ -21,11 +22,6 @@ export interface TetrisContextType {
   blocks: Block[];
   setBlocks: Dispatch<SetStateAction<Block[]>>;
   dimensions: Dimensions;
-  score: Score;
-  gameOver: boolean;
-  gamePaused: boolean;
-  setGamePaused: Dispatch<SetStateAction<boolean>>;
-  start(initialShape?: Shape): void;
   onMoveX(direction: string): void;
   onRotate(): void;
   onDrop(): void;
@@ -37,11 +33,6 @@ export const TetrisContextDefaults = {
   blocks: [],
   setBlocks: () => {},
   dimensions: { height: 36, width: 20 },
-  score: { level: 1, points: 0, rows: 0 },
-  gameOver: false,
-  gamePaused: false,
-  setGamePaused: () => {},
-  start: () => {},
   onMoveX: () => {},
   onRotate: () => {},
   onDrop: () => {},
@@ -50,28 +41,16 @@ export const TetrisContextDefaults = {
 export const TetrisContext = createContext<TetrisContextType>(TetrisContextDefaults)
 
 export const TetrisProvider = ({ children }: any) => {
+  const { gameOver, setGameOver, gameActive, setGameActive, score, setScore } = useContext(GameContext)
+
   const [shape, setShapeState] = useState<Shape | null>(generateShape({ height: 36, width: 20 }))
   const [blocks, setBlocksState] = useState<Block[]>([])
   const shapeRef = useRef<any>(null)
-  const gameHasStarted = useRef(false)
   const blocksRef = useRef<any>([])
   const [dimensions] = useState({ height: 36, width: 20 })
-  const [gameOver, setGameOver] = useState(false)
-  const [gamePaused, setGamePaused] = useState(false)
-  const [score, setScore] = useState<Score>({ level: 1, points: 0, rows: 0 })
-
-  const start = (initialShape = generateShape(dimensions)) => {
-    gameHasStarted.current = true;
-    setGameOver(false)
-    setScore({ level: 1, points: 0, rows: 0 })
-    setBlocks([])
-    setShape(initialShape)
-
-    ReactGA4.event({
-      category: "actions",
-      action: "game:start",
-    });
-  }
+  // const [gameOver, setGameOver] = useState(false)
+  // const [gamePaused, setGamePaused] = useState(false)
+  // const [score, setScore] = useState<Score>({ level: 1, points: 0, rows: 0 })
 
   const setShape = (shape: Shape | null) => {
     shapeRef.current = shape
@@ -89,7 +68,7 @@ export const TetrisProvider = ({ children }: any) => {
   }
 
   const onMoveY = async (shouldUpdateState: boolean = true) => {
-    if (!gameHasStarted.current) throw new Error('Game has not been started yet');
+    if (!gameActive) throw new Error('Game has not been started yet');
     if (!shapeRef.current) throw new Error('Could not find active shape');
 
     const [newShape, newBlocks, newGameOver] = await moveY(shapeRef.current, blocksRef.current, dimensions, shouldUpdateState)
@@ -142,26 +121,21 @@ export const TetrisProvider = ({ children }: any) => {
     }
   }, [gameOver])
 
-  useInterval(() => {
+  useIntervalWhen(() => {
     onMoveY()
-  }, (!gameOver && !gamePaused) ? 200 : null)
+  }, 200, gameActive && !gameOver)
 
   return (
     <TetrisContext.Provider
       value={{
-        start,
         dimensions,
-        gameOver,
         onMoveX,
         onDrop,
         onRotate,
-        score,
         blocks,
         setBlocks,
         shape,
         setShape,
-        gamePaused,
-        setGamePaused
       }}
     >
       {children}

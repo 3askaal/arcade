@@ -1,18 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { SMap, SMapBlock, SMapShape } from './Map.styled'
+import { SMap } from './Map.styled'
 import { min } from 'lodash'
-import { TetrisContext } from '../../modules/tetris/TetrisContext'
+import { MapContent, MapDimensions } from '../../modules'
+import { GameContext } from '../../context'
 
 export const Map = () => {
   const mapRef = useRef<any>(null)
-  const {
-    dimensions,
-    shape,
-    blocks
-  } = useContext(TetrisContext)
-
   const [blockSize, setBlockSize] = useState(0)
   const [mapDimensions, setMapDimensions] = useState<{ width?: string, height?: string }>({})
+  const { selectedGame } = useContext(GameContext)
+
+  const SelectedMapContent = selectedGame && MapContent[selectedGame]
+  const dimensions = selectedGame && MapDimensions[selectedGame]
 
   useEffect(() => {
     if (!mapRef.current || !dimensions?.width || !dimensions?.height) return
@@ -38,34 +37,7 @@ export const Map = () => {
   return (
     <div ref={mapRef} style={{ width: mapDimensions.width || '100%', height: mapDimensions.height || '100%' }}>
       <SMap s={{ width: mapDimensions.width || '100%', height: mapDimensions.height || '100%' }} >
-        { shape ? (
-          <SMapShape
-            data-testid="shape-active"
-            key={`shape-active`}
-            shape={shape}
-            blockSize={blockSize}
-          >
-            { shape.blocks.map((block: any, index: number) => (
-              <SMapBlock
-                data-testid={`shape-active-block-${index}`}
-                key={`block-active-${index}`}
-                color={shape.color}
-                blockSize={blockSize}
-                block={block}
-              />
-            )) }
-          </SMapShape>
-        ) : null }
-        { blocks ? blocks.map((block: any, index: number) => (
-          <SMapBlock
-            data-testid={`block-${index}`}
-            key={`block-${index}`}
-            color={block.color}
-            dead={block.dead}
-            blockSize={blockSize}
-            block={block}
-          />
-        )) : null }
+        <SelectedMapContent blockSize={blockSize} />
       </SMap>
     </div>
   )

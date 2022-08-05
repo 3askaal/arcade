@@ -1,4 +1,3 @@
-
 export interface IPosition {
   x: number;
   y: number;
@@ -8,6 +7,7 @@ export interface IPosition {
   amount?: number;
   flag?: boolean;
 }
+
 export interface IGrid {
   [posKey: string]: IPosition
 }

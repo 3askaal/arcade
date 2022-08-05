@@ -1,6 +1,5 @@
 import { groupBy, includes, sum } from "lodash";
-import ga4 from "react-ga4";
-import { Dimensions, Score } from "./TetrisContext";
+import { Dimensions, Score } from "../../modules/tetris/context/TetrisContext";
 import { Block, generateShape, Shape } from "./generate";
 
 export const checkShapePosition = (nextShape: Shape, currentBlocks: Block[], dimensions: Dimensions) => {

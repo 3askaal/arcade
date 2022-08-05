@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import useMousetrap from "react-hook-mousetrap"
-import { SnakeContext } from "./SnakeContext"
+import { SnakeContext } from "../../modules/snake/context/SnakeContext"
 
 export function useKeyboardBindings() {
   const { changeDirection, onStartGame } = useContext(SnakeContext)

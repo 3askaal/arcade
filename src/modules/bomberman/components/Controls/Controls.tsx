@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Box, Text, Spacer } from '3oilerplate'
-import { SPlayerDetails, SPlayerDetailsMove, SPlayerDetailsMiddle, SPlayerDetailsButton, SPlayerDetailsHealth, SPlayerDetailsHealthProgress } from './PlayerDetails.styled'
+import { SPlayerDetails, SPlayerDetailsMove, SPlayerDetailsMiddle, SPlayerDetailsButton, SPlayerDetailsHealth, SPlayerDetailsHealthProgress } from './Controls.styled'
 import {
   ChevronUp,
   ChevronLeft,
@@ -9,7 +9,7 @@ import {
   Crosshair
 } from 'react-feather'
 import isMobile from 'is-mobile'
-import { BombermanContext } from '../../BombermanContext'
+import { BombermanContext } from '../../context/BombermanContext'
 
 export const PlayerDetails = ({ onMove, onBomb, player }: any) => {
   const { settings } = useContext(BombermanContext)

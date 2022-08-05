@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { useIntervalWhen } from 'rooks';
-import { IGameMode, IGrid, IPosition, ISettings } from './types';
-import { generateGrid } from './generate';
-import { flag, reveal } from './mutations';
+import { IGameMode, IGrid, IPosition, ISettings } from '../types';
+import { flag, reveal } from '../mutations';
 
 interface MinesweeperContextType {
   settings: ISettings;
@@ -34,14 +32,6 @@ export const MinesweeperProvider = ({ children }: any) => {
   const [remainingBlocks, setRemainingBlocks] = useState<number | null>(null)
   const [startTime, setStartTime] = useState<number | null>(null)
   const [endTime, setEndTime] = useState<number | null>(null)
-
-  const onStartGame = () => {
-    setGrid(generateGrid(settings))
-    setGameResult(null)
-    setGameActive(false)
-    setStartTime(null)
-    setEndTime(null)
-  }
 
   useEffect(() => {
     if (grid) {
@@ -91,7 +81,6 @@ export const MinesweeperProvider = ({ children }: any) => {
   return (
     <MinesweeperContext.Provider
       value={{
-        onStartGame,
         settings,
         setSettings,
         grid,
