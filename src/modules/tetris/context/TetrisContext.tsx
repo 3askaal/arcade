@@ -41,16 +41,20 @@ export const TetrisContextDefaults = {
 export const TetrisContext = createContext<TetrisContextType>(TetrisContextDefaults)
 
 export const TetrisProvider = ({ children }: any) => {
-  const { gameOver, setGameOver, gameActive, setGameActive, score, setScore } = useContext(GameContext)
+  const { gameOver, setGameOver, gameActive, score, setScore } = useContext(GameContext)
 
-  const [shape, setShapeState] = useState<Shape | null>(generateShape({ height: 36, width: 20 }))
-  const [blocks, setBlocksState] = useState<Block[]>([])
+  const [shape, setShapeState] = useState<Shape | null>(null)
   const shapeRef = useRef<any>(null)
+
+  const [blocks, setBlocksState] = useState<Block[]>([])
   const blocksRef = useRef<any>([])
+
   const [dimensions] = useState({ height: 36, width: 20 })
-  // const [gameOver, setGameOver] = useState(false)
-  // const [gamePaused, setGamePaused] = useState(false)
-  // const [score, setScore] = useState<Score>({ level: 1, points: 0, rows: 0 })
+
+  const reset = () => {
+    setShape(generateShape({ height: 36, width: 20 }))
+    setBlocks([])
+  }
 
   const setShape = (shape: Shape | null) => {
     shapeRef.current = shape
@@ -79,18 +83,18 @@ export const TetrisProvider = ({ children }: any) => {
   }
 
   const onDrop = async () => {
-    const initialBlocksLength = blocksRef.current.length
+    const initialBlocksLength = Number(blocksRef.current.length)
     let isHit = false
 
     while (!isHit) {
       const [newShape, newBlocks, newGameOver] = await moveY(shapeRef.current, blocksRef.current, dimensions)
-      isHit = (newBlocks?.length || 0) > initialBlocksLength
 
-      if (isHit) {
-        if (newBlocks) setBlocks(newBlocks)
-        if (newShape) setShape(newShape)
-        if (newGameOver) setGameOver(newGameOver)
-      }
+      isHit = !!newBlocks && newBlocks?.length > initialBlocksLength
+
+      if (newBlocks) setBlocks(newBlocks)
+      if (newGameOver) setGameOver(newGameOver)
+      if (newShape && isHit) setShape(newShape)
+      if (newShape && !isHit) shapeRef.current = newShape
     }
   }
 
@@ -118,6 +122,8 @@ export const TetrisProvider = ({ children }: any) => {
         category: "actions",
         action: "game:over",
       });
+    } else {
+      reset()
     }
   }, [gameOver])
 
