@@ -1,5 +1,4 @@
 import React, { createContext, Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
-import ReactGA4 from 'react-ga4'
 import { useIntervalWhen } from 'rooks';
 import { GameContext } from '../../../context';
 import { Block, generateShape, Shape } from '../generate';
@@ -54,6 +53,7 @@ export const TetrisProvider = ({ children }: any) => {
   const reset = () => {
     setShape(generateShape({ height: 36, width: 20 }))
     setBlocks([])
+    setScore({ level: 1, points: 0, rows: 0 })
   }
 
   const setShape = (shape: Shape | null) => {
@@ -116,20 +116,16 @@ export const TetrisProvider = ({ children }: any) => {
     }
   }, [blocks.length])
 
-  useEffect(() => {
-    if (gameOver) {
-      ReactGA4.event({
-        category: "actions",
-        action: "game:over",
-      });
-    } else {
-      reset()
-    }
-  }, [gameOver])
-
   useIntervalWhen(() => {
     onMoveY()
   }, 200, gameActive && !gameOver)
+
+  useEffect(() => {
+    if (!gameOver) {
+      console.log('redner')
+      reset()
+    }
+  }, [gameOver])
 
   return (
     <TetrisContext.Provider

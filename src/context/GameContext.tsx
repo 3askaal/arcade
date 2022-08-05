@@ -1,4 +1,6 @@
-import React, { createContext, Dispatch, Provider, SetStateAction, useState } from 'react'
+import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
+import ReactGA4 from 'react-ga4'
+import { MapDimensions } from '../modules';
 import { BombermanProvider } from '../modules/bomberman/context/BombermanContext';
 import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperContext';
 import { SnakeProvider } from '../modules/snake/context/SnakeContext';
@@ -25,30 +27,30 @@ const PROVIDERS: any = {
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
 export const GameProvider = ({ children }: any) => {
-  const [selectedGame, setSelectedGame] = useState<string | null>('tetris')
+  const [selectedGame, setSelectedGame] = useState<string | null>('snake')
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
-  const [score, setScore] = useState<any>({ level: 1, points: 0, rows: 0 })
+  const [score, setScore] = useState<any>({})
+
+  const [settings, setSettings] = useState({
+    mode: {
+      width: 32,
+      height: 32
+    }
+  })
 
   const SelectedProvider = selectedGame && PROVIDERS[selectedGame]
+  const dimensions = selectedGame && MapDimensions[selectedGame]
 
   const start = () => {
     setGameOver(null)
     setGameActive(true)
+
+    // ReactGA4.send({
+    //   hitType: "pageview",
+    //   page: "/play"
+    // });
   }
-
-  // const startTetris = (initialShape = generateShape(dimensions)) => {
-  //   gameHasStarted.current = true;
-  //   setGameOver(false)
-  //   setScore({ level: 1, points: 0, rows: 0 })
-  //   setBlocks([])
-  //   setShape(initialShape)
-
-  //   ReactGA4.event({
-  //     category: "actions",
-  //     action: "game:start",
-  //   });
-  // }
 
   // const startBomberman = (args?: any) => {
   //   console.log('onStartGame')
@@ -75,13 +77,17 @@ export const GameProvider = ({ children }: any) => {
   // }
 
   // const startSnake = () => {
-  //   const snake = generateSnake(settings.mode)
-  //   setSnake(snake)
-  //   snakeRef.current = snake
   //   spawnFood()
   //   setGameOver(null)
   //   setCurrentTime(0)
   // }
+
+  useEffect(() => {
+    // ReactGA4.event({
+    //   category: "actions",
+    //   action: "game:over",
+    // });
+  }, [gameOver])
 
   return (
     <GameContext.Provider
@@ -92,7 +98,8 @@ export const GameProvider = ({ children }: any) => {
         gameActive,
         setGameActive,
         gameOver,
-        setGameOver
+        setGameOver,
+        dimensions
       }}
     >
       <SelectedProvider>

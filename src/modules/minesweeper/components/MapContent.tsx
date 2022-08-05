@@ -5,11 +5,14 @@ import { MinesweeperContext } from "../context/MinesweeperContext"
 import { useLongPress } from "use-long-press"
 import { flag } from "../mutations"
 import { IGrid, IPosition } from "../types"
+import { useMinesweeperKeyboard } from "../keyboard"
 
 export const MinesweeperMapContent = ({ blockSize }: any) => {
   const { grid, gameResult, onClick } = useContext(MinesweeperContext)
   const positions = useMemo(() => Object.values(grid || {}), [grid])
   const bindLongPress = useLongPress((e, { context }) => flag(grid as IGrid, context as IPosition));
+
+  useMinesweeperKeyboard()
 
   return (
     <>

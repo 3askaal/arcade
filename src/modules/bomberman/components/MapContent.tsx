@@ -1,10 +1,13 @@
 import React, { useContext } from "react"
 import { BombermanContext } from "../context/BombermanContext"
+import { useBombermanKeyboard } from "../keyboard"
 import { Explosion } from "./Explosion/Explosion"
 import { SMapBomb, SMapBrick, SMapCharacter, SMapStone } from "./MapContent.styled"
 
 export const BombermanMapContent = ({ blockSize }: any) => {
   const { activePlayers, stones, bricks, bombs, explosions } = useContext(BombermanContext)
+
+  useBombermanKeyboard()
 
   return (
     <>
