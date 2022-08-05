@@ -131,7 +131,6 @@ export const SnakeProvider = ({ children }: any) => {
 
   useEffect(() => {
     if (!gameOver) {
-      console.log('TEST')
       reset()
     }
   }, [gameOver])

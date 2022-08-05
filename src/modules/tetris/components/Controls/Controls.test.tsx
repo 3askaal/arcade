@@ -1,21 +1,21 @@
 import React from 'react';
-import { fireEvent, render } from '../../tests';
-import { Controls } from './Controls';
+import { fireEvent, render } from '../../../../tests';
+import { TetrisControls } from './Controls';
 
 describe('<Controls />', () => {
   it('renders', () => {
-    render(<Controls />)
+    render(<TetrisControls />)
   });
 
   it('renders (for desktop)', () => {
-    const { getByText } = render(<Controls />)
+    const { getByText } = render(<TetrisControls />)
 
     expect(getByText('SPACE')).toBeInTheDocument()
     expect(getByText('SHIFT')).toBeInTheDocument()
   });
 
   it.skip('renders (for mobile)', () => {
-    const { getByText } = render(<Controls />)
+    const { getByText } = render(<TetrisControls />)
 
     expect(getByText('SPACE')).not.toBeInTheDocument()
     expect(getByText('SHIFT')).not.toBeInTheDocument()
@@ -26,7 +26,7 @@ describe('<Controls />', () => {
     const rotate = jest.fn()
     const drop = jest.fn()
 
-    const { findByTestId } = render(<Controls />, {
+    const { findByTestId } = render(<TetrisControls />, {
       value: {
         moveX,
         rotate,

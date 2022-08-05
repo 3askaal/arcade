@@ -9,7 +9,7 @@ import {
 import isMobile from 'is-mobile'
 import { SnakeContext } from '../../context/SnakeContext'
 
-export const Controls = () => {
+export const SnakeControls = () => {
   const { changeDirection } = useContext(SnakeContext)
 
   return (

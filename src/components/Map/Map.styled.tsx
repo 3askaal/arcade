@@ -21,7 +21,6 @@ export const SMapShape: any = styled.div.attrs(({ shape, blockSize = 20 }: any) 
   }
 }))({})
 
-
 export const SMapBlock = s.div(({ theme, color = '#fff', dead, blockSize, block }: any) => ({
   position: 'absolute',
   top: `${block.y * blockSize}px`,

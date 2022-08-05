@@ -11,7 +11,7 @@ import {
 import isMobile from 'is-mobile'
 import { BombermanContext } from '../../context/BombermanContext'
 
-export const PlayerDetails = ({ onMove, onBomb, player }: any) => {
+export const BombermanControls = ({ onMove, onBomb, player }: any) => {
   const { settings } = useContext(BombermanContext)
 
   const playerIndex = settings.type === 'online' ? 1 : player.index

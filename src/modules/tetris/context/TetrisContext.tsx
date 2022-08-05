@@ -105,6 +105,10 @@ export const TetrisProvider = ({ children }: any) => {
   }
 
   useEffect(() => {
+    console.log(gameActive, gameOver)
+  }, [gameActive, gameOver])
+
+  useEffect(() => {
     const res = checkBlocks(blocksRef.current, score, dimensions)
 
     if (res) {
@@ -122,7 +126,6 @@ export const TetrisProvider = ({ children }: any) => {
 
   useEffect(() => {
     if (!gameOver) {
-      console.log('redner')
       reset()
     }
   }, [gameOver])
