@@ -1,7 +1,9 @@
-import React, { createContext, useRef, useState } from 'react'
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { last, random } from 'lodash';
-import { IGrid, ISettings } from '../types';
+import { IGrid } from '../types';
 import { useIntervalWhen } from 'rooks';
+import { generateSnake } from '../generate';
+import { GameContext } from '../../../context';
 
 interface IPosition {
   x?: number;
@@ -9,35 +11,20 @@ interface IPosition {
 }
 
 interface SnakeContextType {
-  settings: ISettings;
   grid: IGrid | null;
   snake: IPosition[];
-  currentTime: number | null;
   [key: string]: any;
 }
 
 export const SnakeContext = createContext<SnakeContextType>({
-  settings: {
-    mode: {
-      width: 12,
-      height: 12
-    }
-  },
   grid: null,
   snake: [],
-  currentTime: 0,
 })
 
 export const SnakeProvider = ({ children }: any) => {
-  const [settings, setSettings] = useState({
-    mode: {
-      width: 32,
-      height: 32
-    }
-  })
+  const { gameOver, setGameOver, dimensions } = useContext(GameContext)
+
   const [grid, setGrid] = useState<IGrid | null>(null)
-  const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
-  const [currentTime, setCurrentTime] = useState<number>(0)
 
   const [snake, setSnakeState] = useState<IPosition[]>([])
   const snakeRef = useRef<IPosition[]>([])
@@ -45,6 +32,11 @@ export const SnakeProvider = ({ children }: any) => {
   const [food, setFood] = useState<IPosition>({})
   const [direction, setDirection] = useState('down')
   const directionRef = useRef('down')
+
+  const reset = () => {
+    setSnake(generateSnake(dimensions))
+    spawnFood()
+  }
 
   const setSnake = (snake: IPosition[]) => {
     setSnakeState(snake)
@@ -103,8 +95,8 @@ export const SnakeProvider = ({ children }: any) => {
 
     while (!newFood) {
       const newFoodPos = {
-        x: random(0, settings.mode.width - 1),
-        y: random(0, settings.mode.height - 1)
+        x: random(0, dimensions.width - 1),
+        y: random(0, dimensions.height - 1)
       }
 
       if (!posHitsSnake(newFoodPos)) {
@@ -117,9 +109,9 @@ export const SnakeProvider = ({ children }: any) => {
 
   const posHitsCorner = ({ x, y }: any) => {
     const hitsCorner = y < 0 ||
-      y >= settings.mode.height ||
+      y >= dimensions.height ||
       x < 0 ||
-      x >= settings.mode.width
+      x >= dimensions.width
 
     return hitsCorner
   }
@@ -136,17 +128,20 @@ export const SnakeProvider = ({ children }: any) => {
     moveForward()
   }, 100, !gameOver)
 
+  useEffect(() => {
+    if (!gameOver) {
+      console.log('TEST')
+      reset()
+    }
+  }, [gameOver])
+
   return (
     <SnakeContext.Provider
       value={{
-        settings,
-        setSettings,
         grid,
         setGrid,
         snake,
         food,
-        currentTime,
-        setCurrentTime,
         changeDirection,
       }}
     >

@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react'
 import { useSocket } from "use-socketio";
-import { useHistory } from 'react-router-dom'
 import { Socket } from 'socket.io-client';
 import { IBomb, IExplosion, IGrid, IPlayer, ISettings } from '../types';
 import { generateDamage } from '../mutations';
@@ -38,7 +37,6 @@ interface BombActionPayload {
 }
 
 export const BombermanProvider = ({ children }: any) => {
-  const history = useHistory()
   const { socket } = useSocket()
   const [players, setPlayers] = useState<IPlayer[]>([])
   const [settings, setSettings] = useState<any>({ type: 'local' })

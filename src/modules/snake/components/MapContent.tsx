@@ -1,10 +1,18 @@
 import { Box } from '3oilerplate'
 import { useContext } from 'react'
+import { GameContext } from '../../../context'
 import { SnakeContext } from '../context/SnakeContext'
+import { useSnakeKeyboard } from '../keyboard'
 import { SMapFood, SMapSnake } from './MapContent.styled'
 
 export const SnakeMapContent = ({ blockSize }: any) => {
+  const { dimensions } = useContext(GameContext)
   const { snake, food } = useContext(SnakeContext)
+
+  const blockSizeX = 100 / dimensions.width
+  const blockSizeY = 100 / dimensions.height
+
+  useSnakeKeyboard()
 
   return (
     <>
@@ -16,10 +24,10 @@ export const SnakeMapContent = ({ blockSize }: any) => {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'center',
-            width: `${blockSize}%`,
-            height: `${blockSize}%`,
-            top: `${blockSize * position.y}%`,
-            left: `${blockSize * position.x}%`,
+            width: `${blockSizeX}%`,
+            height: `${blockSizeY}%`,
+            top: `${blockSizeY * position.y}%`,
+            left: `${blockSizeX * position.x}%`,
           }}
         >
           <SMapSnake

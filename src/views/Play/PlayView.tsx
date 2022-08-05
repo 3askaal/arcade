@@ -1,24 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import { Box, Container, Wrapper, Popup, Text, Button } from '3oilerplate'
-import ReactGA from 'react-ga4'
 import { Controls, Map, Score } from '../../components'
-import { useKeyboardBindings } from '../../modules/tetris/keyboard'
 import { GameContext } from '../../context'
 
 const PlayView = () => {
-  const {
-    start,
-    gameOver,
-    gamePaused,
-    setGamePaused,
-  } = useContext(GameContext)
+  const { start, gameOver, gamePaused, setGamePaused } = useContext(GameContext)
 
-  useKeyboardBindings()
-
-  useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: "/play" });
-    start()
-  }, [])
+  useEffect(() => start, [])
 
   return (
     <Wrapper s={{ p: ['s', 'm', 'l'] }}>

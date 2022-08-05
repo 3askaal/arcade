@@ -3,7 +3,7 @@ import useMousetrap from "react-hook-mousetrap"
 import { GameContext } from "../../context"
 import { TetrisContext } from "./context/TetrisContext"
 
-export function useKeyboardBindings() {
+export function useTetrisKeyboard() {
   const { gameOver, gameActive, setGameActive } = useContext(GameContext)
   const { onMoveX, onDrop, onRotate } = useContext(TetrisContext)
 

@@ -1,9 +1,12 @@
 import React, { useContext } from "react"
 import { TetrisContext } from "../context/TetrisContext"
+import { useTetrisKeyboard } from "../keyboard"
 import { SMapBlock, SMapShape } from "./MapContent.styled"
 
 export const TetrisMapContent = ({ blockSize }: any) => {
   const { shape, blocks } = useContext(TetrisContext)
+
+  useTetrisKeyboard()
 
   return (
     <>

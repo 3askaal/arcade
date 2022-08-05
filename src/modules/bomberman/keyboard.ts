@@ -3,7 +3,7 @@ import useMousetrap from "react-hook-mousetrap"
 import { SocketContext } from "./context/SocketContext"
 import { BombermanContext } from "./context/BombermanContext"
 
-export function useKeyboardBindings() {
+export function useBombermanKeyboard() {
   const { settings, getMe, onGameMove, onGameBomb } = useContext(BombermanContext)
   const { move, bomb } = useContext(SocketContext)
   const isLocalGame = settings?.type === 'local'
