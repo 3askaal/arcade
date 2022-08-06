@@ -6,8 +6,8 @@ const negative = '#EA2C62'
 const backgroundGray = mix('white', '#937DC2', .4)
 
 export const colors: any = {
-  primary: '#395B64',
-  primaryDark: darken('#395B64', 0.5),
+  primary: '#5463FF',
+  primaryDark: darken('#5463FF', 0.5),
   secondary: '#04f2d5',
   secondaryDark: darken('#04f2d5', 0.25),
   background: darken(backgroundGray, 2),
@@ -18,7 +18,4 @@ export const colors: any = {
   negative,
   white: darken('white', 1),
   black: brighten('black', .25),
-  element: {
-    background: darken(backgroundGray, 3.2)
-  }
 }

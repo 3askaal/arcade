@@ -10,9 +10,9 @@ export const Map = () => {
   return (
     <SMap s={{
       aspectRatio: `${dimensions?.width} / ${dimensions?.height}`,
-      maxHeight: '100%',
-      maxWidth: '100%',
-      width: '100%',
+      flexGrow: 1,
+      flexShrink: 1,
+      maxWidth: '420px'
     }}>
       <SelectedMapContent />
     </SMap>
