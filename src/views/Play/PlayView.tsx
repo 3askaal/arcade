@@ -19,15 +19,17 @@ const PlayView = () => {
             <Score />
           </Box>
           <Map />
-          <Box s={{
-            display: 'flex',
-            width: '100%',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            mt: 's'
-          }}>
-            { CurrentControls ? <CurrentControls /> : null }
-          </Box>
+          { CurrentControls ?  (
+            <Box s={{
+              display: 'flex',
+              width: '100%',
+              alignItems: 'flex-end',
+              justifyContent: 'center',
+              mt: 's'
+            }}>
+              <CurrentControls />
+            </Box>
+          ) : null }
         </Box>
       </Container>
       { gameOver && (

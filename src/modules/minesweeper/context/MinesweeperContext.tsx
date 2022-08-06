@@ -49,7 +49,7 @@ export const MinesweeperProvider = ({ children }: any) => {
         setGameOver({ won: true })
       }
     }
-  }, [grid])
+  }, [grid, setGameOver])
 
   useEffect(() => {
     if (gameActive) {

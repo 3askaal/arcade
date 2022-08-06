@@ -7,6 +7,11 @@ import { TetrisControls } from "./tetris/components/Controls/Controls";
 import { SnakeControls } from "./snake/components/Controls/Controls";
 import { BombermanControls } from "./bomberman/components/Controls/Controls";
 
+import { TetrisTheme } from "./tetris/theme";
+import { SnakeTheme } from "./snake/theme";
+import { MinesweeperTheme } from "./minesweeper/theme";
+import { BombermanTheme } from "./bomberman/theme";
+
 export const MapContent: any = {
   tetris: TetrisMapContent,
   snake: SnakeMapContent,
@@ -26,4 +31,11 @@ export const Controls: any = {
   snake: SnakeControls,
   minesweeper: null,
   bomberman: BombermanControls,
+}
+
+export const Themes: any = {
+  tetris: TetrisTheme,
+  snake: SnakeTheme,
+  minesweeper: MinesweeperTheme,
+  bomberman: BombermanTheme,
 }

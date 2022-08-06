@@ -1,13 +1,13 @@
-import { darken, brighten, mix } from '3oilerplate'
+import { darken, mix } from '3oilerplate'
 
 const positive = '#66DE93'
 const negative = '#EA2C62'
 
-const backgroundGray = mix('white', '#937DC2', .4)
+const backgroundGray = mix('white', '#937DC2', .5)
 
 export const colors: any = {
-  primary: '#5463FF',
-  primaryDark: darken('#5463FF', 0.5),
+  primary: '#7459dc',
+  primaryDark: darken('#7459dc', 0.25),
   secondary: '#04f2d5',
   secondaryDark: darken('#04f2d5', 0.25),
   background: darken(backgroundGray, 2),
@@ -16,6 +16,4 @@ export const colors: any = {
   backgroundBorderDark: darken(backgroundGray, 3),
   positive,
   negative,
-  white: darken('white', 1),
-  black: brighten('black', .25),
 }

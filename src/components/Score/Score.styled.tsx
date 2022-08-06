@@ -9,7 +9,6 @@ export const SScore = s.div(({ theme, isDesktop }: any) => ({
   borderBottomRightRadius: 0,
   backgroundColor: brighten('#000', .4),
   boxShadow: '0 0 0 2px ' + brighten('#000', .6),
-  fontFamily: 'monospace, sans-serif',
   fontSize: '.75em',
 }))
 
