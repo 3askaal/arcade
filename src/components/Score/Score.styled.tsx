@@ -1,5 +1,4 @@
-import { s, brighten, darken } from '3oilerplate'
-import { colors } from '../../style'
+import { s, brighten } from '3oilerplate'
 
 export const SScore = s.div(({ theme, isDesktop }: any) => ({
   paddingY: 's',

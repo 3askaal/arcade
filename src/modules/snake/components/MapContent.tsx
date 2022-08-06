@@ -29,6 +29,7 @@ export const SnakeMapContent = ({ blockSize }: any) => {
             top: `${blockSizeY * position.y}%`,
             left: `${blockSizeX * position.x}%`,
           }}
+          key={`block-${index}`}
         >
           <SMapSnake
             key={`block-${index}`}

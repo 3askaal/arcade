@@ -2,11 +2,12 @@ import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { ThemeProvider } from 'styled-components'
-import ReactGA from 'react-ga4'
-import { GlobalStyle, theme } from '3oilerplate'
+import { Home as HomeIcon, BarChart as BarChartIcon } from 'react-feather'
+import { GlobalStyle, theme, Sidebar, List, ListItem, Spacer, Link } from '3oilerplate'
 import deepmerge from 'deepmerge'
+import ReactGA from 'react-ga4'
 import { GameContext, GameProvider } from '../context'
-import { PlayView } from '../views'
+import { HomeView, PlayView } from '../views'
 import { LocalGlobalStyle } from '../style'
 import { SApp } from './App.styled'
 import { THEME } from '../style/theme'
@@ -23,41 +24,50 @@ const mergedTheme = deepmerge(theme, THEME, { arrayMerge: (srcArray, overrideArr
 
 const App = () => {
   return (
-    <GameProvider>
-      <GameContext.Consumer>
-        {({ selectedGame }) => (
-          <ThemeProvider theme={deepmerge(mergedTheme, selectedGame ? Themes[selectedGame] : {}, { arrayMerge: (srcArray, overrideArray) => overrideArray })}>
-            <SApp>
-              <GlobalStyle />
-              <LocalGlobalStyle />
-              <Router history={history}>
+    <Router history={history}>
+      <GameProvider>
+        <GameContext.Consumer>
+          {({ selectedGame }) => (
+            <ThemeProvider theme={deepmerge(mergedTheme, selectedGame ? Themes[selectedGame] : {}, { arrayMerge: (srcArray, overrideArray) => overrideArray })}>
+              <SApp>
+                <Sidebar>
+                  <List>
+                    <ListItem>
+                      <Link s={{ color: 'white' }} to="/">
+                        <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
+                          <HomeIcon />
+                          <span>Home</span>
+                        </Spacer>
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link s={{ color: 'white', opacity: .25, pointerEvents: 'none' }} to="/leaderboards">
+                        <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
+                          <BarChartIcon />
+                          <span>Leaderboards</span>
+                        </Spacer>
+                      </Link>
+                    </ListItem>
+                  </List>
+                </Sidebar>
+                <GlobalStyle />
+                <LocalGlobalStyle />
                 {/* <SocketIOProvider url={SOCKET_URL}> */}
-                  <Switch>
-                    {/* <Route exact path="/">
-                      <HomeView />
-                    </Route> */}
-                    {/* <SocketProvider> */}
-                      {/* <Route exact path="/setup">
-                        <SetupView />
-                      </Route>
-                      <Route exact path="/rooms">
-                        <RoomsView />
-                      </Route>
-                      <Route exact path="/rooms/:roomId">
-                        <LobbyView />
-                      </Route> */}
-                    <Route exact path="/">
-                      <PlayView />
-                    </Route>
-                    {/* </SocketProvider> */}
-                  </Switch>
+                <Switch>
+                  <Route exact path="/">
+                    <HomeView />
+                  </Route>
+                  <Route exact path="/play/:gameId?">
+                    <PlayView />
+                  </Route>
+                </Switch>
                 {/* </SocketIOProvider> */}
-              </Router>
-            </SApp>
-          </ThemeProvider>
-        )}
-      </GameContext.Consumer>
-    </GameProvider>
+              </SApp>
+            </ThemeProvider>
+          )}
+        </GameContext.Consumer>
+      </GameProvider>
+    </Router>
   )
 }
 

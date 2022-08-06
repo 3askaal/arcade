@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
-import ReactGA4 from 'react-ga4'
+// import ReactGA4 from 'react-ga4'
 import { MapDimensions } from '../modules';
 import { BombermanProvider } from '../modules/bomberman/context/BombermanContext';
 import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperContext';
@@ -34,13 +34,6 @@ export const GameProvider = ({ children }: any) => {
   const [startTime, setStartTime] = useState<number | null>(null)
   const [endTime, setEndTime] = useState<number | null>(null)
 
-  const [settings, setSettings] = useState({
-    mode: {
-      width: 32,
-      height: 32
-    }
-  })
-
   const SelectedProvider = selectedGame && PROVIDERS[selectedGame]
   const dimensions = selectedGame && MapDimensions[selectedGame]
 
@@ -66,20 +59,6 @@ export const GameProvider = ({ children }: any) => {
   //     action: "game:start",
   //     label: players.map(({ name }: any) => name).join(' vs. '),
   //   });
-  // }
-
-  // const startMinesweeper = () => {
-  //   setGrid(generateGrid(settings))
-  //   setGameResult(null)
-  //   setGameActive(false)
-  //   setStartTime(null)
-  //   setEndTime(null)
-  // }
-
-  // const startSnake = () => {
-  //   spawnFood()
-  //   setGameOver(null)
-  //   setCurrentTime(0)
   // }
 
   useEffect(() => {
