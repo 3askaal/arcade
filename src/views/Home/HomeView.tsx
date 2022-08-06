@@ -1,25 +1,19 @@
-import React, { useContext } from 'react'
-import { Spacer, Container, Wrapper, Button, Row, Col, Link, Title } from '3oilerplate'
-// import { Link } from 'react-router-dom'
+import React from 'react'
+import { Spacer, Container, Wrapper, Link } from '3oilerplate'
 import { capitalize } from 'lodash'
+import { Button } from '../../components/Button/Button'
+import { GAMES } from '../../config/config'
 
 const PlayView = () => {
-  const games = ['tetris', 'snake', 'minesweeper', 'bomberman']
-
   return (
     <Wrapper s={{ p: ['s', 'm', 'l'] }}>
-      <Container s={{ p: 0, maxWidth: '600px' }}>
-        <Spacer size="xl" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-          {/* <Title s={{ color: 'primaryDark' }}>Arcade Machine</Title> */}
-          <Row>
-            { games.map((game) => (
-              <Col width={100} key={game}>
-                <Link to={`/play/${game}`} s={{ pointerEvents: game === 'bomberman' && 'none' }}>
-                  <Button isBlock isDisabled={game === 'bomberman'}>{ capitalize(game) }</Button>
-                </Link>
-              </Col>
-            ))}
-          </Row>
+      <Container s={{ p: 0, maxWidth: '240px' }}>
+        <Spacer size="l" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+          { GAMES.map(({ name, color, disabled }) => (
+            <Link to={`/play/${name}`} s={{ textDecoration: 'none', pointerEvents: disabled && 'none' }}>
+              <Button isBlock isDisabled={disabled} color={color}>{ capitalize(name) }</Button>
+            </Link>
+          ))}
         </Spacer>
       </Container>
     </Wrapper>
