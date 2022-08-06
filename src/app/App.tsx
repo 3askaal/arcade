@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { ThemeProvider } from 'styled-components'
-import { Home as HomeIcon, BarChart as BarChartIcon } from 'react-feather'
+import { Home as HomeIcon, BarChart as BarChartIcon, Settings as SettingsIcon } from 'react-feather'
 import { GlobalStyle, theme, Sidebar, List, ListItem, Spacer, Link } from '3oilerplate'
 import deepmerge from 'deepmerge'
 import ReactGA from 'react-ga4'
@@ -45,6 +45,14 @@ const App = () => {
                         <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
                           <BarChartIcon />
                           <span>Leaderboards</span>
+                        </Spacer>
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link s={{ color: 'white', opacity: .25, pointerEvents: 'none' }} to="/settings">
+                        <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
+                          <SettingsIcon />
+                          <span>Settings</span>
                         </Spacer>
                       </Link>
                     </ListItem>

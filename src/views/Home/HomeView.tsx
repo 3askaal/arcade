@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Spacer, Container, Wrapper, Button, Row, Col, Link } from '3oilerplate'
+import { Spacer, Container, Wrapper, Button, Row, Col, Link, Title } from '3oilerplate'
 // import { Link } from 'react-router-dom'
 import { capitalize } from 'lodash'
 
@@ -10,6 +10,7 @@ const PlayView = () => {
     <Wrapper s={{ p: ['s', 'm', 'l'] }}>
       <Container s={{ p: 0, maxWidth: '600px' }}>
         <Spacer size="xl" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+          {/* <Title s={{ color: 'primaryDark' }}>Arcade Machine</Title> */}
           <Row>
             { games.map((game) => (
               <Col width={100} key={game}>
