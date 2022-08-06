@@ -5,14 +5,15 @@ export const SControls = s.div(({ theme, index }: any) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: '12rem',
-  width: '12rem',
+  width: '100%',
+  maxWidth: '280px',
+  aspectRatio: '1 / 1',
 
   '&:before': {
     content: "''",
     position: 'absolute',
-    width: '120%',
-    height: '120%',
+    width: '100%',
+    height: '100%',
     borderRadius: '100%',
     backgroundColor: 'backgroundLight',
     pointerEvents: 'none',
@@ -21,8 +22,8 @@ export const SControls = s.div(({ theme, index }: any) => ({
 
 export const SControlsMiddle = s.div(({ theme, index }: any) => ({
   position: 'absolute',
-  width: '4rem',
-  height: '4rem',
+  width: '25%',
+  height: '25%',
   backgroundColor: brighten('black', .2),
   pointerEvents: 'none',
 
@@ -45,10 +46,8 @@ export const SControlsMiddle = s.div(({ theme, index }: any) => ({
 export const SControlsButton = s.button(({ theme, type, color, index }: any) => ({
   position: 'absolute',
   display: 'flex',
-  // alignItems: 'center',
-  // justifyContent: 'center',
-  width: '4rem',
-  height: '4rem',
+  width: '25%',
+  height: '25%',
   backgroundColor: brighten('black', .2),
   border: 0,
   borderRadius: '.2rem',

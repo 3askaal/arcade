@@ -27,7 +27,7 @@ const PROVIDERS: any = {
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
 export const GameProvider = ({ children }: any) => {
-  const [selectedGame, setSelectedGame] = useState<string | null>('tetris')
+  const [selectedGame, setSelectedGame] = useState<string | null>('minesweeper')
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
   const [score, setScore] = useState<any>({})
@@ -45,7 +45,6 @@ export const GameProvider = ({ children }: any) => {
   const start = () => {
     setGameOver(null)
     setGameActive(true)
-    console.log('lol')
     // ReactGA4.send({
     //   hitType: "pageview",
     //   page: "/play"
@@ -53,7 +52,6 @@ export const GameProvider = ({ children }: any) => {
   }
 
   // const startBomberman = (args?: any) => {
-  //   console.log('onStartGame')
   //   const { grid: newGrid, players: newPlayers, time: remainingTime, roomId } = args || {}
   //   setGrid(newGrid || generateGrid(blocks))
   //   setPlayers((currentPlayers) => newPlayers || generatePlayers(currentPlayers, blocks))
