@@ -1,6 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { IGameMode, IGrid, IPosition, ISettings } from '../types';
 import { flag, reveal } from '../mutations';
+import { generateGrid } from '../generate';
+import { GameContext } from '../../../context';
 
 interface MinesweeperContextType {
   settings: ISettings;
@@ -25,13 +27,15 @@ export const MinesweeperContext = createContext<MinesweeperContextType>({
 })
 
 export const MinesweeperProvider = ({ children }: any) => {
+  const { gameActive, setGameActive, gameOver, setGameOver, setStartTime, setEndTime } = useContext(GameContext)
+
   const [settings, setSettings] = useState({ mode: GAME_MODES.intermediate })
   const [grid, setGrid] = useState<IGrid | null>(null)
-  const [gameActive, setGameActive] = useState(false)
-  const [gameResult, setGameResult] = useState<{ won: boolean } | null>(null)
   const [remainingBlocks, setRemainingBlocks] = useState<number | null>(null)
-  const [startTime, setStartTime] = useState<number | null>(null)
-  const [endTime, setEndTime] = useState<number | null>(null)
+
+  const reset = () => {
+    setGrid(generateGrid(settings))
+  }
 
   useEffect(() => {
     if (grid) {
@@ -42,7 +46,7 @@ export const MinesweeperProvider = ({ children }: any) => {
       setRemainingBlocks(newRemainingBlocks)
 
       if (!newRemainingBlocks) {
-        setGameResult({ won: true })
+        setGameOver({ won: true })
       }
     }
   }, [grid])
@@ -56,12 +60,13 @@ export const MinesweeperProvider = ({ children }: any) => {
   }, [gameActive])
 
   useEffect(() => {
-    if (gameResult) {
+    if (gameOver) {
       setEndTime(Date.now())
     } else {
       setEndTime(null)
+      reset()
     }
-  }, [gameResult])
+  }, [gameOver])
 
   const onClick = (e: React.MouseEvent, block: IPosition) => {
     if (!grid) return
@@ -74,7 +79,7 @@ export const MinesweeperProvider = ({ children }: any) => {
     setGrid(newGrid)
 
     if (gameOver) {
-      setGameResult({ won: false })
+      setGameOver({ won: false })
     }
   }
 
@@ -85,15 +90,8 @@ export const MinesweeperProvider = ({ children }: any) => {
         setSettings,
         grid,
         setGrid,
-        gameResult,
-        setGameResult,
         remainingBlocks,
         setRemainingBlocks,
-        startTime,
-        setStartTime,
-        endTime,
-        setEndTime,
-        setGameActive,
         onClick
       }}
     >
