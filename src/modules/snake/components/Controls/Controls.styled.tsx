@@ -12,8 +12,8 @@ export const SControls = s.div(({ theme, index }: any) => ({
   '&:before': {
     content: "''",
     position: 'absolute',
-    width: '100%',
-    height: '100%',
+    width: '90%',
+    height: '90%',
     borderRadius: '100%',
     backgroundColor: 'backgroundLight',
     pointerEvents: 'none',
