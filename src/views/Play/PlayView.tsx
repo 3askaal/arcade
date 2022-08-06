@@ -26,7 +26,7 @@ const PlayView = () => {
             justifyContent: 'center',
             mt: 's'
           }}>
-            <CurrentControls />
+            { CurrentControls ? <CurrentControls /> : null }
           </Box>
         </Box>
       </Container>
