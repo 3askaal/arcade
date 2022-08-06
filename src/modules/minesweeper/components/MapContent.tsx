@@ -6,13 +6,18 @@ import { useLongPress } from "use-long-press"
 import { flag } from "../mutations"
 import { IGrid, IPosition } from "../types"
 import { useMinesweeperKeyboard } from "../keyboard"
+import { GameContext } from "../../../context"
 
 export const MinesweeperMapContent = ({ blockSize }: any) => {
+  const { dimensions } = useContext(GameContext)
   const { grid, gameResult, onClick } = useContext(MinesweeperContext)
   const positions = useMemo(() => Object.values(grid || {}), [grid])
   const bindLongPress = useLongPress((e, { context }) => flag(grid as IGrid, context as IPosition));
 
   useMinesweeperKeyboard()
+
+  const blockSizeX = 100 / dimensions.width
+  const blockSizeY = 100 / dimensions.height
 
   return (
     <>
@@ -22,11 +27,10 @@ export const MinesweeperMapContent = ({ blockSize }: any) => {
           s={{
             display: 'flex',
             position: 'relative',
-            flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'center',
-            width: `${blockSize}%`,
-            height: `${blockSize}%`
+            width: `${blockSizeX}%`,
+            height: `${blockSizeY}%`
           }}
         >
           { position.mine ? (

@@ -31,6 +31,8 @@ export const GameProvider = ({ children }: any) => {
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
   const [score, setScore] = useState<any>({})
+  const [startTime, setStartTime] = useState<number | null>(null)
+  const [endTime, setEndTime] = useState<number | null>(null)
 
   const [settings, setSettings] = useState({
     mode: {
@@ -92,6 +94,7 @@ export const GameProvider = ({ children }: any) => {
       value={{
         selectedGame,
         setSelectedGame,
+        dimensions,
         start,
         gameActive,
         setGameActive,
@@ -99,7 +102,10 @@ export const GameProvider = ({ children }: any) => {
         setGameOver,
         score,
         setScore,
-        dimensions
+        startTime,
+        setStartTime,
+        endTime,
+        setEndTime,
       }}
     >
       <SelectedProvider>
