@@ -12,6 +12,7 @@ import { LocalGlobalStyle } from '../style'
 import { SApp } from './App.styled'
 import { THEME } from '../style/theme'
 import { Themes } from '../modules'
+
 import './fonts.css'
 
 export const history = createBrowserHistory()
@@ -35,7 +36,7 @@ const App = () => {
                     <ListItem>
                       <Link s={{ color: 'white' }} to="/">
                         <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <HomeIcon />
+                          <HomeIcon size={16} />
                           <span>Home</span>
                         </Spacer>
                       </Link>
@@ -43,7 +44,7 @@ const App = () => {
                     <ListItem>
                       <Link s={{ color: 'white', opacity: .25, pointerEvents: 'none' }} to="/leaderboards">
                         <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <BarChartIcon />
+                          <BarChartIcon size={16} />
                           <span>Leaderboards</span>
                         </Spacer>
                       </Link>
@@ -51,7 +52,7 @@ const App = () => {
                     <ListItem>
                       <Link s={{ color: 'white', opacity: .25, pointerEvents: 'none' }} to="/settings">
                         <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <SettingsIcon />
+                          <SettingsIcon size={16} />
                           <span>Settings</span>
                         </Spacer>
                       </Link>
