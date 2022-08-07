@@ -44,6 +44,7 @@ export const GameProvider = ({ children }: any) => {
     ReactGA4.event({
       category: "actions",
       action: "game:start",
+      label: selectedGame || ''
     });
   }
 
@@ -67,6 +68,7 @@ export const GameProvider = ({ children }: any) => {
       ReactGA4.event({
         category: "actions",
         action: "game:over",
+        label: selectedGame || ''
       });
     }
   }, [gameOver])
