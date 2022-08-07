@@ -16,9 +16,9 @@ export const LocalGlobalStyle: any = createGlobalStyle<any>({
 
   svg: {
     display: 'block',
-    maxWidth: '20px !important',
-    maxHeight: '20px !important',
     stroke: 'currentcolor !important'
+    // maxWidth: '20px !important',
+    // maxHeight: '20px !important',
   },
 
   button: {
