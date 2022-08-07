@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
-// import ReactGA4 from 'react-ga4'
+import ReactGA4 from 'react-ga4'
 import { MapDimensions } from '../modules';
 import { BombermanProvider } from '../modules/bomberman/context/BombermanContext';
 import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperContext';
@@ -40,10 +40,11 @@ export const GameProvider = ({ children }: any) => {
   const start = () => {
     setGameOver(null)
     setGameActive(true)
-    // ReactGA4.send({
-    //   hitType: "pageview",
-    //   page: "/play"
-    // });
+
+    ReactGA4.event({
+      category: "actions",
+      action: "game:start",
+    });
   }
 
   // const startBomberman = (args?: any) => {
@@ -62,10 +63,12 @@ export const GameProvider = ({ children }: any) => {
   // }
 
   useEffect(() => {
-    // ReactGA4.event({
-    //   category: "actions",
-    //   action: "game:over",
-    // });
+    if (gameOver) {
+      ReactGA4.event({
+        category: "actions",
+        action: "game:over",
+      });
+    }
   }, [gameOver])
 
   return (

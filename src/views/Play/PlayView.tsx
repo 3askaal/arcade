@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import ReactGA4 from 'react-ga4'
 import { Box, Spacer, Container, Wrapper, Popup, Text, Button } from '3oilerplate'
 import { Map, Score } from '../../components'
 import { GameContext } from '../../context'
@@ -12,7 +13,14 @@ const PlayView = () => {
   useEffect(start, [start])
 
   useEffect(() => {
-    if (gameId) setSelectedGame(gameId)
+    if (gameId) {
+      setSelectedGame(gameId)
+
+      ReactGA4.send({
+        hitType: "pageview",
+        page: `/play/${selectedGame}}`
+      });
+    }
   }, [gameId, setSelectedGame])
 
   const CurrentControls = selectedGame && Controls[selectedGame]
