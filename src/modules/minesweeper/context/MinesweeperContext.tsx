@@ -7,7 +7,6 @@ import { GameContext } from '../../../context';
 interface MinesweeperContextType {
   settings: ISettings;
   grid: IGrid | null;
-  remainingBlocks: number | null;
   [key: string]: any;
 }
 
@@ -22,19 +21,18 @@ export const MinesweeperContext = createContext<MinesweeperContextType>({
     mode: GAME_MODES.intermediate
   },
   grid: null,
-  remainingBlocks: null,
   currentTime: 0
 })
 
 export const MinesweeperProvider = ({ children }: any) => {
-  const { gameActive, setGameActive, gameOver, setGameOver, setStartTime, setEndTime } = useContext(GameContext)
+  const { gameActive, setGameActive, gameOver, setGameOver, setStartTime, setEndTime, score, setScore } = useContext(GameContext)
 
   const [settings, setSettings] = useState({ mode: GAME_MODES.intermediate })
   const [grid, setGrid] = useState<IGrid | null>(null)
-  const [remainingBlocks, setRemainingBlocks] = useState<number | null>(null)
 
   const reset = () => {
     setGrid(generateGrid(settings))
+    setScore({ remaining: 0 })
   }
 
   useEffect(() => {
@@ -43,7 +41,7 @@ export const MinesweeperProvider = ({ children }: any) => {
         return position.block && !position.mine
       }).length
 
-      setRemainingBlocks(newRemainingBlocks)
+      setScore({ remaining: newRemainingBlocks })
 
       if (!newRemainingBlocks) {
         setGameOver({ won: true })
@@ -90,8 +88,6 @@ export const MinesweeperProvider = ({ children }: any) => {
         setSettings,
         grid,
         setGrid,
-        remainingBlocks,
-        setRemainingBlocks,
         onClick
       }}
     >

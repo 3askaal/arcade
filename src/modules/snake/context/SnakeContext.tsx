@@ -22,7 +22,7 @@ export const SnakeContext = createContext<SnakeContextType>({
 })
 
 export const SnakeProvider = ({ children }: any) => {
-  const { gameOver, setGameOver, dimensions } = useContext(GameContext)
+  const { gameOver, setGameOver, dimensions, score, setScore } = useContext(GameContext)
 
   const [grid, setGrid] = useState<IGrid | null>(null)
 
@@ -37,6 +37,7 @@ export const SnakeProvider = ({ children }: any) => {
     setSnake(generateSnake(dimensions))
     spawnFood()
     changeDirection('down')
+    setScore({ length: 5 })
   }
 
   const setSnake = (snake: IPosition[]) => {
@@ -69,6 +70,7 @@ export const SnakeProvider = ({ children }: any) => {
 
     if (isFood) {
       spawnFood()
+      setScore({ ...score, length: score.length + 1 })
     }
 
     if (!isCorner && !isTail) {

@@ -7,8 +7,7 @@ export const SMapBlock = s.div(({ theme, color = '#fff', dead, shape, blockSizeX
   left: `${(shape?.x * blockSizeX || 0) + block.x * blockSizeX}%`,
   width: `${blockSizeX}%`,
   height: `${blockSizeY}%`,
-  border: '.15rem solid',
-  borderWidth: '.175rem',
+  border: '.2rem solid',
   // Light
   borderRightColor: chroma(color).brighten(1).hex(),
   borderTopColor: chroma(color).brighten(1).hex(),
