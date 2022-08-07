@@ -2,14 +2,14 @@ import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { ThemeProvider } from 'styled-components'
-import { Home as HomeIcon, BarChart as BarChartIcon, Settings as SettingsIcon } from 'react-feather'
-import { GlobalStyle, theme, Sidebar, List, ListItem, Spacer, Link } from '3oilerplate'
+import { GlobalStyle, theme } from '3oilerplate'
 import deepmerge from 'deepmerge'
 import ReactGA from 'react-ga4'
 import { GameContext, GameProvider } from '../context'
 import { HomeView, PlayView } from '../views'
 import { LocalGlobalStyle } from '../style'
 import { SApp } from './App.styled'
+import { AppSidebar } from './Sidebar'
 import { THEME } from '../style/theme'
 import { Themes } from '../modules'
 
@@ -31,34 +31,7 @@ const App = () => {
           {({ selectedGame }) => (
             <ThemeProvider theme={deepmerge(mergedTheme, selectedGame ? Themes[selectedGame] : {}, { arrayMerge: (srcArray, overrideArray) => overrideArray })}>
               <SApp>
-                <Sidebar>
-                  <List>
-                    <ListItem>
-                      <Link s={{ color: 'white' }} to="/">
-                        <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <HomeIcon size={16} />
-                          <span>Home</span>
-                        </Spacer>
-                      </Link>
-                    </ListItem>
-                    <ListItem>
-                      <Link s={{ color: 'white', opacity: .25, pointerEvents: 'none' }} to="/leaderboards">
-                        <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <BarChartIcon size={16} />
-                          <span>Leaderboards</span>
-                        </Spacer>
-                      </Link>
-                    </ListItem>
-                    <ListItem>
-                      <Link s={{ color: 'white', opacity: .25, pointerEvents: 'none' }} to="/settings">
-                        <Spacer size="s" s={{ flexDirection: 'row', alignItems: 'center' }}>
-                          <SettingsIcon size={16} />
-                          <span>Settings</span>
-                        </Spacer>
-                      </Link>
-                    </ListItem>
-                  </List>
-                </Sidebar>
+                <AppSidebar />
                 <GlobalStyle />
                 <LocalGlobalStyle />
                 {/* <SocketIOProvider url={SOCKET_URL}> */}
