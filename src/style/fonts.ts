@@ -1,5 +1,5 @@
 export const fonts: any = {
-  base: "monospace, sans-serif",
-  title: "monospace, sans-serif",
+  base: "'Play', sans-serif",
+  title: "'Play', sans-serif",
   retro: "'Press Start 2P', cursive"
 }
