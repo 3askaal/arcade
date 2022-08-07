@@ -14,7 +14,7 @@ export const Map = () => {
       flexShrink: 1,
       maxWidth: '420px'
     }}>
-      <SelectedMapContent />
+      { selectedGame && <SelectedMapContent /> }
     </SMap>
   )
 }

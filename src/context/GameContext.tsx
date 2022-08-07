@@ -27,7 +27,7 @@ const PROVIDERS: any = {
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
 export const GameProvider = ({ children }: any) => {
-  const [selectedGame, setSelectedGame] = useState<string | null>('minesweeper')
+  const [selectedGame, setSelectedGame] = useState<string | null>(null)
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
   const [score, setScore] = useState<any>({})
@@ -47,21 +47,6 @@ export const GameProvider = ({ children }: any) => {
       label: selectedGame || ''
     });
   }
-
-  // const startBomberman = (args?: any) => {
-  //   const { grid: newGrid, players: newPlayers, time: remainingTime, roomId } = args || {}
-  //   setGrid(newGrid || generateGrid(blocks))
-  //   setPlayers((currentPlayers) => newPlayers || generatePlayers(currentPlayers, blocks))
-  //   setRemainingTime(remainingTime || 3 * 60 * 1000)
-
-  //   history.push(`/play/${roomId || 'local'}`);
-
-  //   ReactGA4.event({
-  //     category: "actions",
-  //     action: "game:start",
-  //     label: players.map(({ name }: any) => name).join(' vs. '),
-  //   });
-  // }
 
   useEffect(() => {
     if (gameOver) {
@@ -92,9 +77,11 @@ export const GameProvider = ({ children }: any) => {
         setEndTime,
       }}
     >
-      <SelectedProvider>
-        {children}
-      </SelectedProvider>
+      { selectedGame ? (
+        <SelectedProvider>
+          { children }
+        </SelectedProvider>
+      ) : children }
     </GameContext.Provider>
   )
 }
