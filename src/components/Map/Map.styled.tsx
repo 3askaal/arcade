@@ -9,6 +9,7 @@ export const SMap = s.div(() => ({
   boxShadow: '0 0 0 2px ' + brighten('#000', .75),
   overflow: 'hidden',
   width: 'auto',
+  flexWrap: 'wrap',
   backgroundColor: 'map',
 }))
 
