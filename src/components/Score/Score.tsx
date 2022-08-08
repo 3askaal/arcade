@@ -9,9 +9,9 @@ export const Score = () => {
 
   return (
     <SScore>
-      <Spacer size="s" s={{ flexDirection: 'row' }}>
-        { Object.entries(score).map(([key, value]) => (
-          <span>{ capitalize(key) }: { value }</span>
+      <Spacer size="m" s={{ flexDirection: 'row' }}>
+        { Object.entries(score).map(([scoreKey, scoreValue]) => (
+          <span key={scoreKey}>{ capitalize(scoreKey) }: { scoreValue }</span>
         )) }
       </Spacer>
     </SScore>

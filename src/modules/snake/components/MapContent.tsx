@@ -32,7 +32,6 @@ export const SnakeMapContent = ({ blockSize }: any) => {
           key={`block-${index}`}
         >
           <SMapSnake
-            key={`block-${index}`}
             block={position.block}
           />
         </Box>

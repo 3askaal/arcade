@@ -1,4 +1,4 @@
-import { s, brighten, darken } from '3oilerplate'
+import { s, darken } from '3oilerplate'
 
 export const SControls = s.div(({ theme, index }: any) => ({
   position: 'relative',
@@ -6,25 +6,15 @@ export const SControls = s.div(({ theme, index }: any) => ({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '280px',
+  maxWidth: '14rem',
   aspectRatio: '1 / 1',
-
-  '&:before': {
-    content: "''",
-    position: 'absolute',
-    width: '90%',
-    height: '90%',
-    borderRadius: '100%',
-    backgroundColor: 'backgroundLight',
-    pointerEvents: 'none',
-  }
 }))
 
 export const SControlsMiddle = s.div(({ theme, index }: any) => ({
   position: 'absolute',
   width: '25%',
   height: '25%',
-  backgroundColor: brighten('black', .2),
+  backgroundColor: 'accent',
   pointerEvents: 'none',
 
   '&:before': {
@@ -38,7 +28,7 @@ export const SControlsMiddle = s.div(({ theme, index }: any) => ({
     width: '80%',
     height: '80%',
     borderRadius: '100%',
-    backgroundColor: brighten('black', .4),
+    backgroundColor: 'accentDark',
     pointerEvents: 'none',
   }
 }))
@@ -48,10 +38,10 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
   display: 'flex',
   width: '25%',
   height: '25%',
-  backgroundColor: brighten('black', .2),
+  backgroundColor: 'accent',
   border: 0,
   borderRadius: '.2rem',
-  color: 'white',
+  color: 'accentDarker',
   cursor: 'pointer',
   marginTop: 's',
   marginBottom: 's',
@@ -59,7 +49,7 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
 
   'svg': {
     strokeWidth: 3,
-    stroke: darken('white', 1.8)
+    stroke: darken('black', 1.8)
   },
 
   ...(type === 'up' && {

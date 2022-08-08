@@ -6,10 +6,10 @@ export const SMap = s.div(() => ({
   display: 'flex',
   position: 'relative',
   margin: 'auto',
-  boxShadow: '0 0 0 2px ' + brighten('#000', .4),
+  boxShadow: '0 0 0 2px ' + brighten('#000', .75),
   overflow: 'hidden',
-  flexWrap: 'wrap',
-  backgroundColor: 'map'
+  width: 'auto',
+  backgroundColor: 'map',
 }))
 
 export const SMapShape: any = styled.div.attrs(({ shape, blockSize = 20 }: any) => ({
