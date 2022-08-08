@@ -26,22 +26,29 @@ const PlayView = () => {
   const CurrentControls = selectedGame && Controls[selectedGame]
 
   return (
-    <Wrapper s={{ p: ['s', 'm', 'l'] }}>
+    <Wrapper s={{ p: ['s', 'm', 'l'], pt: ['m', 'l'] }}>
       <Container s={{ p: 0 }}>
         <Spacer size="xl" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
           <Box s={{ display: 'flex', alignItems: 'flex-end' }}>
             <Score />
           </Box>
-          <Box s={{ display: 'flex', width: '100%', marginTop: 0 }}>
+          <Box s={{
+            // display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            // flexGrow: 1,
+            flexShrink: 1,
+            maxHeight: '80%',
+            marginTop: 0,
+          }}>
             <Map />
           </Box>
           { CurrentControls ?  (
             <Box s={{
               display: 'flex',
               width: '100%',
-              alignItems: 'flex-end',
               justifyContent: 'center',
-              mt: 's'
+              mt: 's',
             }}>
               <CurrentControls />
             </Box>

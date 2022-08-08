@@ -26,7 +26,7 @@ export const SnakeControls = () => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronLeft />
+        <ChevronLeft size={24} />
       </SControlsButton>
       <SControlsButton
         type="up"
@@ -39,7 +39,7 @@ export const SnakeControls = () => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronUp />
+        <ChevronUp size={24} />
       </SControlsButton>
       <SControlsButton
         type="down"
@@ -52,7 +52,7 @@ export const SnakeControls = () => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronDown />
+        <ChevronDown size={24} />
       </SControlsButton>
       <SControlsButton
         type="right"
@@ -65,7 +65,7 @@ export const SnakeControls = () => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronRight />
+        <ChevronRight size={24} />
       </SControlsButton>
     </SControls>
   )
