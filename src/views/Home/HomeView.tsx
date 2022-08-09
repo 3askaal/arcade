@@ -4,6 +4,7 @@ import { Spacer, Container, Wrapper, Link } from '3oilerplate'
 import { capitalize } from 'lodash'
 import { Button } from '../../components/Button/Button'
 import { GAMES } from '../../config/config'
+import { CloseButton } from '../../components/Button/Close'
 
 const PlayView = () => {
   useEffect(() => {

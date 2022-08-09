@@ -23,7 +23,7 @@ export const MinesweeperMapContent = ({ blockSize }: any) => {
     <>
       { positions.map((position: any, index: number) => (
         <Box
-          key={`block-${index}`}
+          key={`pos-${index}`}
           s={{
             display: 'flex',
             position: 'relative',

@@ -1,11 +1,21 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import { Home as HomeIcon, BarChart as BarChartIcon, Settings as SettingsIcon } from 'react-feather'
 import { Sidebar, List, ListItem, Spacer, Link } from '3oilerplate'
+import { HamburgerButton } from '../components/Button/Hamburger'
+import { CloseButton } from '../components/Button/Close'
+import { GameContext } from '../context'
 
 export const AppSidebar = () => {
+  const { setGameActive } = useContext(GameContext)
+
   return (
-    <Sidebar>
+    <Sidebar
+      closeButton={<CloseButton />}
+      openButton={<HamburgerButton />}
+      onOpen={() => setGameActive(false)}
+      onClose={() => setGameActive(true)}
+    >
       <List s={{ marginTop: '-1px' }}>
         <ListItem>
           <Link s={{ color: 'white' }} to="/">

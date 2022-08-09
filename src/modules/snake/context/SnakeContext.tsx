@@ -22,7 +22,7 @@ export const SnakeContext = createContext<SnakeContextType>({
 })
 
 export const SnakeProvider = ({ children }: any) => {
-  const { gameOver, setGameOver, dimensions, score, setScore } = useContext(GameContext)
+  const { gameOver, setGameOver, gameActive, dimensions, score, setScore } = useContext(GameContext)
 
   const [grid, setGrid] = useState<IGrid | null>(null)
 
@@ -129,7 +129,7 @@ export const SnakeProvider = ({ children }: any) => {
 
   useIntervalWhen(() => {
     moveForward()
-  }, 100, !gameOver)
+  }, 100, gameActive && !gameOver)
 
   useEffect(() => {
     if (!gameOver) {
