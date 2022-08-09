@@ -10,7 +10,7 @@ const PlayView = () => {
   const { gameId }: any = useParams()
   const { selectedGame, setSelectedGame, start, gameOver, gamePaused, setGamePaused } = useContext(GameContext)
 
-  useEffect(start, [start])
+  useEffect(start, [])
 
   useEffect(() => {
     if (gameId) {
@@ -28,8 +28,8 @@ const PlayView = () => {
   return (
     <Wrapper s={{ p: ['s', 'm', 'l'], pt: ['m', 'l'] }}>
       <Container s={{ p: 0 }}>
-        <Spacer size="xl" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-          <Box s={{ display: 'flex', alignItems: 'flex-end' }}>
+        <Spacer size="l" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+          <Box s={{ display: 'flex', }}>
             <Score />
           </Box>
           <Box s={{
@@ -39,7 +39,6 @@ const PlayView = () => {
             // flexGrow: 1,
             flexShrink: 1,
             maxHeight: '80%',
-            marginTop: 0,
           }}>
             <Map />
           </Box>
