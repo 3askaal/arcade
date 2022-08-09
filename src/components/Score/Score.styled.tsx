@@ -14,7 +14,7 @@ export const SScoreDivider = s.div(({ color }: any) => ({
   position: 'relative',
   width: '.25rem',
   height: '100%',
-  backgroundColor: 'grey60',
+  backgroundColor: 'grey80',
 }))
 
 export const SScoreItem = s.div(({ color }: any) => ({
