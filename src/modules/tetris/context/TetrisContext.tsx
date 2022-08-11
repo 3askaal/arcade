@@ -118,6 +118,7 @@ export const TetrisProvider = ({ children }: any) => {
 
   useIntervalWhen(() => {
     onMoveY()
+
   }, 200, gameActive && !gameOver)
 
   useEffect(() => {
