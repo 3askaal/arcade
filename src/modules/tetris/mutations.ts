@@ -116,7 +116,7 @@ const getFullRows = (currentBlocks: Block[], dimensions: Dimensions): number[] =
 
 export const checkBlocks = (
   currentBlocks: Block[],
-  currentScore: Score,
+  score: Score,
   dimensions: Dimensions
 ): [Score | null, Block[] | null, Block[] | null] | null => {
   let newScore = null
@@ -131,9 +131,9 @@ export const checkBlocks = (
 
   const pointsForAmountRows = [40, 100, 300, 1200]
   const amountRowsIndex = fullRows.length - 1
-  const newRows = currentScore.rows + fullRows.length
+  const newRows = score.rows + fullRows.length
   const newLevel = Math.floor(newRows / 10) + 1
-  const newPoints = currentScore.points + (pointsForAmountRows[amountRowsIndex] * currentScore.level)
+  const newPoints = score.points + (pointsForAmountRows[amountRowsIndex] * score.level)
 
   newScore = {
     level: newLevel,
@@ -147,8 +147,7 @@ export const checkBlocks = (
       dead: includes(fullRows, currentBlock.y)
     }))
 
-
-  newBlocks = currentBlocks
+  newBlocks = deadBlocks
     .filter(({ dead }: Block) => !dead)
     .map((block: Block) => ({
       ...block,
