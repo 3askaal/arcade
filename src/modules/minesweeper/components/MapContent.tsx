@@ -1,5 +1,4 @@
 import { useContext, useMemo } from "react"
-import { Box } from '3oilerplate'
 import { SMapBlock, SMapMine, SMapMineThread } from "./MapContent.styled"
 import { MinesweeperContext } from "../context/MinesweeperContext"
 import { useLongPress } from "use-long-press"
@@ -7,6 +6,7 @@ import { flag } from "../mutations"
 import { IGrid, IPosition } from "../types"
 import { useMinesweeperKeyboard } from "../keyboard"
 import { GameContext } from "../../../context"
+import { SMapPos } from "../../../components/Map/Map.styled"
 
 export const MinesweeperMapContent = ({ blockSize }: any) => {
   const { dimensions } = useContext(GameContext)
@@ -22,40 +22,29 @@ export const MinesweeperMapContent = ({ blockSize }: any) => {
   return (
     <>
       { positions.map((position: any, index: number) => (
-        <Box
+        <SMapPos
           key={`pos-${index}`}
-          s={{
-            display: 'flex',
-            position: 'relative',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: `${blockSizeX}%`,
-            height: `${blockSizeY}%`
-          }}
+          pos={position}
+          blockSizeX={blockSizeX}
+          blockSizeY={blockSizeY}
         >
           { position.mine ? (
-            <SMapMine
-              key={`mine-${index}`}
-            />
+            <SMapMine />
           ) : null }
           { position.thread ? (
-            <SMapMineThread
-              key={`thread-${index}`}
-              amount={position.amount}
-            >
+            <SMapMineThread amount={position.amount}>
               { position.amount }
             </SMapMineThread>
           ): null}
           { (!gameResult || !position.mine) && (
             <SMapBlock
-              key={`block-${index}`}
               flag={position.flag}
-              block={position.block}
-              {...bindLongPress(position)}
+              hidden={!position.block}
               onClick={(e: React.MouseEvent) => onClick(e, position)}
+              {...bindLongPress(position)}
             />
           )}
-        </Box>
+        </SMapPos>
       )) }
     </>
   )

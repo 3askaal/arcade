@@ -10,7 +10,9 @@ const PlayView = () => {
   const { gameId }: any = useParams()
   const { selectedGame, setSelectedGame, start, gameOver, gamePaused, setGamePaused } = useContext(GameContext)
 
-  useEffect(start, [])
+  useEffect(() => {
+    if (selectedGame !== 'bomberman') start()
+  }, [])
 
   useEffect(() => {
     if (gameId) {
@@ -33,15 +35,14 @@ const PlayView = () => {
             <Score />
           </Box>
           <Box s={{
-            // display: 'flex',
             flexDirection: 'column',
             width: '100%',
-            // flexGrow: 1,
             flexShrink: 1,
             maxHeight: '80%',
           }}>
             <Map />
           </Box>
+          {/* <Screen></Screen> */}
           { CurrentControls ?  (
             <Box s={{
               display: 'flex',

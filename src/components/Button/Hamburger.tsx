@@ -11,7 +11,7 @@ export const ButtonReset: any = {
 const SButtonBar: any = s.div(({ index }: any) => ({
   height: '.25rem',
   width: '100%',
-  backgroundColor: 'grey20',
+  backgroundColor: 'element.color',
 }))
 
 export const SButton: any = s.button(({ color }: any) =>

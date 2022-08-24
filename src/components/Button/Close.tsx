@@ -13,7 +13,7 @@ const SButtonDot: any = s.div(({ side, index }: any) => ({
   position: 'absolute',
   width: '.25rem',
   height: '.25rem',
-  backgroundColor: 'grey20',
+  backgroundColor: 'element.color',
 
   ...((side === 'bottomLeft') && {
     left: `-.${25 * index}rem`,
