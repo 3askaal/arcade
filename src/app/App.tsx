@@ -1,7 +1,6 @@
 import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
-// import {  } from 'styled-components'
 import { ThemeProvider, GlobalStyle, theme } from '3oilerplate'
 import deepmerge from 'deepmerge'
 import ReactGA from 'react-ga4'
@@ -10,7 +9,7 @@ import { HomeView, PlayView } from '../views'
 import { LocalGlobalStyle } from '../style'
 import { SApp } from './App.styled'
 import { AppSidebar } from './Sidebar'
-import { THEME } from '../style/theme'
+import { THEME, THEME_LIGHT } from '../style/theme'
 import { Themes } from '../modules'
 
 import './fonts.css'
@@ -18,18 +17,23 @@ import './fonts.css'
 export const history = createBrowserHistory()
 
 ReactGA.initialize('G-ELXJS2W0GL', {
-  testMode: process.env.NODE_ENV !== 'production'
+  testMode: process?.env?.NODE_ENV !== 'production'
 })
 
-const mergedTheme = deepmerge(theme, THEME, { arrayMerge: (srcArray, overrideArray) => overrideArray })
-
+function mergeTheme (baseTheme: any, theme: any) {
+  return deepmerge(
+    baseTheme,
+    theme,
+    { arrayMerge: (srcArray, overrideArray) => overrideArray }
+  )
+}
 const App = () => {
   return (
     <Router history={history}>
       <GameProvider>
         <GameContext.Consumer>
-          {({ selectedGame }) => (
-            <ThemeProvider theme={deepmerge(mergedTheme, selectedGame ? Themes[selectedGame] : {}, { arrayMerge: (srcArray, overrideArray) => overrideArray })}>
+          {({ selectedGame, theme: themeKey }) => (
+            <ThemeProvider theme={mergeTheme(mergeTheme(theme, themeKey === 'dark' ? THEME : THEME_LIGHT) || {}, selectedGame ? Themes[selectedGame] : {})}>
               <SApp>
                 <AppSidebar />
                 <GlobalStyle />

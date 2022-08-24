@@ -23,32 +23,48 @@ export const SMapShape: any = styled.div.attrs(({ shape, blockSize = 20 }: any) 
   }
 }))({})
 
-export const SMapBlock = s.div(({ theme, color = '#fff', dead, blockSize, block }: any) => ({
-  position: 'absolute',
-  top: `${block.y * blockSize}px`,
-  left: `${block.x * blockSize}px`,
-  width: `${blockSize}px`,
-  height: `${blockSize}px`,
-  border: '.15rem solid',
-  borderWidth: '.175rem',
-  // Light
-  borderRightColor: chroma(color).brighten(1).hex(),
-  borderTopColor: chroma(color).brighten(1).hex(),
-  // Middle
-  backgroundColor: chroma(color).hex(),
-  // Dark
-  borderLeftColor: chroma(color).darken(1).hex(),
-  borderBottomColor: chroma(color).darken(1).hex(),
-  transition: 'all .025s linear',
 
-  ...(dead && {
+export const SMapPos = s.div(({ pos, blockSizeX, blockSizeY }: any) => ({
+  display: 'flex',
+  position: 'absolute',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: `${blockSizeX}%`,
+  height: `${blockSizeY}%`,
+  top: `${pos.y * blockSizeY}%`,
+  left: `${pos.x * blockSizeY}%`,
+}))
+
+export const SMapBlock = s.div(({ theme, hidden, flag }: any) => ({
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  borderStyle: 'solid',
+  borderWidth: ['0.8vw', '0.8vw', '4px'],
+  cursor: 'pointer',
+
+  // Light
+  borderTopColor: chroma('#AAAAAA').darken(0.25).hex(),
+  borderRightColor: chroma('#AAAAAA').darken(0.5).hex(),
+  // Middle
+  backgroundColor: chroma('#AAAAAA').darken(1.5).hex(),
+  // Dark
+  borderLeftColor: chroma('#AAAAAA').darken(2.5).hex(),
+  borderBottomColor: chroma('#AAAAAA').darken(2.75).hex(),
+
+  ...(hidden && {
+    opacity: 0,
+    pointerEvents: 'none',
+  }),
+
+  ...(flag && {
     // Light
-    borderRightColor: chroma('#fff').darken(1.5).hex(),
-    borderTopColor: chroma('#fff').darken(1.5).hex(),
+    borderTopColor: chroma('#C9485B').brighten(1).hex(),
+    borderRightColor: chroma('#C9485B').brighten(1).hex(),
     // Middle
-    backgroundColor: chroma('#fff').darken(2.5).hex(),
+    backgroundColor: chroma('#C9485B').hex(),
     // Dark
-    borderLeftColor: chroma('#fff').darken(3.5).hex(),
-    borderBottomColor: chroma('#fff').darken(3.5).hex(),
+    borderLeftColor: chroma('#C9485B').darken(1).hex(),
+    borderBottomColor: chroma('#C9485B').darken(1).hex(),
   })
 }))

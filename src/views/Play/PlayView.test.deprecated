@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render } from '../../tests';
 import PlayView from './PlayView';
 
-describe('<PlayView />', () => {
+describe.skip('<PlayView />', () => {
   it('renders component', () => {
     render(<PlayView />)
   });

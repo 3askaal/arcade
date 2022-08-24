@@ -20,7 +20,7 @@ export const SButton: any = s.button(({ color }: any) =>
     borderRadius: 's',
     paddingX: 'm',
     paddingY: 's',
-    color: 'white',
+    color: 'element.color',
     fontWeight: 'bold',
 
     '&:hover': {

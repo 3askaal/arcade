@@ -37,37 +37,30 @@ import chroma from 'chroma-js'
 //   })
 // }))
 
-export const SMapBlock = s.div(({ theme, block, flag }: any) => ({
+const blockColors = (color: string) => ({
+  borderTopColor: chroma(color).brighten(1.25).hex(),
+  borderRightColor: chroma(color).brighten(1).hex(),
+  backgroundColor: chroma(color).hex(),
+  borderLeftColor: chroma(color).darken(1).hex(),
+  borderBottomColor: chroma(color).darken(1.25).hex(),
+})
+
+export const SMapBlock = s.div(({ theme, hidden, flag }: any) => ({
   position: 'absolute',
   width: '100%',
   height: '100%',
   borderStyle: 'solid',
-  borderWidth: ['0.8vw', '0.8vw', '4px'],
+  borderWidth: '.25rem',
   cursor: 'pointer',
-
-  // Light
-  borderTopColor: chroma('#AAAAAA').darken(0.25).hex(),
-  borderRightColor: chroma('#AAAAAA').darken(0.5).hex(),
-  // Middle
-  backgroundColor: chroma('#AAAAAA').darken(1.5).hex(),
-  // Dark
-  borderLeftColor: chroma('#AAAAAA').darken(2.5).hex(),
-  borderBottomColor: chroma('#AAAAAA').darken(2.75).hex(),
-
-  ...(!block && {
-    opacity: 0,
-    pointerEvents: 'none',
-  }),
+  ...blockColors('#656565'),
 
   ...(flag && {
-    // Light
-    borderTopColor: chroma('#C9485B').brighten(1).hex(),
-    borderRightColor: chroma('#C9485B').brighten(1).hex(),
-    // Middle
-    backgroundColor: chroma('#C9485B').hex(),
-    // Dark
-    borderLeftColor: chroma('#C9485B').darken(1).hex(),
-    borderBottomColor: chroma('#C9485B').darken(1).hex(),
+    ...blockColors('#C9485B')
+  }),
+
+  ...(hidden && {
+    opacity: 0,
+    pointerEvents: 'none',
   })
 }))
 
@@ -83,7 +76,7 @@ const threadColors = [
 ]
 
 export const SMapMineThread = s.div(({ amount }: any) => ({
-  position: 'absolute',
+  position: 'relative',
   width: '100%',
   height: '100%',
   display: 'flex',
@@ -91,11 +84,11 @@ export const SMapMineThread = s.div(({ amount }: any) => ({
   justifyContent: 'center',
   color: threadColors[amount - 1],
   fontWeight: 'bold',
-  fontSize: '.9em'
+  fontSize: '.8em'
 }))
 
 export const SMapMine = s.div(() => ({
-  position: 'absolute',
+  position: 'relative',
   borderRadius: '100%',
   width: '60%',
   height: '60%',

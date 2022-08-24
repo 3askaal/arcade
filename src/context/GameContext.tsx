@@ -1,5 +1,6 @@
 import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import ReactGA4 from 'react-ga4'
+import { useLocalstorageState } from 'rooks';
 import { MapDimensions } from '../modules';
 import { BombermanProvider } from '../modules/bomberman/context/BombermanContext';
 import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperContext';
@@ -27,6 +28,8 @@ const PROVIDERS: any = {
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
 export const GameProvider = ({ children }: any) => {
+  const [theme, setTheme] = useLocalstorageState<string>('theme', 'dark')
+
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
@@ -75,6 +78,8 @@ export const GameProvider = ({ children }: any) => {
         setStartTime,
         endTime,
         setEndTime,
+        theme,
+        setTheme
       }}
     >
       { selectedGame ? (
