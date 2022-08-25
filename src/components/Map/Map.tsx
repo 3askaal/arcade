@@ -12,9 +12,9 @@ export const Map = () => {
       aspectRatio: `${dimensions?.width} / ${dimensions?.height}`,
       flexGrow: 1,
       flexShrink: 1,
-      height: '100%',
+      // height: '100%',
+      maxWidth: '100%',
       maxHeight: '100%',
-      maxWidth: '420px',
     }}>
       { selectedGame && <SelectedMapContent /> }
     </SMap>

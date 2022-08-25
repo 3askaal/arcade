@@ -3,18 +3,23 @@ import { s } from '3oilerplate'
 
 export const SScreen = s.div(({ theme, isDesktop }: any) => ({
   position: 'relative',
-  display: 'flex',
-  backgroundColor: 'black',
+  backgroundColor: 'grey100',
+  display: 'block',
+  flexDirection: 'column',
   fontSize: '.8em',
   fontWeight: 'bold',
-  maxWidth: '320px',
-  maxHeight: '320px',
-  height: '100%',
+  maxWidth: '420px',
+  // maxHeight: '420px',
+  // maxHeight: '100%',
+  justifyContent: 'center',
   width: '100%',
+  aspectRatio: '1 / 1',
   borderRadius: '1rem',
-  padding: 's',
-  border: '.25rem solid',
-  borderColor: 'backgroundBorderDark'
+  p: 's',
+
+  '> *': {
+    margin: 'auto'
+  }
 }))
 
 export const Screen = ({ children }: any) => {
