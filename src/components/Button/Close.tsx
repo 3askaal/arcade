@@ -65,10 +65,10 @@ export const CloseButton: FC<any> = ({ children, ...props }: any): ReactElement 
   return (
     <SButton sRef="Button" {...props}>
       <SButtonDot>
-        { times(3, (index) => <SButtonDot side="topRight" index={index} /> ) }
-        { times(3, (index) => <SButtonDot side="bottomRight" index={index} /> ) }
-        { times(3, (index) => <SButtonDot side="bottomLeft" index={index} /> ) }
-        { times(3, (index) => <SButtonDot side="topLeft" index={index} /> ) }
+        { times(3, (index) => <SButtonDot side="topRight" index={index} key={`topRight-${index}`} /> ) }
+        { times(3, (index) => <SButtonDot side="bottomRight" index={index} key={`bottomRight-${index}`} /> ) }
+        { times(3, (index) => <SButtonDot side="bottomLeft" index={index} key={`bottomLeft-${index}`} /> ) }
+        { times(3, (index) => <SButtonDot side="topLeft" index={index} key={`topLeft-${index}`} /> ) }
       </SButtonDot>
     </SButton>
   )

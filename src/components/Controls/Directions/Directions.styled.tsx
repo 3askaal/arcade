@@ -6,14 +6,14 @@ export const SControls = s.div(({ theme, index }: any) => ({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '14rem',
+  maxWidth: '10rem',
   aspectRatio: '1 / 1',
 }))
 
 export const SControlsMiddle = s.div(({ theme, index }: any) => ({
   position: 'absolute',
-  width: '25%',
-  height: '25%',
+  width: '30%',
+  height: '30%',
   backgroundColor: 'grey100',
   pointerEvents: 'none',
 
@@ -36,8 +36,8 @@ export const SControlsMiddle = s.div(({ theme, index }: any) => ({
 export const SControlsButton = s.button(({ theme, type, color, index }: any) => ({
   position: 'absolute',
   display: 'flex',
-  width: '25%',
-  height: '25%',
+  width: '32%',
+  height: '32%',
   backgroundColor: 'grey100',
   border: 0,
   borderRadius: '.2rem',
@@ -53,7 +53,7 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
   },
 
   ...(type === 'up' && {
-    height: '22%',
+    height: '30%',
     transform: 'translateY(-99%)',
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
@@ -61,7 +61,7 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
   }),
 
   ...(type === 'down' && {
-    height: '22%',
+    height: '30%',
     transform: 'translateY(99%)',
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
@@ -70,7 +70,7 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
   }),
 
   ...(type === 'left' && {
-    width: '22%',
+    width: '30%',
     transform: 'translateX(-99%)',
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
@@ -78,7 +78,7 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
   }),
 
   ...(type === 'right' && {
-    width: '22%',
+    width: '30%',
     transform: 'translateX(99%)',
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,

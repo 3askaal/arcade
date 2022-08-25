@@ -27,7 +27,7 @@ export const MapDimensions: any = {
 }
 
 export const Controls: any = {
-  tetris: TetrisControls,
+  tetris: SnakeControls,
   snake: SnakeControls,
   minesweeper: null,
   bomberman: BombermanControls,
