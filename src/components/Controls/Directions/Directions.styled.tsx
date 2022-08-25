@@ -11,7 +11,7 @@ export const SControls = s.div(({ theme, index }: any) => ({
   filter: 'drop-shadow(0 0 3px rgba(0, 0, 0, .5))',
 }))
 
-export const SControlsMiddle = s.div(({ theme, index }: any) => ({
+export const SControlsMiddle = s.div(() => ({
   position: 'absolute',
   width: '32%',
   height: '32%',
@@ -35,7 +35,7 @@ export const SControlsMiddle = s.div(({ theme, index }: any) => ({
   }
 }))
 
-export const SControlsButton = s.button(({ theme, type, color, index }: any) => ({
+export const SControlsButton = s.button(({ type }: any) => ({
   position: 'absolute',
   display: 'flex',
   width: '32%',
@@ -48,7 +48,7 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
   marginTop: 's',
   marginBottom: 's',
   padding: '.5rem',
-  boxShadow: `inset 0.05em 0.05em 0.05em 0 rgba(255,255,255, 0.3), inset -0.05em -0.05em 0.05em 0 rgba(0,0,0, 0.5)`,
+  boxShadow: `inset 0.05em 0.05em 0.05em 0 rgba(255,255,255, 0.3), inset -0.05em -0.05em 0.05em 0 rgba(0,0,0, 0.3)`,
 
   'svg': {
     strokeWidth: 3,
