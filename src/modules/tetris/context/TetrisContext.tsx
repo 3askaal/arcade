@@ -1,3 +1,4 @@
+import { drop } from 'lodash';
 import React, { createContext, Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
 import { useIntervalWhen } from 'rooks';
 import { GameContext } from '../../../context';
@@ -24,6 +25,7 @@ export interface TetrisContextType {
   onMoveX(direction: string): void;
   onRotate(): void;
   onDrop(): void;
+  controls: any;
 }
 
 export const TetrisContextDefaults = {
@@ -35,6 +37,7 @@ export const TetrisContextDefaults = {
   onMoveX: () => {},
   onRotate: () => {},
   onDrop: () => {},
+  controls: {},
 }
 
 export const TetrisContext = createContext<TetrisContextType>(TetrisContextDefaults)
@@ -127,6 +130,14 @@ export const TetrisProvider = ({ children }: any) => {
     }
   }, [gameOver])
 
+  const controls = {
+    onLeft: () => onMoveX('left'),
+    onRight: () => onMoveX('right'),
+    onDown: () => onDrop(),
+    onA: () => onRotate(),
+    onB: () => onDrop(),
+  }
+
   return (
     <TetrisContext.Provider
       value={{
@@ -138,6 +149,7 @@ export const TetrisProvider = ({ children }: any) => {
         setBlocks,
         shape,
         setShape,
+        controls
       }}
     >
       {children}

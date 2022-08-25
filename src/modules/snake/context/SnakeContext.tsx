@@ -19,6 +19,7 @@ interface SnakeContextType {
 export const SnakeContext = createContext<SnakeContextType>({
   grid: null,
   snake: [],
+  controls: {}
 })
 
 export const SnakeProvider = ({ children }: any) => {
@@ -137,6 +138,13 @@ export const SnakeProvider = ({ children }: any) => {
     }
   }, [gameOver])
 
+  const controls: any = {
+    onUp: () => changeDirection('up'),
+    onDown: () => changeDirection('down'),
+    onLeft: () => changeDirection('left'),
+    onRight: () => changeDirection('right'),
+  }
+
   return (
     <SnakeContext.Provider
       value={{
@@ -145,6 +153,7 @@ export const SnakeProvider = ({ children }: any) => {
         snake,
         food,
         changeDirection,
+        controls
       }}
     >
       {children}

@@ -12,6 +12,18 @@ import { SnakeTheme } from "./snake/theme";
 import { MinesweeperTheme } from "./minesweeper/theme";
 import { BombermanTheme } from "./bomberman/theme";
 
+import { TetrisContext } from "./tetris/context/TetrisContext";
+import { SnakeContext } from "./snake/context/SnakeContext";
+import { MinesweeperContext } from "./minesweeper/context/MinesweeperContext";
+import { BombermanContext } from "./bomberman/context/BombermanContext";
+
+export const Contexts: any = {
+  tetris: TetrisContext,
+  snake: SnakeContext,
+  minesweeper: MinesweeperContext,
+  bomberman: BombermanContext,
+}
+
 export const MapContent: any = {
   tetris: TetrisMapContent,
   snake: SnakeMapContent,
@@ -27,7 +39,7 @@ export const MapDimensions: any = {
 }
 
 export const Controls: any = {
-  tetris: TetrisControls,
+  tetris: SnakeControls,
   snake: SnakeControls,
   minesweeper: null,
   bomberman: BombermanControls,

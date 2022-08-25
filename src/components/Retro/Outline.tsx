@@ -1,13 +1,6 @@
 import React, { FC, ReactElement } from 'react'
 import { s } from '3oilerplate'
 
-export const ButtonReset: any = {
-  backgroundColor: 'transparent',
-  border: 0,
-  outline: 0,
-  cursor: 'pointer',
-}
-
 const SOutlineBorder: any = s.div(({ side, theme, color = 'grey10' }: any) => ({
   position: 'absolute',
   [side]: '-.25rem',
