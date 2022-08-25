@@ -1,6 +1,6 @@
 import { s, darken } from '3oilerplate'
 
-export const SControls = s.div(({ theme, index }: any) => ({
+export const SControls = s.div(() => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',

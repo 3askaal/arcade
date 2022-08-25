@@ -38,7 +38,6 @@ const PlayView = () => {
               <Map />
             </Screen>
           </Box>
-          {/* <Screen></Screen> */}
           <Box s={{
             display: 'flex',
             alignItems: 'center',
@@ -50,15 +49,6 @@ const PlayView = () => {
             <Directions controls={controls} />
             <Actions controls={controls} />
           </Box>
-          {/* { CurrentControls ?  (
-            <Box s={{
-              display: 'flex',
-              width: '100%',
-              mt: 0,
-            }}>
-              <CurrentControls />
-            </Box>
-          ) : null } */}
         </Spacer>
       </Container>
       { gameOver && (
