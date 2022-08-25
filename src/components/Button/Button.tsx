@@ -21,6 +21,7 @@ export const SButton: any = s.button(({ color }: any) =>
     paddingX: 'm',
     paddingY: 's',
     color: 'element.color',
+    backgroundColor: 'element.background',
     fontWeight: 'bold',
 
     '&:hover': {

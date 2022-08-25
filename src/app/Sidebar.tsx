@@ -5,6 +5,7 @@ import { Sidebar, List, ListItem, Spacer, Link, Box, Switch, Text } from '3oiler
 import { HamburgerButton } from '../components/Button/Hamburger'
 import { CloseButton } from '../components/Button/Close'
 import { GameContext } from '../context'
+import { capitalize } from 'lodash'
 
 export const AppSidebar = () => {
   const { setGameActive, setTheme, theme } = useContext(GameContext)
@@ -19,7 +20,7 @@ export const AppSidebar = () => {
       onOpen={() => setGameActive(false)}
       onClose={() => setGameActive(true)}
     >
-      <Spacer>
+      <Box s={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
         <List s={{ marginTop: '-1px' }}>
           <ListItem>
             <Link s={{ color: 'element.color' }} to="/">
@@ -50,15 +51,15 @@ export const AppSidebar = () => {
           s={{
             display: 'flex',
             width: '100%',
-            px: 's',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            p: 'm',
           }}
         >
-          <Text size='xs'>Dark Theme</Text>
+          <Text size='xs'>{capitalize(theme)} Theme</Text>
           <Switch initialValue={theme === 'dark'} onChange={(value: boolean) => setTheme(!value ? 'light' : 'dark')} />
         </Box>
-      </Spacer>
+      </Box>
     </Sidebar>
   )
 }

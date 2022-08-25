@@ -9,7 +9,7 @@ export const Score = () => {
 
   return (
     <SScore>
-      <Outline color="grey80" />
+      <Outline color="element.border" />
       { Object.entries(score).map(([scoreKey, scoreValue], index) => (
         <>
           { index ? <SScoreDivider key={`divider-${index}`} /> : null }

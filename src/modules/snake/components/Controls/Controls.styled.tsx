@@ -14,7 +14,7 @@ export const SControlsMiddle = s.div(({ theme, index }: any) => ({
   position: 'absolute',
   width: '25%',
   height: '25%',
-  backgroundColor: 'accent',
+  backgroundColor: 'grey100',
   pointerEvents: 'none',
 
   '&:before': {
@@ -28,7 +28,7 @@ export const SControlsMiddle = s.div(({ theme, index }: any) => ({
     width: '80%',
     height: '80%',
     borderRadius: '100%',
-    backgroundColor: 'accentDark',
+    backgroundColor: 'grey90',
     pointerEvents: 'none',
   }
 }))
@@ -38,10 +38,10 @@ export const SControlsButton = s.button(({ theme, type, color, index }: any) => 
   display: 'flex',
   width: '25%',
   height: '25%',
-  backgroundColor: 'accent',
+  backgroundColor: 'grey100',
   border: 0,
   borderRadius: '.2rem',
-  color: 'accentDarker',
+  color: 'grey80',
   cursor: 'pointer',
   marginTop: 's',
   marginBottom: 's',
