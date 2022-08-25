@@ -8,10 +8,10 @@ export const ButtonReset: any = {
   cursor: 'pointer',
 }
 
-const SOutlineBorder: any = s.div(({ side, theme, color }: any) => ({
+const SOutlineBorder: any = s.div(({ side, theme, color = 'grey10' }: any) => ({
   position: 'absolute',
   [side]: '-.25rem',
-  backgroundColor: color || 'grey20',
+  backgroundColor: 'element.border',
 
   ...((side === 'top' || side === 'bottom') && {
     width: 'calc(100% - .5rem)',
@@ -29,7 +29,7 @@ const SOutlineBorder: any = s.div(({ side, theme, color }: any) => ({
     position: 'absolute',
     width: '.25rem',
     height: '.25rem',
-    backgroundColor: color || 'grey20',
+    backgroundColor: 'element.border',
 
     ...((side === 'top') && {
       left: '-.25rem',
@@ -66,10 +66,10 @@ export const SOutline: any = s.div(({ color }: any) =>
 
     '&:hover': {
       [SOutlineBorder]: {
-        backgroundColor: color || 'grey20',
+        backgroundColor: color,
 
         '&:after': {
-          backgroundColor: color || 'grey20',
+          backgroundColor: color,
         }
       }
     }
