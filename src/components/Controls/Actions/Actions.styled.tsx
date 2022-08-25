@@ -32,7 +32,7 @@ export const SActionsButton = s.button(({ theme }: any) => ({
     mt: 'm',
   },
 
-  boxShadow: `inset 0.05em 0.05em 0.05em 0 rgba(255,255,255,0.3), inset -0.05em -0.05em 0.05em 0 rgba(0,0,0,0.5)`,
+  boxShadow: `inset 0.05em 0.05em 0.05em 0 rgba(255,255,255,0.3), inset -0.05em -0.05em 0.05em 0 rgba(0,0,0, 0.3)`,
 
   // background: `radial-gradient(
   //   circle closest-side,
