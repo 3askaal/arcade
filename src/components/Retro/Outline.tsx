@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react'
 import { s } from '3oilerplate'
 
-const SOutlineBorder: any = s.div(({ side, theme, color = 'grey10' }: any) => ({
+const SOutlineBorder: any = s.div(({ side, theme, color = 'grey40' }: any) => ({
   position: 'absolute',
   [side]: '-.25rem',
   backgroundColor: 'element.border',

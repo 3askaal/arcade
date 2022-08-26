@@ -1,30 +1,15 @@
 import { darken, brighten, mix } from '3oilerplate'
+import chroma from 'chroma-js';
+import { times } from 'lodash';
 
 const positive = '#66DE93'
 const negative = '#EA2C62'
 
-export const greys: any = {
-  grey10: darken('white', 0.5),
-  grey20: darken('white', 1),
-  grey30: darken('white', 1.5),
-  grey40: darken('white', 2),
-  grey50: darken('white', 2.5),
-  grey60: darken('white', 3),
-  grey70: darken('white', 3.5),
-  grey80: darken('white', 4),
-  grey90: darken('white', 4.5),
-  grey95: darken('white', 4.75),
-  grey100: darken('white', 5),
-  grey110: darken('white', 5.5),
-  grey120: darken('white', 6),
-  grey130: darken('white', 6.5),
-  grey140: darken('white', 7),
-  grey150: darken('white', 7.5),
-  grey160: darken('white', 8),
-  grey170: darken('white', 8.5),
-  grey180: darken('white', 9),
-  grey190: darken('white', 9.5),
+const getGreyPercentage = (percentage: number) => {
+  return chroma('white').darken((percentage / 100) * 5.6).hex();
 }
+
+export const greys: any = Object.assign({}, ...times(100, (i) => ({ [`grey${i}`]: getGreyPercentage(i) })))
 
 const bgDark = mix(brighten('black', .4), '#937DC2', .005)
 
@@ -45,10 +30,10 @@ export const colors: any = {
   element: {
     background: darken(bgDark, 3.8),
     color: 'white',
-    border: greys.grey90,
+    border: greys.grey80,
   },
   controls: {
-    bg: greys.grey90,
+    bg: greys.grey97,
     text: greys.grey70,
   }
 }
