@@ -3,21 +3,30 @@ import { s } from '3oilerplate'
 export const SScore = s.div(({ theme, isDesktop }: any) => ({
   position: 'relative',
   display: 'flex',
-  height: '100%',
-  backgroundColor: 'black',
-  fontSize: '.8em',
+  justifyContent: 'center',
+  fontSize: '.6em',
   fontWeight: 'bold',
+  fontFamily: 'retro',
+  marginBottom: 'l',
+  paddingTop: 'xxs',
+  paddingBottom: 's',
+  margin: 'auto',
 }))
 
 export const SScoreDivider = s.div(({ color }: any) => ({
   display: 'block',
   position: 'relative',
-  width: '.25rem',
+  width: '.125rem',
   height: '100%',
-  backgroundColor: 'element.border',
+  backgroundColor: 'grey90',
+
+  '+ *': {
+    marginLeft: 's'
+  }
 }))
 
 export const SScoreItem = s.div(({ color }: any) => ({
-  paddingY: 's',
-  paddingX: 'm',
+  '+ *': {
+    marginLeft: 's'
+  }
 }))

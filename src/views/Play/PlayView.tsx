@@ -21,7 +21,7 @@ const PlayView = () => {
 
       ReactGA4.send({
         hitType: "pageview",
-        page: `/play/${selectedGame}}`
+        page: `/play/${selectedGame}`
       });
     }
   }, [gameId, setSelectedGame])
@@ -31,10 +31,10 @@ const PlayView = () => {
       <Container s={{ p: 0 }}>
         <Spacer size="l" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
           <Box s={{ display: 'flex', }}>
-            <Score />
           </Box>
           <Box s={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
             <Screen>
+              <Score />
               <Map />
             </Screen>
           </Box>
