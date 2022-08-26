@@ -18,10 +18,6 @@ const PlayView = () => {
     });
   }, [])
 
-  // const getSelectedGame = () => {
-  //   if ()
-  // }
-
   const setSelectedGameIndex = (newSelectedGameIndex: number) => {
     const game = GAMES[newSelectedGameIndex];
 
@@ -48,9 +44,7 @@ const PlayView = () => {
             <Screen s={{ p: 'l' }}>
               <Spacer size="m" >
                 { GAMES.map(({ name, color, disabled }, index) => (
-                  // <Link to={`/play/${name}`} s={{ textDecoration: 'none', pointerEvents: disabled && 'none' }}>
-                    <Button isBlock isDisabled={disabled} selected={index === selectedGameIndex} color={color}>{ capitalize(name) }</Button>
-                  // </Link>
+                  <Button isBlock isDisabled={disabled} selected={index === selectedGameIndex} color={color}>{ capitalize(name) }</Button>
                 ))}
               </Spacer>
             </Screen>

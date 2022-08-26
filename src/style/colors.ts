@@ -11,7 +11,7 @@ const getGreyPercentage = (percentage: number) => {
 
 export const greys: any = Object.assign({}, ...times(100, (i) => ({ [`grey${i}`]: getGreyPercentage(i) })))
 
-const bgDark = mix(brighten('black', .4), '#937DC2', .005)
+const bgDark = mix(brighten('black', .2), '#937DC2', .005)
 
 export const colors: any = {
   primary: '#494786',

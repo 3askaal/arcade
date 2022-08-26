@@ -57,16 +57,6 @@ export const SOutline: any = s.div(({ color, selected }: any) =>
     justifyContent: 'center',
     alignItems: 'center',
 
-    '&:hover': {
-      [SOutlineBorder]: {
-        backgroundColor: color,
-
-        '&:after': {
-          backgroundColor: color,
-        }
-      }
-    },
-
     ...(selected && {
       [SOutlineBorder]: {
         backgroundColor: color,

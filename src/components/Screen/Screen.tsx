@@ -3,7 +3,7 @@ import { s } from '3oilerplate'
 
 export const SScreen = s.div(({ theme, isDesktop }: any) => ({
   position: 'relative',
-  backgroundColor: 'grey95',
+  backgroundColor: 'grey98',
   display: 'block',
   flexDirection: 'column',
   fontSize: '.8em',

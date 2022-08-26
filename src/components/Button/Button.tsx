@@ -13,7 +13,7 @@ export const SButton: any = s.div(({ color, selected }: any) =>
     paddingX: 'm',
     paddingY: 's',
     // TODO: fix color variable
-    color: 'element.background',
+    color: 'white',
     fontWeight: 'bold',
 
     ...(selected && {
