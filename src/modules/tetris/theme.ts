@@ -1,8 +1,8 @@
-import { brighten } from '3oilerplate'
+import { greys } from '../../style'
 
 export const TetrisTheme = {
   colors: {
-    map: brighten('#000', .1),
+    map: greys.grey95,
     accent: '#A149FA'
   }
 }
