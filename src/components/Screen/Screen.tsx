@@ -20,10 +20,8 @@ export const SScreen = s.div(({ theme, isDesktop }: any) => ({
   }
 }))
 
-export const Screen = ({ children }: any) => {
+export const Screen = (props: any) => {
   return (
-    <SScreen>
-      { children }
-    </SScreen>
+    <SScreen {...props} />
   )
 }

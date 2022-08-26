@@ -46,7 +46,7 @@ const SOutlineBorder: any = s.div(({ side, theme, color = 'grey40' }: any) => ({
   }
 }))
 
-export const SOutline: any = s.div(({ color }: any) =>
+export const SOutline: any = s.div(({ color, selected }: any) =>
   ({
     position: 'absolute',
     top: 0,
@@ -65,7 +65,17 @@ export const SOutline: any = s.div(({ color }: any) =>
           backgroundColor: color,
         }
       }
-    }
+    },
+
+    ...(selected && {
+      [SOutlineBorder]: {
+        backgroundColor: color,
+
+        '&:after': {
+          backgroundColor: color,
+        }
+      }
+    })
   }),
   {
     isDisabled: {
