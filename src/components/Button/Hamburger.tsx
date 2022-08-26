@@ -1,12 +1,5 @@
 import React, { FC, ReactElement } from 'react'
-import { s } from '3oilerplate'
-
-export const ButtonReset: any = {
-  backgroundColor: 'transparent',
-  border: 0,
-  outline: 0,
-  cursor: 'pointer',
-}
+import { s, ButtonReset } from '3oilerplate'
 
 const SButtonBar: any = s.div(({ index }: any) => ({
   height: '.25rem',

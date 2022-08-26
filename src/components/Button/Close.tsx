@@ -1,13 +1,6 @@
 import React, { FC, ReactElement } from 'react'
-import { s } from '3oilerplate'
+import { s, ButtonReset } from '3oilerplate'
 import { times } from 'lodash'
-
-export const ButtonReset: any = {
-  backgroundColor: 'transparent',
-  border: 0,
-  outline: 0,
-  cursor: 'pointer',
-}
 
 const SButtonDot: any = s.div(({ side, index }: any) => ({
   position: 'absolute',

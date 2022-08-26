@@ -1,5 +1,4 @@
-import { s } from '3oilerplate'
-import { ButtonReset } from '../../Button/Button'
+import { s, ButtonReset } from '3oilerplate'
 
 export const SActions = s.div(({ theme, index }: any) => ({
   position: 'relative',

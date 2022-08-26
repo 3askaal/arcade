@@ -1,6 +1,6 @@
 import React from 'react'
-import { Router, Switch, Route } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+// import { createBrowserHistory } from 'history'
 import { ThemeProvider, GlobalStyle, theme } from '3oilerplate'
 import deepmerge from 'deepmerge'
 import ReactGA from 'react-ga4'
@@ -14,7 +14,7 @@ import { Themes } from '../modules'
 
 import './fonts.css'
 
-export const history = createBrowserHistory()
+// export const history = createBrowserHistory({ forceRefresh: true })
 
 ReactGA.initialize('G-ELXJS2W0GL', {
   testMode: process?.env?.NODE_ENV !== 'production'
@@ -27,9 +27,10 @@ function mergeTheme (baseTheme: any, theme: any) {
     { arrayMerge: (srcArray, overrideArray) => overrideArray }
   )
 }
+
 const App = () => {
   return (
-    <Router history={history}>
+    <BrowserRouter forceRefresh>
       <GameProvider>
         <GameContext.Consumer>
           {({ selectedGame, theme: themeKey }) => (
@@ -53,7 +54,7 @@ const App = () => {
           )}
         </GameContext.Consumer>
       </GameProvider>
-    </Router>
+    </BrowserRouter>
   )
 }
 

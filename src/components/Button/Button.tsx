@@ -2,16 +2,8 @@ import React, { FC, ReactElement } from 'react'
 import { s } from '3oilerplate'
 import { Outline } from '../Retro/Outline'
 
-export const ButtonReset: any = {
-  backgroundColor: 'transparent',
-  border: 0,
-  outline: 0,
-  cursor: 'pointer',
-}
-
-export const SButton: any = s.button(({ color }: any) =>
+export const SButton: any = s.div(({ color, selected }: any) =>
   ({
-    ...ButtonReset,
     position: 'relative',
     display: 'flex',
     width: '100%',
@@ -20,25 +12,25 @@ export const SButton: any = s.button(({ color }: any) =>
     borderRadius: 's',
     paddingX: 'm',
     paddingY: 's',
-    color: 'element.color',
-    backgroundColor: 'element.background',
+    // TODO: fix color variable
+    color: 'element.background',
     fontWeight: 'bold',
 
-    '&:hover': {
+    ...(selected && {
       color
-    }
+    })
   }),
   {
     isDisabled: {
       opacity: '.4'
     }
-  }
+  },
 )
 
 export const Button: FC<any> = ({ children, color, ...props }: any): ReactElement => {
   return (
     <SButton color={color} {...props}>
-      <Outline color={color} />
+      <Outline color={color} selected={props.selected} />
       { children }
     </SButton>
   )

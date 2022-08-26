@@ -9,21 +9,6 @@ export const Actions = ({ controls = {}, color, ...props }: any) => {
     <SActions {...props}>
       <SActionsButton
         color={color}
-        type="A"
-        {...isMobile() ? {
-          onTouchStart: () => onA && onA()
-        } : {
-          onMouseDown: () => onA && onA()
-        }}
-        s={{
-          touchAction: isMobile() ? 'auto' : 'none',
-        }}
-      >
-        {/* <SActionsButtonPress color={color} /> */}
-        A
-      </SActionsButton>
-      <SActionsButton
-        color={color}
         type="B"
         {...isMobile() ? {
           onTouchStart: () => onB && onB()
@@ -36,6 +21,21 @@ export const Actions = ({ controls = {}, color, ...props }: any) => {
       >
         {/* <SActionsButtonPress color={color} /> */}
         B
+      </SActionsButton>
+      <SActionsButton
+        color={color}
+        type="A"
+        {...isMobile() ? {
+          onTouchStart: () => onA && onA()
+        } : {
+          onMouseDown: () => onA && onA()
+        }}
+        s={{
+          touchAction: isMobile() ? 'auto' : 'none',
+        }}
+      >
+        {/* <SActionsButtonPress color={color} /> */}
+        A
       </SActionsButton>
     </SActions>
   )
