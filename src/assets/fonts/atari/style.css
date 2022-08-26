@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Atari-Classic';
+  src:url('Atari-Classic.ttf.woff') format('woff'),
+      url('Atari-Classic.ttf.svg#Atari-Classic') format('svg'),
+      url('Atari-Classic.ttf.eot'),
+      url('Atari-Classic.ttf.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
