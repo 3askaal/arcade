@@ -40,11 +40,11 @@ const PlayView = () => {
           </Box>
           <Box s={{
             display: 'flex',
-            alignItems: 'center',
             justifyContent: 'space-between',
+            alignItems: 'center',
             width: '100%',
             maxWidth: '420px',
-            px: 'l'
+            px: 'm'
           }}>
             <Directions controls={controls} />
             <Actions controls={controls} />

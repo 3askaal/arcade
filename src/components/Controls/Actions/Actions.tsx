@@ -2,11 +2,11 @@ import React from 'react'
 import { SActions, SActionsButton } from './Actions.styled'
 import isMobile from 'is-mobile'
 
-export const Actions = ({ controls = {}, color }: any) => {
+export const Actions = ({ controls = {}, color, ...props }: any) => {
   const { onA, onB } = controls
 
   return (
-    <SActions>
+    <SActions {...props}>
       <SActionsButton
         color={color}
         type="A"

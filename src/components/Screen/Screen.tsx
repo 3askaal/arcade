@@ -15,7 +15,7 @@ export const SScreen = s.div(({ theme, isDesktop }: any) => ({
   width: '100%',
   aspectRatio: '1 / 1',
   borderRadius: '1rem',
-  p: 's',
+  p: 'm',
 
   '> *': {
     margin: 'auto'

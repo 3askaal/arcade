@@ -6,7 +6,7 @@ export const SControls = s.div(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '10rem',
+  maxWidth: '11rem',
   aspectRatio: '1 / 1',
   filter: 'drop-shadow(0 0 3px rgba(0, 0, 0, .5))',
 }))
@@ -45,8 +45,6 @@ export const SControlsButton = s.button(({ type }: any) => ({
   border: 0,
   borderRadius: '.2rem',
   cursor: 'pointer',
-  marginTop: 's',
-  marginBottom: 's',
   padding: '.5rem',
   boxShadow: `inset 0.05em 0.05em 0.05em 0 rgba(255,255,255, 0.3), inset -0.05em -0.05em 0.05em 0 rgba(0,0,0, 0.3)`,
 
