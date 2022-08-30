@@ -1,4 +1,5 @@
 import { s, darken } from '3oilerplate'
+import { getBevelEmboss } from '../helpers'
 
 export const SControls = s.div(() => ({
   position: 'relative',
@@ -30,7 +31,8 @@ export const SControlsMiddle = s.div(() => ({
     width: '70%',
     height: '70%',
     borderRadius: '100%',
-    backgroundColor: 'controls.text',
+    backgroundColor: 'controls.bg',
+    boxShadow: getBevelEmboss(0.1, true),
     pointerEvents: 'none',
   }
 }))
@@ -46,11 +48,13 @@ export const SControlsButton = s.button(({ type }: any) => ({
   borderRadius: '.2rem',
   cursor: 'pointer',
   padding: '.5rem',
-  boxShadow: `inset 0.05em 0.05em 0.05em 0 rgba(255,255,255, 0.3), inset -0.05em -0.05em 0.05em 0 rgba(0,0,0, 0.3)`,
+  boxShadow: getBevelEmboss(),
 
   'svg': {
     strokeWidth: 3,
-    stroke: darken('black', 1.8)
+    stroke: darken('black', 1.8),
+    maxWidth: '1.5rem',
+    maxHeight: '1.5rem',
   },
 
   ...(type === 'up' && {
@@ -58,7 +62,7 @@ export const SControlsButton = s.button(({ type }: any) => ({
     transform: 'translateY(-99%)',
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
-    justifyContent: 'center'
+    justifyContent: 'center',
   }),
 
   ...(type === 'down' && {
