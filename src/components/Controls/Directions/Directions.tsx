@@ -25,7 +25,7 @@ export const Directions = ({ controls = {} }: any) => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={'auto'} />
       </SControlsButton>
       <SControlsButton
         type="up"
@@ -38,7 +38,7 @@ export const Directions = ({ controls = {} }: any) => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronUp size={24} />
+        <ChevronUp size={'auto'} />
       </SControlsButton>
       <SControlsButton
         type="down"
@@ -51,7 +51,7 @@ export const Directions = ({ controls = {} }: any) => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronDown size={24} />
+        <ChevronDown size={'auto'} />
       </SControlsButton>
       <SControlsButton
         type="right"
@@ -64,7 +64,7 @@ export const Directions = ({ controls = {} }: any) => {
           touchAction: isMobile() ? 'auto' : 'none',
         }}
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={'auto'} />
       </SControlsButton>
     </SControls>
   )

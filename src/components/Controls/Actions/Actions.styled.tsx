@@ -1,4 +1,5 @@
 import { s, ButtonReset } from '3oilerplate'
+import { getBevelEmboss } from '../helpers'
 
 export const SActions = s.div(({ theme, index }: any) => ({
   position: 'relative',
@@ -6,6 +7,7 @@ export const SActions = s.div(({ theme, index }: any) => ({
   flexDirection: 'row',
   height: '5.4rem',
   alignItems: 'flex-end',
+  maxWidth: '100%',
 }))
 
 export const SActionsButton = s.button(({ theme }: any) => ({
@@ -28,7 +30,7 @@ export const SActionsButton = s.button(({ theme }: any) => ({
     ml: 'm',
   },
 
-  boxShadow: `inset 0.05em 0.05em 0.05em 0 rgba(255,255,255,0.3), inset -0.05em -0.05em 0.05em 0 rgba(0,0,0, 0.3)`,
+  boxShadow: getBevelEmboss(),
 
   '&:first-child': {
     alignSelf: 'flex-end'
