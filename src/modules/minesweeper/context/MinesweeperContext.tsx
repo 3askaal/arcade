@@ -26,6 +26,7 @@ export const MinesweeperContext = createContext<MinesweeperContextType>({
 
 export const MinesweeperProvider = ({ children }: any) => {
   const { gameActive, setGameActive, gameOver, setGameOver, setStartTime, setEndTime, score, setScore } = useContext(GameContext)
+  const [selectedBlock, setSelectedBlock] = useState({ x: 0, y: 0 });
 
   const [settings, setSettings] = useState({ mode: GAME_MODES.intermediate })
   const [grid, setGrid] = useState<IGrid | null>(null)
@@ -66,19 +67,57 @@ export const MinesweeperProvider = ({ children }: any) => {
     }
   }, [gameOver])
 
-  const onClick = (e: React.MouseEvent, block: IPosition) => {
+  const onClick = (type: string) => {
     if (!grid) return
+
+    const block: any = Object.values(grid).find(({ x, y }) => x === selectedBlock.x && y === selectedBlock.y)
+
+    if (!block) return
 
     if (!gameActive) {
       setGameActive(true)
     }
 
-    const [newGrid, gameOver] = e.shiftKey ? flag(grid, block) : block.flag ? flag(grid, block) : reveal(grid, block)
+    const actions: any = {
+      reveal,
+      flag
+    }
+
+    const [newGrid, gameOver] = actions[type](grid, block)
     setGrid(newGrid)
 
     if (gameOver) {
       setGameOver({ won: false })
     }
+  }
+
+  const changePosition = ({ x, y }: { x: number, y: number }) => {
+    if (!grid) return
+
+    const currentBlockRef = `${selectedBlock.x}/${selectedBlock.y}`
+    const currentBlock = grid[`${selectedBlock.x}/${selectedBlock.y}`]
+
+    setSelectedBlock({ x, y })
+
+    const nextBlockRef = `${x}/${y}`
+    const nextBlock = grid[nextBlockRef]
+
+    const newGrid = {
+      ...grid,
+      [nextBlockRef]: { ...nextBlock, selected: true },
+      [currentBlockRef]: { ...currentBlock, selected: false }
+    };
+
+    setGrid(newGrid)
+  }
+
+  const controls = {
+    onUp: () => changePosition({ ...selectedBlock, y: selectedBlock.y - 1 }),
+    onDown: () => changePosition({ ...selectedBlock, y: selectedBlock.y + 1 }),
+    onLeft: () => changePosition({ ...selectedBlock, x: selectedBlock.x - 1 }),
+    onRight: () => changePosition({ ...selectedBlock, x: selectedBlock.x + 1 }),
+    onB: () => onClick('flag'),
+    onA: () => onClick('reveal'),
   }
 
   return (
@@ -88,7 +127,8 @@ export const MinesweeperProvider = ({ children }: any) => {
         setSettings,
         grid,
         setGrid,
-        onClick
+        onClick,
+        controls
       }}
     >
       {children}

@@ -7,7 +7,7 @@ export const SControls = s.div(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '11rem',
+  maxWidth: '12rem',
   aspectRatio: '1 / 1',
   filter: 'drop-shadow(0 0 3px rgba(0, 0, 0, .5))',
 }))

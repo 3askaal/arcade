@@ -32,6 +32,7 @@
     "react-scripts": "4.0.3",
     "reset-css": "^5.0.1",
     "rooks": "^6.2.0",
+    "style-object-to-css-string": "^1.0.1",
     "styled-components": "^5.1.1",
     "styled-system": "^5.1.5",
     "typescript": "^4.1.2",
