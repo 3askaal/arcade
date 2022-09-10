@@ -1,4 +1,3 @@
-import { drop } from 'lodash';
 import React, { createContext, Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
 import { useIntervalWhen } from 'rooks';
 import { GameContext } from '../../../context';

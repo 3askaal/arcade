@@ -32,7 +32,7 @@ export const generateGrid = ({ mode }: ISettings) => {
     const y = (i - (i % mode.width)) / mode.height
     const x = i % (mode.width)
 
-    newGrid[`${x}/${y}`] = { x, y, block: true, selected: x === 0 && y === 0 }
+    newGrid[`${x}/${y}`] = { x, y, block: true, selected: x === Math.round(mode.width / 2) - 1 && y === Math.round(mode.height / 2) - 1 }
   })
 
   newGrid = generateMines(newGrid, mode.mines)
