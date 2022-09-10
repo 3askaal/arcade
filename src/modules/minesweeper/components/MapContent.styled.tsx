@@ -5,11 +5,11 @@ import styled, { css, keyframes } from 'styled-components'
 import { Themes } from '../..'
 
 const blockColors = (color: string | false, noBlock?: boolean) => ({
-  borderTopColor: color ? chroma(color).brighten(!noBlock ? 1.25 : 0).hex() : 'transparent',
-  borderRightColor: color ? chroma(color).brighten(!noBlock ? 1 : 0).hex() : 'transparent',
-  backgroundColor: color ?  chroma(color).hex() : 'transparent',
-  borderLeftColor: color ? chroma(color).darken(!noBlock ? 1 : 0).hex() : 'transparent',
-  borderBottomColor: color ? chroma(color).darken(!noBlock ? 1.25 : 0).hex() : 'transparent',
+  borderTopColor: color && !noBlock ? chroma(color).brighten(1.25).hex() : 'rgba(0, 0, 0, 0)',
+  borderRightColor: color && !noBlock ? chroma(color).brighten(1).hex() : 'rgba(0, 0, 0, 0)',
+  backgroundColor: color ?  chroma(color).hex() : 'rgba(0, 0, 0, 0)',
+  borderLeftColor: color && !noBlock ? chroma(color).darken(1).hex() : 'rgba(0, 0, 0, 0)',
+  borderBottomColor: color && !noBlock ? chroma(color).darken(1.25).hex() : 'rgba(0, 0, 0, 0)',
 })
 
 export const SMapBlock = s.div(({ theme, hide, flag }: any) => ({
@@ -76,7 +76,7 @@ export const SMapSelector = styled.div<any>(
     height: '100%',
     borderStyle: 'solid',
     borderWidth: '.25rem',
-    zIndex: '10000'
+    zIndex: 1
   }),
   ({ block }: any) => css`
     animation: ${flash(block)} 2000ms ease both infinite
