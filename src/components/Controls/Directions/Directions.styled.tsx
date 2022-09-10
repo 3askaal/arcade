@@ -47,7 +47,7 @@ export const SControlsButton = s.button(({ type }: any) => ({
   border: 0,
   borderRadius: '.2rem',
   cursor: 'pointer',
-  padding: '.5rem',
+  padding: '.6rem',
   boxShadow: getBevelEmboss(),
 
   'svg': {

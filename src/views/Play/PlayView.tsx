@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect } from 'react'
 import ReactGA4 from 'react-ga4'
 import { Box, Spacer, Container, Wrapper, Popup, Text, Button } from '3oilerplate'
-import { Map, Score, Screen, Directions, Actions } from '../../components'
+import { Map, Score, Screen, Controls } from '../../components'
 import { GameContext } from '../../context'
 import { Contexts } from '../../modules'
 import { useParams } from 'react-router-dom'
@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 const PlayView = () => {
   const { gameId }: any = useParams()
   const { selectedGame, setSelectedGame, start, gameOver, gamePaused, setGamePaused } = useContext(GameContext)
-  const { controls } = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
+  const { controls }: any = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
 
   useEffect(() => {
     if (selectedGame !== 'bomberman') start()
@@ -36,17 +36,7 @@ const PlayView = () => {
               <Map />
             </Screen>
           </Box>
-          <Box s={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '100%',
-            maxWidth: '420px',
-            px: 'm'
-          }}>
-            <Directions controls={controls} />
-            <Actions controls={controls} />
-          </Box>
+          <Controls controls={controls} />
         </Spacer>
       </Container>
       { gameOver && (
