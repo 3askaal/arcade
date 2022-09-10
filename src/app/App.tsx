@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// import { createBrowserHistory } from 'history'
 import { ThemeProvider, GlobalStyle, theme } from '3oilerplate'
 import deepmerge from 'deepmerge'
 import ReactGA from 'react-ga4'

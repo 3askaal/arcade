@@ -5,9 +5,10 @@ export const SActions = s.div(({ theme, index }: any) => ({
   position: 'relative',
   display: 'flex',
   flexDirection: 'row',
-  height: '5.4rem',
-  alignItems: 'flex-end',
-  maxWidth: '100%',
+  width: '100%',
+  maxWidth: '11rem',
+  height: '6rem',
+  justifyContent: 'flex-end',
 }))
 
 export const SActionsButton = s.button(({ theme }: any) => ({
@@ -16,8 +17,8 @@ export const SActionsButton = s.button(({ theme }: any) => ({
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '100%',
-  width: '4rem',
-  height: '4rem',
+  width: '4.4rem',
+  height: '4.4rem',
   overflow: 'hidden',
   padding: 0,
   fontSize: '1.4em',
