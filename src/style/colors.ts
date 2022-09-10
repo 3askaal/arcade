@@ -35,7 +35,7 @@ export const colors: any = {
   controls: {
     bg: greys.grey86,
     text: greys.grey60,
-  }
+  },
 }
 
 const bgLight = mix(darken('white', 1.6), '#937DC2', .005)
@@ -54,5 +54,5 @@ export const lightColors = {
   controls: {
     bg: greys.grey34,
     text: greys.grey50,
-  }
+  },
 }
