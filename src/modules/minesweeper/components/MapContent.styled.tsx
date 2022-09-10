@@ -2,14 +2,13 @@ import { s, rgba } from '3oilerplate'
 import chroma from 'chroma-js'
 import styleToCss from 'style-object-to-css-string';
 import styled, { css, keyframes } from 'styled-components'
-import { Themes } from '../..'
 
-const blockColors = (color: string | false, noBlock?: boolean) => ({
-  borderTopColor: color && !noBlock ? chroma(color).brighten(1.25).hex() : 'rgba(0, 0, 0, 0)',
-  borderRightColor: color && !noBlock ? chroma(color).brighten(1).hex() : 'rgba(0, 0, 0, 0)',
-  backgroundColor: color ?  chroma(color).hex() : 'rgba(0, 0, 0, 0)',
-  borderLeftColor: color && !noBlock ? chroma(color).darken(1).hex() : 'rgba(0, 0, 0, 0)',
-  borderBottomColor: color && !noBlock ? chroma(color).darken(1.25).hex() : 'rgba(0, 0, 0, 0)',
+const blockColors = (color: string | false, noBlock?: boolean, alpha = 1) => ({
+  borderTopColor: color && !noBlock ? chroma(color).brighten(1.25).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+  borderRightColor: color && !noBlock ? chroma(color).brighten(1).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+  backgroundColor: color ?  chroma(color).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+  borderLeftColor: color && !noBlock ? chroma(color).darken(1).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+  borderBottomColor: color && !noBlock ? chroma(color).darken(1.25).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
 })
 
 export const SMapBlock = s.div(({ theme, hide, flag }: any) => ({
@@ -51,7 +50,7 @@ export const SMapMineThread = s.div(({ amount }: any) => ({
   justifyContent: 'center',
   color: threadColors[amount - 1],
   fontWeight: 'bold',
-  fontSize: '.8em'
+  fontSize: '.9em'
 }))
 
 export const SMapMine = s.div(() => ({
@@ -63,10 +62,10 @@ export const SMapMine = s.div(() => ({
 }))
 
 const flash = (block?: boolean) => keyframes`
-  0% { ${ styleToCss(blockColors('#7900FF', !block)) } }
-  35% { ${ styleToCss(blockColors(false, !block)) } }
-  65% { ${ styleToCss(blockColors(false, !block)) } }
-  100% { ${ styleToCss(blockColors('#7900FF', !block)) } }
+  0% { ${ styleToCss(blockColors('#7900FF', !block, .5)) } }
+  35% { ${ styleToCss(blockColors(false, !block, .5)) } }
+  65% { ${ styleToCss(blockColors(false, !block, .5)) } }
+  100% { ${ styleToCss(blockColors('#7900FF', !block, .5)) } }
 `
 
 export const SMapSelector = styled.div<any>(

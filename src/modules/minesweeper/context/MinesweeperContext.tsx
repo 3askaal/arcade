@@ -25,14 +25,16 @@ export const MinesweeperContext = createContext<MinesweeperContextType>({
 })
 
 export const MinesweeperProvider = ({ children }: any) => {
-  const { gameActive, setGameActive, gameOver, setGameOver, setStartTime, setEndTime, score, setScore } = useContext(GameContext)
+  const { gameActive, setGameActive, gameOver, setGameOver, setStartTime, setEndTime, setScore } = useContext(GameContext)
   const [selectedBlock, setSelectedBlock] = useState({ x: 0, y: 0 });
 
   const [settings, setSettings] = useState({ mode: GAME_MODES.intermediate })
   const [grid, setGrid] = useState<IGrid | null>(null)
 
   const reset = () => {
-    setGrid(generateGrid(settings))
+    const grid = generateGrid(settings)
+    setGrid(grid)
+    setSelectedBlock(Object.values(grid).find(({ selected }: any): boolean => !!selected) as any)
     setScore({ remaining: 0 })
   }
 
@@ -97,8 +99,6 @@ export const MinesweeperProvider = ({ children }: any) => {
     const currentBlockRef = `${selectedBlock.x}/${selectedBlock.y}`
     const currentBlock = grid[`${selectedBlock.x}/${selectedBlock.y}`]
 
-    setSelectedBlock({ x, y })
-
     const nextBlockRef = `${x}/${y}`
     const nextBlock = grid[nextBlockRef]
 
@@ -108,6 +108,7 @@ export const MinesweeperProvider = ({ children }: any) => {
       [currentBlockRef]: { ...currentBlock, selected: false }
     };
 
+    setSelectedBlock({ x, y })
     setGrid(newGrid)
   }
 
