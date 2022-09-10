@@ -11,6 +11,7 @@ export const SScore = s.div(({ theme, isDesktop }: any) => ({
   paddingTop: 'xxs',
   paddingBottom: 's',
   margin: 'auto',
+  height: '2rem',
 }))
 
 export const SScoreDivider = s.div(({ color }: any) => ({

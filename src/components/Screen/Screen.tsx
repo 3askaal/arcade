@@ -14,7 +14,8 @@ export const SScreen = s.div(({ theme }: any) => ({
   width: '100%',
   aspectRatio: '1 / 1',
   borderRadius: '1.2rem',
-  p: 's',
+  p: 'm',
+  height: 'calc(100% + 2rem)',
 
   '> *': {
     margin: 'auto'
