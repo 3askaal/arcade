@@ -9,5 +9,8 @@ export const SnakeTheme = {
     accent,
     accentDark: darken(accent, .5),
     accentDarker: darken(accent, 4),
+  },
+  borders: {
+    map: `1px solid ${greys.grey20}`,
   }
 }

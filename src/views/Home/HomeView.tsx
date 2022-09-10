@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import ReactGA4 from 'react-ga4'
-import { Spacer, Container, Wrapper, Link, Box } from '3oilerplate'
+import { Spacer, Container, Wrapper, Box } from '3oilerplate'
 import { capitalize } from 'lodash'
-import { Button } from '../../components/Button/Button'
+import { Controls, Screen, Button } from '../../components'
 import { GAMES } from '../../config/config'
-import { Actions, Directions, Screen } from '../../components'
 
 const PlayView = () => {
   const [selectedGameIndex, setSelectedGameIndexState] = useState(0)
@@ -33,6 +32,9 @@ const PlayView = () => {
     history.push(`/play/${GAMES[selectedGameIndex].name}`)
   }
 
+  const onSelect = () => {}
+  const onStart = () => {}
+
   return (
     <Wrapper s={{ p: ['s', 'm', 'l'] }}>
       <Container s={{ p: 0 }}>
@@ -46,17 +48,7 @@ const PlayView = () => {
               </Spacer>
             </Screen>
           </Box>
-          <Box s={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '100%',
-            maxWidth: '420px',
-            px: 'm'
-          }}>
-            <Directions controls={{ onUp, onDown }} />
-            <Actions controls={{ onA }} />
-          </Box>
+          <Controls controls={{ onUp, onDown, onA, onSelect, onStart }} />
         </Spacer>
       </Container>
     </Wrapper>

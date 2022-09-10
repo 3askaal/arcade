@@ -3,7 +3,7 @@ import { s } from '3oilerplate'
 
 export const SScreen = s.div(({ theme }: any) => ({
   position: 'relative',
-  backgroundColor: 'grey98',
+  backgroundColor: 'grey95',
   display: 'flex',
   flexDirection: 'column',
   fontSize: '.8em',
@@ -15,12 +15,12 @@ export const SScreen = s.div(({ theme }: any) => ({
   aspectRatio: '1 / 1',
   borderRadius: '1.2rem',
   p: 'm',
-  height: 'calc(100% + 2rem)',
 
   '> *': {
     margin: 'auto'
   }
 }))
+
 
 export const Screen = (props: any) => {
   return (
