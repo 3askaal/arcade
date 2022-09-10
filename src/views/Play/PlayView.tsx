@@ -30,8 +30,6 @@ const PlayView = () => {
     <Wrapper s={{ p: ['s', 'm', 'l'], pt: ['m', 'l'] }}>
       <Container s={{ p: 0 }}>
         <Spacer size="l" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
-          <Box s={{ display: 'flex', }}>
-          </Box>
           <Box s={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
             <Screen>
               <Score />

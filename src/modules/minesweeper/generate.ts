@@ -12,7 +12,7 @@ export const generateEasterEgg = ({ mode }: ISettings) => {
     const x = i % (mode.width)
     const isMine = !!mines.find(({ x: mineX, y: mineY }) =>  x === mineX && y === mineY)
 
-    newGrid[`${x}/${y}`] = { x, y, block: true, mine: isMine }
+    newGrid[`${x}/${y}`] = { x, y, block: true, mine: isMine, selected: x === Math.floor(mode.width / 2) - 1 && y === Math.floor(mode.height / 2) - 1 }
   })
 
   newGrid = generateThreads(newGrid)
@@ -24,7 +24,7 @@ export const generateGrid = ({ mode }: ISettings) => {
   let newGrid: any = {}
   const positionAmount = (mode.width * mode.height)
 
-  if (random(100) > 90) {
+  if (random(1, 100) > 90) {
     return generateEasterEgg({ mode })
   }
 
@@ -32,7 +32,7 @@ export const generateGrid = ({ mode }: ISettings) => {
     const y = (i - (i % mode.width)) / mode.height
     const x = i % (mode.width)
 
-    newGrid[`${x}/${y}`] = { x, y, block: true, selected: x === Math.round(mode.width / 2) - 1 && y === Math.round(mode.height / 2) - 1 }
+    newGrid[`${x}/${y}`] = { x, y, block: true, selected: x === Math.floor(mode.width / 2) - 1 && y === Math.floor(mode.height / 2) - 1 }
   })
 
   newGrid = generateMines(newGrid, mode.mines)
