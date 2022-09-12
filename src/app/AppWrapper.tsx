@@ -30,15 +30,6 @@ export const AppWrapper: FC = ({ children }) => {
               { gameOver && (
                 <Menu content="Game over" items={gameOverItems} />
               ) }
-              {/* { gamePaused && (
-                <Popup
-                  actions={[
-                    <Button data-testid="resume" key="resume" onClick={() => setGamePaused(false)}>Resume</Button>
-                  ]}
-                >
-                  <Text s={{ width: '100%', textAlign: 'center' }}>Game paused! Click resume to continue playing.</Text>
-                </Popup>
-              ) } */}
               { !menuActive && !gameOver && children }
             </Screen>
           </Box>
