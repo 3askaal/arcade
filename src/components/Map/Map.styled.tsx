@@ -10,7 +10,8 @@ export const SMap = s.div(({ theme }: any) => ({
   width: 'auto',
   flexWrap: 'wrap',
   backgroundColor: 'map',
-  border: 'map'
+  border: 'map',
+  fontFamily: 'base'
 }))
 
 export const SMapShape: any = styled.div.attrs(({ shape, blockSize = 20 }: any) => ({

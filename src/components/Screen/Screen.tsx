@@ -14,6 +14,8 @@ export const SScreen = s.div(({ theme }: any) => ({
   width: '100%',
   aspectRatio: '1 / 1',
   borderRadius: '1.2rem',
+  fontFamily: 'retro',
+  textTransform: 'uppercase',
   p: 'm',
 
   '> *': {

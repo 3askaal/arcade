@@ -21,9 +21,9 @@ interface ControlsParams {
 
 export const Controls = () => {
   const { onStart, controls } = useContext(GameContext)
-  const { selectedGame, menuActive } = useContext(GameContext)
+  const { selectedGame, menuActive, gameOver } = useContext(GameContext)
   const { controls: currentControls }: any = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
-  const { onUp, onDown, onLeft, onRight, onA, onB, onSelect }: any = menuActive ? controls : selectedGame ? currentControls : controls
+  const { onUp, onDown, onLeft, onRight, onA, onB, onSelect }: any = (menuActive || gameOver) ? controls : selectedGame ? currentControls : controls
 
   return (
     <Box s={{
