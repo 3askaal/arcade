@@ -138,7 +138,7 @@ export const SnakeProvider = ({ children }: any) => {
     }
   }, [gameOver])
 
-  const controls: any = {
+  const controls = {
     onUp: () => changeDirection('up'),
     onDown: () => changeDirection('down'),
     onLeft: () => changeDirection('left'),

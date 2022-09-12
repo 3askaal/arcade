@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { createContext, Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react'
 import ReactGA4 from 'react-ga4'
 import { useLocalstorageState } from 'rooks';
 import { MapDimensions } from '../modules';
@@ -27,15 +27,16 @@ const PROVIDERS: any = {
 
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
-export const GameProvider = ({ children }: any) => {
+export const GameProvider: FC = ({ children }) => {
   const [theme, setTheme] = useLocalstorageState<string>('theme', 'dark')
-
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
+  const [menuActive, setMenuActive] = useState<boolean | null>(null)
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
   const [score, setScore] = useState<any>({})
   const [startTime, setStartTime] = useState<number | null>(null)
   const [endTime, setEndTime] = useState<number | null>(null)
+  const [controls, setControlsState] = useState<any>({})
 
   const SelectedProvider = selectedGame && PROVIDERS[selectedGame]
   const dimensions = selectedGame && MapDimensions[selectedGame]
@@ -49,6 +50,17 @@ export const GameProvider = ({ children }: any) => {
       action: "game:start",
       label: selectedGame || ''
     });
+  }
+
+  const setControls = (newControls: any) => {
+    setControlsState({
+      ...controls,
+      ...newControls
+    })
+  }
+
+  const onStart = () => {
+    setMenuActive(!menuActive)
   }
 
   useEffect(() => {
@@ -79,7 +91,11 @@ export const GameProvider = ({ children }: any) => {
         endTime,
         setEndTime,
         theme,
-        setTheme
+        setTheme,
+        onStart,
+        menuActive,
+        controls,
+        setControls
       }}
     >
       { selectedGame ? (

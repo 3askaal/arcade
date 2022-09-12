@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react'
+import React, { FC } from 'react'
 import { s, ButtonReset } from '3oilerplate'
 import { times } from 'lodash'
 
@@ -54,7 +54,7 @@ export const SButton: any = s.button(({ color }: any) =>
   })
 )
 
-export const CloseButton: FC<any> = ({ children, ...props }: any): ReactElement => {
+export const CloseButton: FC<any> = ({ children, ...props }: any) => {
   return (
     <SButton sRef="Button" {...props}>
       <SButtonDot>

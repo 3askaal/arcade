@@ -8,9 +8,9 @@ import { HomeView, PlayView } from '../views'
 import { LocalGlobalStyle } from '../style'
 import { SApp } from './App.styled'
 import { AppSidebar } from './Sidebar'
+import { AppWrapper } from './AppWrapper'
 import { THEME, THEME_LIGHT } from '../style/theme'
 import { Themes } from '../modules'
-
 import './fonts.css'
 
 // export const history = createBrowserHistory({ forceRefresh: true })
@@ -35,18 +35,19 @@ const App = () => {
           {({ selectedGame, theme: themeKey }) => (
             <ThemeProvider theme={mergeTheme(mergeTheme(theme, themeKey === 'dark' ? THEME : THEME_LIGHT) || {}, selectedGame ? Themes[selectedGame] : {})}>
               <SApp>
-                <AppSidebar />
                 <GlobalStyle />
                 <LocalGlobalStyle />
                 {/* <SocketIOProvider url={SOCKET_URL}> */}
-                <Switch>
-                  <Route exact path="/">
-                    <HomeView />
-                  </Route>
-                  <Route exact path="/play/:gameId?">
-                    <PlayView />
-                  </Route>
-                </Switch>
+                <AppWrapper>
+                  <Switch>
+                    <Route exact path="/">
+                      <HomeView />
+                    </Route>
+                    <Route exact path="/play/:gameId?">
+                      <PlayView />
+                    </Route>
+                  </Switch>
+                </AppWrapper>
                 {/* </SocketIOProvider> */}
               </SApp>
             </ThemeProvider>

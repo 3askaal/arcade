@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import ReactGA4 from 'react-ga4'
-import { Spacer, Container, Wrapper, Box } from '3oilerplate'
-import { capitalize } from 'lodash'
-import { Controls, Screen, Button } from '../../components'
-import { GAMES } from '../../config/config'
+import { Menu } from '../../components/Menu/Menu'
+import { useHistory } from 'react-router-dom'
 
 const PlayView = () => {
-  const [selectedGameIndex, setSelectedGameIndexState] = useState(0)
   const history = useHistory()
 
   useEffect(() => {
@@ -17,41 +13,14 @@ const PlayView = () => {
     });
   }, [])
 
-  const setSelectedGameIndex = (newSelectedGameIndex: number) => {
-    const game = GAMES[newSelectedGameIndex];
-
-    if (game && !game.disabled) {
-      setSelectedGameIndexState(newSelectedGameIndex);
-    }
-  }
-
-  const onUp = () => setSelectedGameIndex(selectedGameIndex - 1)
-  const onDown = () => setSelectedGameIndex(selectedGameIndex + 1)
-
-  const onA = () => {
-    history.push(`/play/${GAMES[selectedGameIndex].name}`)
-  }
-
-  const onSelect = () => {}
-  const onStart = () => {}
+  const navItems = [
+    { name: 'tetris', color: '#A149FA', action: () => history.push(`/play/tetris`) },
+    { name: 'snake', color: '#00FFAB', action: () => history.push(`/play/snake`) },
+    { name: 'minesweeper', color: '#FD0054', action: () => history.push(`/play/minesweeper`) },
+  ];
 
   return (
-    <Wrapper s={{ p: ['s', 'm', 'l'] }}>
-      <Container s={{ p: 0 }}>
-        <Spacer size="l" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
-          <Box s={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-            <Screen>
-              <Spacer size="m" >
-                { GAMES.map(({ name, color, disabled }, index) => (
-                  <Button isBlock isDisabled={disabled} selected={index === selectedGameIndex} color={color}>{ capitalize(name) }</Button>
-                ))}
-              </Spacer>
-            </Screen>
-          </Box>
-          <Controls controls={{ onUp, onDown, onA, onSelect, onStart }} />
-        </Spacer>
-      </Container>
-    </Wrapper>
+    <Menu items={navItems} />
   )
 }
 
