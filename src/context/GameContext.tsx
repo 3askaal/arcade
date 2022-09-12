@@ -61,6 +61,7 @@ export const GameProvider: FC = ({ children }) => {
 
   const onStart = () => {
     setMenuActive(!menuActive)
+    setGameActive(!gameActive)
   }
 
   useEffect(() => {
