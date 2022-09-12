@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Spacer } from '3oilerplate';
+import { Spacer, Text } from '3oilerplate';
 import { Button } from '../Button/Button';
 import { capitalize } from 'lodash';
 import { FC } from 'react';
@@ -12,7 +12,12 @@ interface MenuItem {
   disabled?: boolean;
 }
 
-export const Menu: FC<{ items: MenuItem[] }> = ({ items }) => {
+interface MenuProps {
+  content?: string;
+  items: MenuItem[];
+}
+
+export const Menu: FC<MenuProps> = ({ items, content }) => {
   const { setControls } = useContext(GameContext)
   const [selectedIndex, setSelectedIndexState] = useState(0)
 
@@ -33,7 +38,8 @@ export const Menu: FC<{ items: MenuItem[] }> = ({ items }) => {
   }, [selectedIndex])
 
   return (
-    <Spacer size="m" >
+    <Spacer size="m" s={{ alignItems: 'center' }}>
+      { content && <Text>{ content }</Text> }
       { items.map(({ name, color, disabled }, index) => (
         <Button
           key={`list-item-${index}`}

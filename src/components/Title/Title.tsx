@@ -14,6 +14,8 @@ export const SButton: any = s.div(({ color, selected }: any) =>
     paddingY: 's',
     // TODO: fix color variable
     color: 'white',
+    fontFamily: 'retro',
+    textTransform: 'uppercase',
 
     ...(selected && {
       color
