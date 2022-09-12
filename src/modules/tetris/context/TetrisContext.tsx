@@ -24,7 +24,7 @@ export interface TetrisContextType {
   onMoveX(direction: string): void;
   onRotate(): void;
   onDrop(): void;
-  controls: any;
+  [key: string]: any;
 }
 
 export const TetrisContextDefaults = {
@@ -43,7 +43,6 @@ export const TetrisContext = createContext<TetrisContextType>(TetrisContextDefau
 
 export const TetrisProvider = ({ children }: any) => {
   const { gameOver, setGameOver, gameActive, score, setScore } = useContext(GameContext)
-
   const [shape, setShapeState] = useState<Shape | null>(null)
   const shapeRef = useRef<any>(null)
 

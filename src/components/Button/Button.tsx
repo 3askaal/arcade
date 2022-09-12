@@ -28,7 +28,7 @@ export const SButton: any = s.div(({ color, selected }: any) =>
   },
 )
 
-export const Button: FC<any> = ({ children, color, ...props }: any): ReactElement => {
+export const Button: FC<any> = ({ children, color = '#fff', ...props }: any): ReactElement => {
   return (
     <SButton color={color} {...props}>
       <Outline color={color} selected={props.selected} />

@@ -1,0 +1,50 @@
+import React, { useContext, useEffect, useState } from 'react';
+import { Spacer } from '3oilerplate';
+import { Button } from '../Button/Button';
+import { capitalize } from 'lodash';
+import { FC } from 'react';
+import { GameContext } from '../../context';
+
+interface MenuItem {
+  name: string;
+  action: () => void;
+  color?: string;
+  disabled?: boolean;
+}
+
+export const Menu: FC<{ items: MenuItem[] }> = ({ items }) => {
+  const { setControls } = useContext(GameContext)
+  const [selectedIndex, setSelectedIndexState] = useState(0)
+
+  const setSelectedIndex = (newSelectedGameIndex: number) => {
+    const game = items[newSelectedGameIndex];
+
+    if (game) {
+      setSelectedIndexState(newSelectedGameIndex);
+    }
+  }
+
+  useEffect(() => {
+    setControls({
+      onUp: () => setSelectedIndex(selectedIndex - 1),
+      onDown: () => setSelectedIndex(selectedIndex + 1),
+      onA: () => items[selectedIndex]?.action()
+    })
+  }, [selectedIndex])
+
+  return (
+    <Spacer size="m" >
+      { items.map(({ name, color, disabled }, index) => (
+        <Button
+          key={`list-item-${index}`}
+          isBlock
+          isDisabled={disabled}
+          selected={index === selectedIndex}
+          color={color}
+        >
+          { capitalize(name) }
+        </Button>
+      ))}
+    </Spacer>
+  )
+}
