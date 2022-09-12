@@ -62,10 +62,10 @@ export const SMapMine = s.div(() => ({
 }))
 
 const flash = (block: boolean | undefined, color: string) => keyframes`
-  0% { ${ styleToCss(blockColors(color, !block, .75)) } }
-  35% { ${ styleToCss(blockColors(false, !block, .75)) } }
-  65% { ${ styleToCss(blockColors(false, !block, .75)) } }
-  100% { ${ styleToCss(blockColors(color, !block, .75)) } }
+  0% { ${ styleToCss(blockColors(color, !block, .5)) } }
+  35% { ${ styleToCss(blockColors(false, !block, .5)) } }
+  65% { ${ styleToCss(blockColors(false, !block, .5)) } }
+  100% { ${ styleToCss(blockColors(color, !block, .5)) } }
 `
 
 export const SMapSelector = styled.div<any>(
