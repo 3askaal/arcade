@@ -102,6 +102,8 @@ export const MinesweeperProvider = ({ children }: any) => {
     const nextBlockRef = `${x}/${y}`
     const nextBlock = grid[nextBlockRef]
 
+    if (!nextBlock) return
+
     const newGrid = {
       ...grid,
       [nextBlockRef]: { ...nextBlock, selected: true },
