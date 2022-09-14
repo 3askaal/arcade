@@ -1,5 +1,5 @@
 import { s, ButtonReset } from '3oilerplate'
-import { getBevelEmboss } from '../helpers'
+import { getBevelEmboss, getDropShadow } from '../helpers'
 
 export const SSettings = s.div(({ theme, index }: any) => ({
   position: 'relative',
@@ -24,7 +24,7 @@ export const SSettingsButton = s.button(({ theme }: any) => ({
   fontWeight: 'bold',
   color: 'controls.text',
   backgroundColor: 'controls.bg',
-  filter: 'drop-shadow(0 0 3px rgba(0, 0, 0, .5))',
+  filter: getDropShadow(),
 
   '+ *': {
     ml: 'm',

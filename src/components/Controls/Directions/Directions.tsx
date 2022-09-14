@@ -1,5 +1,5 @@
 import React from 'react'
-import { SControls, SControlsButton, SControlsMiddle } from './Directions.styled'
+import { SControls, SControlsButton, SControlsMiddle, SControlsMiddleCircle } from './Directions.styled'
 import {
   ChevronUp,
   ChevronLeft,
@@ -13,7 +13,9 @@ export const Directions = ({ controls = {} }: any) => {
 
   return (
     <SControls>
-      <SControlsMiddle />
+      <SControlsMiddle>
+        <SControlsMiddleCircle />
+      </SControlsMiddle>
       <SControlsButton
         type="left"
         {...isMobile() ? {
