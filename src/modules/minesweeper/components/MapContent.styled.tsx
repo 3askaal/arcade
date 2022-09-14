@@ -3,12 +3,12 @@ import chroma from 'chroma-js'
 import styleToCss from 'style-object-to-css-string';
 import styled, { css, keyframes } from 'styled-components'
 
-const blockColors = (color: string | false, noBlock?: boolean, alpha = 1) => ({
-  borderTopColor: color && !noBlock ? chroma(color).brighten(1.25).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
-  borderRightColor: color && !noBlock ? chroma(color).brighten(1).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+const blockColors = (color: string | false, alpha = 1) => ({
+  borderTopColor: color ? chroma(color).brighten(1.25).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+  borderRightColor: color ? chroma(color).brighten(1).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
   backgroundColor: color ?  chroma(color).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
-  borderLeftColor: color && !noBlock ? chroma(color).darken(1).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
-  borderBottomColor: color && !noBlock ? chroma(color).darken(1.25).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+  borderLeftColor: color ? chroma(color).darken(1).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
+  borderBottomColor: color ? chroma(color).darken(1.25).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
 })
 
 export const SMapBlock = s.div(({ theme, hide, flag }: any) => ({
@@ -61,11 +61,11 @@ export const SMapMine = s.div(() => ({
   backgroundColor: '#222',
 }))
 
-const flash = (block: boolean | undefined, color: string) => keyframes`
-  0% { ${ styleToCss(blockColors(color, !block, .5)) } }
-  35% { ${ styleToCss(blockColors(false, !block, .5)) } }
-  65% { ${ styleToCss(blockColors(false, !block, .5)) } }
-  100% { ${ styleToCss(blockColors(color, !block, .5)) } }
+const flash = (color: string) => keyframes`
+  0% { box-shadow: 0 0 0 .25rem ${ rgba(color, .8) }; }
+  35% { box-shadow: 0 0 0 .25rem ${ rgba(color, 0) }; }
+  65% { box-shadow: 0 0 0 .25rem ${ rgba(color, 0) }; }
+  100% { box-shadow: 0 0 0 .25rem ${ rgba(color, .8) }; }
 `
 
 export const SMapSelector = styled.div<any>(
@@ -73,12 +73,12 @@ export const SMapSelector = styled.div<any>(
     position: 'absolute',
     width: '100%',
     height: '100%',
-    borderStyle: 'solid',
-    borderWidth: '.25rem',
+    // borderStyle: 'solid',
+    // borderWidth: '.25rem',
     zIndex: 1,
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
   }),
   ({ block, theme }: any) => css`
-    animation: ${flash(block, theme.colors.active)} 2000ms ease both infinite
+    animation: ${flash(theme.colors.accent)} 2000ms ease both infinite
   `
 )

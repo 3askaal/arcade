@@ -44,6 +44,12 @@ export const flag = (grid: IGrid, position: IPosition) => {
 
 export const reveal = (grid: IGrid, position: IPosition): [IGrid, boolean?] => {
   let newGrid = { ...grid }
+
+  if (position.flag) {
+    newGrid[`${position.x}/${position.y}`].flag = false
+    return [newGrid, false]
+  }
+
   newGrid[`${position.x}/${position.y}`].block = false
 
   if (position.mine) {

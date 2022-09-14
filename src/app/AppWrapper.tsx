@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { Box, Spacer, Container, Wrapper, Popup, Button, Text } from '3oilerplate'
+import { Box, Spacer, Container, Wrapper } from '3oilerplate'
 import { GameContext } from '../context';
 import { Controls, Screen } from '../components';
 import { Menu } from '../components/Menu/Menu';
@@ -7,11 +7,11 @@ import { useHistory } from 'react-router-dom';
 
 export const AppWrapper: FC = ({ children }) => {
   const history = useHistory()
-  const { menuActive, gameOver, gamePaused, start, setGamePaused } = useContext(GameContext)
+  const { menuActive, gameOver, start } = useContext(GameContext)
 
   const menuNavItems = [
     { name: 'home', action: () => history.push(`/`)},
-    { name: 'leaderboards', action: () => history.push(`/leaderboards`)},
+    { name: 'leaderboards', action: () => history.push(`/leaderboards`), disabled: true },
   ]
 
   const gameOverItems = [
