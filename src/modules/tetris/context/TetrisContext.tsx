@@ -131,7 +131,6 @@ export const TetrisProvider = ({ children }: any) => {
   const controls = {
     onLeft: () => onMoveX('left'),
     onRight: () => onMoveX('right'),
-    onDown: () => onDrop(),
     onB: () => onRotate(),
     onA: () => onDrop(),
   }
