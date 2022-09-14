@@ -28,7 +28,7 @@ const PROVIDERS: any = {
 export const GameContext = createContext<GameContextType>(GameContextDefaults)
 
 export const GameProvider: FC = ({ children }) => {
-  const [theme, setTheme] = useLocalstorageState<string>('theme', 'dark')
+  const [theme, setTheme] = useState<string>('light')
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
   const [menuActive, setMenuActive] = useState<boolean | null>(null)
   const [gameActive, setGameActive] = useState(false)
