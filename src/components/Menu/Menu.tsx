@@ -21,11 +21,11 @@ export const Menu: FC<MenuProps> = ({ items, content }) => {
   const { setControls } = useContext(GameContext)
   const [selectedIndex, setSelectedIndexState] = useState(0)
 
-  const setSelectedIndex = (newSelectedGameIndex: number) => {
-    const game = items[newSelectedGameIndex];
+  const setSelectedIndex = (newSelectedIndex: number) => {
+    const item = items[newSelectedIndex];
 
-    if (game) {
-      setSelectedIndexState(newSelectedGameIndex);
+    if (item && !item.disabled) {
+      setSelectedIndexState(newSelectedIndex);
     }
   }
 
