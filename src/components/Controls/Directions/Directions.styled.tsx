@@ -46,7 +46,7 @@ export const SDirectionsButton = s.button(({ type }: any) => ({
   border: 0,
   cursor: 'pointer',
   padding: '1rem',
-  borderRadius: '.2rem',
+  borderRadius: '.5rem',
   boxShadow: getBevelEmboss(bevelEmbossDepth),
 
   'svg': {
