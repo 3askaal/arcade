@@ -43,9 +43,8 @@ export const Menu: FC<MenuProps> = ({ items, content }) => {
       { items.map(({ name, color, disabled }, index) => (
         <Button
           key={`list-item-${index}`}
-          isBlock
           isDisabled={disabled}
-          selected={index === selectedIndex}
+          isSelected={index === selectedIndex}
           color={color}
         >
           { capitalize(name) }

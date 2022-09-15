@@ -36,7 +36,11 @@ export const SDirectionsMiddleCircle = s.div(() => ({
   zIndex: 100
 }))
 
-export const SDirectionsButton = s.button(({ type }: any) => ({
+interface DirectionsButtopnProps {
+  type: string;
+}
+
+export const SDirectionsButton = s.button(({ type }: DirectionsButtopnProps) => ({
   position: 'absolute',
   display: 'flex',
   width: '34%',

@@ -1,10 +1,12 @@
 import { times } from 'lodash'
+import { IDimensions } from '../../context'
+import { IGrid } from './types'
 
 const width = 64
 const height = 64
 
 export const generateGrid = () => {
-  let newGrid: any = {}
+  let newGrid: IGrid = {}
   const positionAmount = (width * height)
 
   times(positionAmount, (i) => {
@@ -19,9 +21,9 @@ export const generateGrid = () => {
   return newGrid
 }
 
-export const generateSnake = (mode: any) => {
-  let x = mode.width / 2
-  let y = (mode.height / 2) - 8
+export const generateSnake = (dimensions: IDimensions) => {
+  let x = dimensions.width / 2
+  let y = (dimensions.height / 2) - 8
 
   return times(5, (i) => {
     return { x, y: y + i }

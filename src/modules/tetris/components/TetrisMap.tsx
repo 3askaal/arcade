@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { GameContext } from "../../../context"
 import { TetrisContext } from "../context/TetrisContext"
+import { Block } from "../generate"
 import { SMapBlock } from "./TetrisMap.styled"
 
 export const TetrisMapContent = () => {
@@ -13,7 +14,7 @@ export const TetrisMapContent = () => {
   return (
     <>
       { shape?.blocks ?
-        shape.blocks.map((block: any, index: number) => (
+        shape.blocks.map((block: Block, index: number) => (
           <SMapBlock
             data-testid={`shape-active-block-${index}`}
             key={`block-active-${index}`}
@@ -25,7 +26,7 @@ export const TetrisMapContent = () => {
           />
         )
       ) : null }
-      { blocks ? blocks.map((block: any, index: number) => (
+      { blocks ? blocks.map((block: Block, index: number) => (
         <SMapBlock
           data-testid={`block-${index}`}
           key={`block-${index}`}

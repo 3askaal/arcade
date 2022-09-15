@@ -1,7 +1,17 @@
 import React, { FC, ReactElement } from 'react'
 import { s } from '3oilerplate'
 
-const SOutlineBorder: any = s.div(({ side, theme, color = 'grey40' }: any) => ({
+
+interface OutlineProps {
+  color?: string;
+  isSelected?: boolean;
+}
+
+interface OutlineBorderProps {
+  side: string;
+}
+
+const SOutlineBorder = s.div(({ side }: OutlineBorderProps) => ({
   position: 'absolute',
   [side]: '-.25rem',
   backgroundColor: 'element.border',
@@ -46,7 +56,7 @@ const SOutlineBorder: any = s.div(({ side, theme, color = 'grey40' }: any) => ({
   }
 }))
 
-export const SOutline: any = s.div(({ color, selected }: any) =>
+export const SOutline = s.div(({ color, isSelected }: OutlineProps) =>
   ({
     position: 'absolute',
     top: 0,
@@ -57,7 +67,7 @@ export const SOutline: any = s.div(({ color, selected }: any) =>
     justifyContent: 'center',
     alignItems: 'center',
 
-    ...(selected && {
+    ...(isSelected && {
       [SOutlineBorder]: {
         backgroundColor: color,
 
@@ -70,11 +80,11 @@ export const SOutline: any = s.div(({ color, selected }: any) =>
   {
     isDisabled: {
       opacity: '.4'
-    }
+    },
   }
 )
 
-export const Outline: FC<any> = ({ children, color, ...props }: any): ReactElement => {
+export const Outline: FC<OutlineProps> = ({ children, color, ...props }): ReactElement => {
   return (
     <SOutline sRef="Button" {...props} color={color}>
       <SOutlineBorder side="top" color={color} />

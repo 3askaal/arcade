@@ -2,7 +2,7 @@ import { s } from '3oilerplate'
 import chroma from 'chroma-js'
 import styled from 'styled-components'
 
-export const SMap = s.div(({ theme }: any) => ({
+export const SMap = s.div(() => ({
   display: 'flex',
   position: 'relative',
   margin: 'auto',
@@ -14,7 +14,7 @@ export const SMap = s.div(({ theme }: any) => ({
   fontFamily: 'base'
 }))
 
-export const SMapShape: any = styled.div.attrs(({ shape, blockSize = 20 }: any) => ({
+export const SMapShape = styled.div.attrs(({ shape, blockSize = 20 }: any) => ({
   style: {
     position: 'absolute',
     left: `${shape.x * blockSize}px`,
@@ -36,7 +36,7 @@ export const SMapPos = s.div(({ pos, blockSizeX, blockSizeY }: any) => ({
   left: `${pos.x * blockSizeY}%`,
 }))
 
-export const SMapBlock = s.div(({ theme, hidden, flag }: any) => ({
+export const SMapBlock = s.div(({ hidden, flag }: any) => ({
   position: 'absolute',
   width: '100%',
   height: '100%',

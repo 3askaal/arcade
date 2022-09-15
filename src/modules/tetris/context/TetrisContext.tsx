@@ -1,13 +1,8 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
+import React, { createContext, FC, useContext, useEffect, useRef, useState } from 'react'
 import { useIntervalWhen } from 'rooks';
-import { Controls, GameContext } from '../../../context';
+import { IControls, GameContext } from '../../../context';
 import { Block, generateShape, Shape } from '../generate';
 import { checkBlocks, moveX, moveY, rotate } from '../mutations';
-
-export interface Dimensions {
-  width: number;
-  height: number;
-}
 
 export interface TetrisContextType {
   shape: Shape | null;
@@ -15,7 +10,8 @@ export interface TetrisContextType {
   onMoveX(direction: string): void;
   onRotate(): void;
   onDrop(): void;
-  controls: Controls;
+  controls: IControls;
+  [key: string]: any;
 }
 
 export const TetrisContextDefaults = {
@@ -31,12 +27,12 @@ export const TetrisContextDefaults = {
 
 export const TetrisContext = createContext<TetrisContextType>(TetrisContextDefaults)
 
-export const TetrisProvider = ({ children }: any) => {
+export const TetrisProvider: FC = ({ children }) => {
   const { gameOver, setGameOver, gameActive, score, setScore, dimensions } = useContext(GameContext)
   const [shape, setShapeState] = useState<Shape | null>(null)
   const shapeRef = useRef<any>(null)
   const [blocks, setBlocksState] = useState<Block[]>([])
-  const blocksRef = useRef<any>([])
+  const blocksRef = useRef<Block[]>([])
 
   const reset = () => {
     setShape(generateShape({ height: 36, width: 20 }))
@@ -49,12 +45,15 @@ export const TetrisProvider = ({ children }: any) => {
     setShapeState(shape)
   }
 
-  const setBlocks = (blocks: any) => {
+  const setBlocks = (blocks: Block[]) => {
     blocksRef.current = blocks
     setBlocksState(blocks)
   }
 
   const onMoveX = (direction: 'left' | 'right') => {
+    if (!gameActive) throw new Error('Game has not been started yet');
+    if (!shapeRef.current) throw new Error('Could not find active shape');
+
     const nextShape = moveX(shapeRef.current, blocksRef.current, dimensions, direction);
     if (nextShape) setShape(nextShape)
   }
@@ -71,6 +70,9 @@ export const TetrisProvider = ({ children }: any) => {
   }
 
   const onDrop = async () => {
+    if (!gameActive) throw new Error('Game has not been started yet');
+    if (!shapeRef.current) throw new Error('Could not find active shape');
+
     const initialBlocksLength = Number(blocksRef.current.length)
     let isHit = false
 
@@ -87,6 +89,9 @@ export const TetrisProvider = ({ children }: any) => {
   }
 
   const onRotate = () => {
+    if (!gameActive) throw new Error('Game has not been started yet');
+    if (!shapeRef.current) throw new Error('Could not find active shape');
+
     const rotatedShape = rotate(shapeRef.current, blocksRef.current, dimensions)
 
     if (rotatedShape) setShape(rotatedShape)

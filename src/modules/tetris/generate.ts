@@ -1,5 +1,6 @@
 import { sample, maxBy } from 'lodash'
 import randomColor from 'randomcolor'
+import { IDimensions } from '../../context';
 
 export interface Shape {
   color: string;
@@ -52,7 +53,7 @@ export const SHAPE_BLOCKS = [
   ]
 ]
 
-export const generateShape = (dimensions: any, initialShapeBlocks?: any) => {
+export const generateShape = (dimensions: IDimensions, initialShapeBlocks?: Block[]) => {
   const shape: Shape = {
     color: randomColor(),
     blocks: [],
@@ -64,7 +65,7 @@ export const generateShape = (dimensions: any, initialShapeBlocks?: any) => {
     active: true
   };
 
-  shape.blocks = initialShapeBlocks || sample(sample(SHAPE_BLOCKS))  as any
+  shape.blocks = initialShapeBlocks || sample(sample(SHAPE_BLOCKS)) as Block[]
 
   const maxX = maxBy(shape.blocks, 'x')?.x as number
   const maxY = maxBy(shape.blocks, 'y')?.y as number

@@ -9,11 +9,11 @@ const getGreyPercentage = (percentage: number) => {
   return chroma('white').darken((percentage / 100) * 5.6).hex();
 }
 
-export const greys: any = Object.assign({}, ...times(100, (i) => ({ [`grey${i}`]: getGreyPercentage(i) })))
+export const greys = Object.assign({}, ...times(100, (i) => ({ [`grey${i}`]: getGreyPercentage(i) })))
 
 const bgDark = mix(brighten('black', .2), '#937DC2', .005)
 
-export const colors: any = {
+export const colors = {
   primary: '#494786',
   primaryDark: darken('#494786', 0.5),
   secondary: '#9a2257',

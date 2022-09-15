@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const LocalGlobalStyle: any = createGlobalStyle<any>({
+export const LocalGlobalStyle = createGlobalStyle({
   '*': {
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',

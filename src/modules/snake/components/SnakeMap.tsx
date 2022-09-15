@@ -13,7 +13,7 @@ export const SnakeMapContent = () => {
 
   return (
     <>
-      { snake.map((position: any, index: number) => (
+      { snake.map((position, index: number) => (
         <Box
           s={{
             display: 'flex',
@@ -23,14 +23,12 @@ export const SnakeMapContent = () => {
             justifyContent: 'center',
             width: `${blockSizeX}%`,
             height: `${blockSizeY}%`,
-            top: `${blockSizeY * position.y}%`,
-            left: `${blockSizeX * position.x}%`,
+            top: `${blockSizeY * (position.y || 0)}%`,
+            left: `${blockSizeX * (position.x || 0)}%`,
           }}
           key={`block-${index}`}
         >
-          <SMapSnake
-            block={position.block}
-          />
+          <SMapSnake />
         </Box>
       )) }
       { food ? (

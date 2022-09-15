@@ -1,14 +1,12 @@
 import React from 'react'
 import { SActions, SActionsButton } from './Actions.styled'
 import isMobile from 'is-mobile'
+import { IControls } from '../../../context'
 
-export const Actions = ({ controls = {}, color, ...props }: any) => {
-  const { onA, onB } = controls
-
+export const Actions = ({ onA, onB }: IControls) => {
   return (
-    <SActions {...props}>
+    <SActions>
       <SActionsButton
-        color={color}
         type="B"
         {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onB && onB() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
@@ -16,7 +14,6 @@ export const Actions = ({ controls = {}, color, ...props }: any) => {
         B
       </SActionsButton>
       <SActionsButton
-        color={color}
         type="A"
         {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onA && onA() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}

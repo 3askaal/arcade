@@ -5,7 +5,7 @@ import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperC
 import { SnakeProvider } from '../modules/snake/context/SnakeContext';
 import { TetrisProvider } from '../modules/tetris/context/TetrisContext';
 
-export interface Controls {
+export interface IControls {
   onUp?: Function;
   onDown?: Function;
   onLeft?: Function;
@@ -14,6 +14,11 @@ export interface Controls {
   onB?: Function;
   onSelect?: Function;
   onStart?: Function;
+}
+
+export interface IDimensions {
+  width: number;
+  height: number;
 }
 
 export interface TetrisScore {
@@ -33,8 +38,8 @@ type Score = TetrisScore | SnakeScore | MinesweeperScore | {};
 export interface GameContextType {
   selectedGame: string | null;
   setSelectedGame: Dispatch<SetStateAction<string | null>>;
-  controls: Controls;
-  setControls: (controls: Controls) => void;
+  controls: IControls;
+  setControls: (controls: IControls) => void;
   [key: string]: any;
 }
 
@@ -62,7 +67,15 @@ export const GameProvider: FC = ({ children }) => {
   const [score, setScore] = useState<Score>({})
   const [startTime, setStartTime] = useState<number | null>(null)
   const [endTime, setEndTime] = useState<number | null>(null)
-  const [controls, setControlsState] = useState<Controls>({})
+
+  const onStart = () => {
+    setMenuActive(!menuActive)
+    setGameActive(!gameActive)
+  }
+
+  const [controls, setControlsState] = useState<IControls>({
+    onStart
+  })
 
   const SelectedProvider = selectedGame && PROVIDERS[selectedGame]
   const dimensions = selectedGame && MapDimensions[selectedGame]
@@ -78,17 +91,14 @@ export const GameProvider: FC = ({ children }) => {
     });
   }
 
-  const setControls = (newControls: Controls) => {
+  const setControls = (newControls: IControls) => {
     setControlsState({
       ...controls,
       ...newControls
     })
   }
 
-  const onStart = () => {
-    setMenuActive(!menuActive)
-    setGameActive(!gameActive)
-  }
+
 
   useEffect(() => {
     if (gameOver) {

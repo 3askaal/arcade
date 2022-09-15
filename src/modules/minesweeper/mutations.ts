@@ -34,7 +34,7 @@ export const getPositions = (grid: IGrid) => {
   return Object.values(grid)
 }
 
-export const flag = (grid: IGrid, position: IPosition) => {
+export const flag = (grid: IGrid, position: IPosition): [IGrid] => {
   const newGrid = { ...grid }
   const item = newGrid[`${position.x}/${position.y}`]
   newGrid[`${position.x}/${position.y}`].flag = !item.flag

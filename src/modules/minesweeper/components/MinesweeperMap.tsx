@@ -14,7 +14,7 @@ export const MinesweeperMapContent = () => {
 
   return (
     <>
-      { positions.map((position: any, index: number) => (
+      { positions.map((position, index: number) => (
         <SMapPos
           key={`pos-${index}`}
           pos={position}
