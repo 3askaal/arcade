@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { s } from '3oilerplate'
 
-export const SScreen = s.div(({ theme }: any) => ({
+export const SScreen = s.div(() => ({
   position: 'relative',
   backgroundColor: 'grey95',
   display: 'flex',
@@ -24,7 +24,7 @@ export const SScreen = s.div(({ theme }: any) => ({
 }))
 
 
-export const Screen = (props: any) => {
+export const Screen: FC = (props) => {
   return (
     <SScreen {...props} />
   )

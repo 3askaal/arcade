@@ -1,6 +1,6 @@
 import { s } from '3oilerplate'
 
-export const SScore = s.div(({ theme, isDesktop }: any) => ({
+export const SScore = s.div(() => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
@@ -14,7 +14,7 @@ export const SScore = s.div(({ theme, isDesktop }: any) => ({
   height: '2rem',
 }))
 
-export const SScoreDivider = s.div(({ color }: any) => ({
+export const SScoreDivider = s.div(() => ({
   display: 'block',
   position: 'relative',
   width: '.125rem',
@@ -26,7 +26,7 @@ export const SScoreDivider = s.div(({ color }: any) => ({
   }
 }))
 
-export const SScoreItem = s.div(({ color }: any) => ({
+export const SScoreItem = s.div(() => ({
   '+ *': {
     marginLeft: 's'
   }

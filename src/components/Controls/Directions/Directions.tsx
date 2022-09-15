@@ -2,10 +2,9 @@ import React from 'react'
 import { SDirections, SDirectionsButton, SDirectionsMiddle, SDirectionsMiddleCircle } from './Directions.styled'
 import { ChevronUp, ChevronLeft, ChevronRight, ChevronDown } from 'react-feather'
 import isMobile from 'is-mobile'
+import { IControls } from '../../../context'
 
-export const Directions = ({ controls = {} }: any) => {
-  const { onLeft, onRight, onDown, onUp } = controls
-
+export const Directions = ({ onLeft, onRight, onDown, onUp }: IControls) => {
   return (
     <SDirections>
       <SDirectionsMiddle>

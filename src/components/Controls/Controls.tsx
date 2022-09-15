@@ -3,23 +3,24 @@ import { Directions } from "./Directions/Directions";
 import { Actions } from "./Actions/Actions";
 import { Settings } from "./Settings/Settings";
 import { createContext, useContext } from "react";
-import { GameContext } from "../../context";
+import { IControls, GameContext } from "../../context";
 import { Contexts } from "../../modules";
 import { useKey } from "rooks";
 
 export const Controls = () => {
-  const { selectedGame, menuActive, gameOver, onStart, controls } = useContext(GameContext)
-  const { controls: currentControls }: any = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
-  const { onUp, onDown, onLeft, onRight, onA, onB, onSelect }: any = (menuActive || gameOver) ? controls : selectedGame ? currentControls : controls
+  const { selectedGame, menuActive, gameOver, onStart, controls: defaultControls } = useContext(GameContext)
+  const { controls: currentControls }: { controls: IControls } = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
+  const controls = (menuActive || gameOver) ? defaultControls : selectedGame ? currentControls : defaultControls
+  const { onUp, onDown, onLeft, onRight, onA, onB, onSelect } = controls
 
-  useKey(['w', 'ArrowUp'], () => onUp())
-  useKey(['a', 'ArrowLeft'], () => onLeft())
-  useKey(['s', 'ArrowDown'], () => onDown())
-  useKey(['d', 'ArrowRight'], () => onRight())
-  useKey(['Space', 'Enter'], () => onA())
-  useKey(['Shift'], () => onB())
-  useKey([], () => onSelect())
-  useKey(['Escape', 'Control', 'Meta', 'Alt'], () => onStart())
+  useKey(['w', 'ArrowUp'], () => onUp && onUp())
+  useKey(['a', 'ArrowLeft'], () => onLeft && onLeft())
+  useKey(['s', 'ArrowDown'], () => onDown && onDown())
+  useKey(['d', 'ArrowRight'], () => onRight && onRight())
+  useKey(['Space', 'Enter'], () => onA && onA())
+  useKey(['Shift'], () => onB && onB())
+  useKey([], () => onSelect && onSelect())
+  useKey(['Escape', 'Control', 'Meta', 'Alt'], () => onStart && onStart())
 
   return (
     <Box s={{
@@ -37,14 +38,25 @@ export const Controls = () => {
         width: '100%',
         mb: 'xl'
       }}>
-        <Directions controls={{ onUp, onDown, onLeft, onRight }} />
-        <Actions controls={{ onA, onB }} />
+        <Directions
+          onUp={onUp}
+          onLeft={onLeft}
+          onDown={onDown}
+          onRight={onRight}
+        />
+        <Actions
+          onA={onA}
+          onB={onB}
+        />
       </Box>
       <Box s={{
         display: 'flex',
         justifyContent: 'center',
       }}>
-        <Settings controls={{ onSelect, onStart }}></Settings>
+        <Settings
+          onStart={onStart}
+          onSelect={onSelect}
+        />
       </Box>
     </Box>
   )

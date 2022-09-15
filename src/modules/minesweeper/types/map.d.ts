@@ -6,6 +6,7 @@ export interface IPosition {
   thread?: boolean;
   amount?: number;
   flag?: boolean;
+  selected?: boolean;
 }
 
 export interface IGrid {

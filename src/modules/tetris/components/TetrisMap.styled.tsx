@@ -1,7 +1,7 @@
 import { s } from '3oilerplate'
 import chroma from 'chroma-js'
 
-export const SMapBlock = s.div(({ theme, color = '#fff', dead, shape, blockSizeX, blockSizeY, block }: any) => ({
+export const SMapBlock = s.div(({ color = '#fff', dead, shape, blockSizeX, blockSizeY, block }: any) => ({
   position: 'absolute',
   top: `${(shape?.y * blockSizeY || 0) + block.y * blockSizeY}%`,
   left: `${(shape?.x * blockSizeX || 0) + block.x * blockSizeX}%`,

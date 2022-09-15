@@ -5,7 +5,7 @@ import { GameContext } from '../../context'
 import { useParams } from 'react-router-dom'
 
 const PlayView = () => {
-  const { gameId }: any = useParams()
+  const { gameId } = useParams<{ gameId?: string }>()
   const { selectedGame, setSelectedGame, launch } = useContext(GameContext)
 
   useEffect(() => {

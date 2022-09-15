@@ -1,9 +1,8 @@
 import { groupBy, includes, sum } from "lodash";
-import { TetrisScore } from "../../context";
-import { Dimensions } from "../../modules/tetris/context/TetrisContext";
+import { IDimensions, TetrisScore } from "../../context";
 import { Block, generateShape, Shape } from "./generate";
 
-export const checkShapePosition = (nextShape: Shape, currentBlocks: Block[], dimensions: Dimensions) => {
+export const checkShapePosition = (nextShape: Shape, currentBlocks: Block[], dimensions: IDimensions) => {
   const hitsBlock = currentBlocks.some((block: Block) =>
     nextShape.blocks.some((nextBlock) =>
       (nextShape.x + nextBlock.x) === block.x && (nextShape.y + nextBlock.y) === block.y
@@ -16,7 +15,7 @@ export const checkShapePosition = (nextShape: Shape, currentBlocks: Block[], dim
   return hitsBlock || hitsBottom || hitsSide
 }
 
-export const moveX = (currentShape: Shape, currentBlocks: Block[], dimensions: Dimensions, direction: 'left' | 'right') => {
+export const moveX = (currentShape: Shape, currentBlocks: Block[], dimensions: IDimensions, direction: 'left' | 'right') => {
   const movements =  {
     left: -1,
     right: 1
@@ -39,7 +38,7 @@ export const moveX = (currentShape: Shape, currentBlocks: Block[], dimensions: D
 export const moveY = async (
   currentShape: Shape,
   currentBlocks: Block[],
-  dimensions: Dimensions,
+  dimensions: IDimensions,
   shouldUpdateState: boolean = true
 ): Promise<[Shape | null, Block[] | null, boolean | null]> => {
   let newShape = null
@@ -53,7 +52,7 @@ export const moveY = async (
   if (isHit) {
     newBlocks = [
       ...currentBlocks,
-      ...currentShape.blocks.map((currentBlock: any) => ({
+      ...currentShape.blocks.map((currentBlock) => ({
         ...currentBlock,
         x: currentShape.x + currentBlock.x,
         y: currentShape.y + currentBlock.y,
@@ -78,7 +77,7 @@ export const moveY = async (
   return [newShape, newBlocks, newGameOver]
 }
 
-export const rotate = (currentShape: Shape, currentBlocks: Block[], dimensions: Dimensions) => {
+export const rotate = (currentShape: Shape, currentBlocks: Block[], dimensions: IDimensions) => {
   const rotatedShape = {
     ...currentShape,
     width: currentShape.height,
@@ -105,7 +104,7 @@ export const rotate = (currentShape: Shape, currentBlocks: Block[], dimensions: 
   return rotatedShape
 }
 
-const getFullRows = (currentBlocks: Block[], dimensions: Dimensions): number[] => {
+const getFullRows = (currentBlocks: Block[], dimensions: IDimensions): number[] => {
   const inactiveRows = groupBy(currentBlocks, 'y')
 
   const fullRows = Object.entries(inactiveRows)
@@ -118,7 +117,7 @@ const getFullRows = (currentBlocks: Block[], dimensions: Dimensions): number[] =
 export const checkBlocks = (
   currentBlocks: Block[],
   score: TetrisScore,
-  dimensions: Dimensions
+  dimensions: IDimensions
 ): [TetrisScore | null, Block[] | null, Block[] | null] | null => {
   let newScore = null
   let deadBlocks = null

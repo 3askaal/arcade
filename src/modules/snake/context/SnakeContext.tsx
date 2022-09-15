@@ -6,8 +6,8 @@ import { generateSnake } from '../generate';
 import { GameContext } from '../../../context';
 
 interface IPosition {
-  x?: number;
-  y?: number;
+  x: number;
+  y: number;
 }
 
 interface SnakeContextType {
@@ -30,9 +30,9 @@ export const SnakeProvider = ({ children }: any) => {
   const [snake, setSnakeState] = useState<IPosition[]>([])
   const snakeRef = useRef<IPosition[]>([])
 
-  const [food, setFood] = useState<IPosition>({})
+  const [food, setFood] = useState<IPosition>({ x: 0, y: 0 })
   const [direction, setDirection] = useState('down')
-  const directionRef = useRef('down')
+  const directionRef = useRef<'up' | 'down' | 'left' | 'right'>('down')
 
   const reset = () => {
     setSnake(generateSnake(dimensions))
@@ -48,17 +48,17 @@ export const SnakeProvider = ({ children }: any) => {
   }
 
   const moveForward = () => {
-    if (!snakeRef?.current) {
-      return
-    }
+    if (!snakeRef?.current) return
 
     const headPosition = last(snakeRef?.current || [])
 
-    const getNextPosition: any = {
-      up: ({ y, ...rest }: any) => ({ ...rest, y: y - 1 }),
-      down: ({ y, ...rest }: any) => ({ ...rest, y: y + 1 }),
-      left: ({ x, ...rest }: any) => ({ ...rest, x: x - 1 }),
-      right: ({ x, ...rest }: any) => ({ ...rest, x: x + 1 }),
+    if (!headPosition) return
+
+    const getNextPosition = {
+      up: ({ y, ...rest }: IPosition): IPosition => ({ ...rest, y: y - 1 }),
+      down: ({ y, ...rest }: IPosition): IPosition => ({ ...rest, y: y + 1 }),
+      left: ({ x, ...rest }: IPosition): IPosition => ({ ...rest, x: x - 1 }),
+      right: ({ x, ...rest }: IPosition): IPosition => ({ ...rest, x: x + 1 }),
     }
 
     const nextPosition = getNextPosition[directionRef.current](headPosition)
@@ -81,7 +81,7 @@ export const SnakeProvider = ({ children }: any) => {
     }
   }
 
-  function changeDirection (newDirection: string) {
+  function changeDirection (newDirection: 'up' | 'down' | 'left' | 'right') {
     const isOpposite = (direction === 'left' && newDirection === 'right') ||
       (direction === 'right' && newDirection === 'left') ||
       (direction === 'up' && newDirection === 'down') ||

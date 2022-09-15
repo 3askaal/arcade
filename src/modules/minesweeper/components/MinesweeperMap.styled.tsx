@@ -10,7 +10,7 @@ const blockColors = (color: string | false, alpha = 1) => ({
   borderBottomColor: color ? chroma(color).darken(1.25).alpha(alpha).hex() : 'rgba(0, 0, 0, 0)',
 })
 
-export const SMapBlock = s.div(({ theme, hide, flag }: any) => ({
+export const SMapBlock = s.div(({ hide, flag }: any) => ({
   position: 'absolute',
   width: '100%',
   height: '100%',

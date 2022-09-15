@@ -1,6 +1,6 @@
 import { s } from '3oilerplate'
 
-export const SApp = s.div(({ theme }: any) => ({
+export const SApp = s.div(() => ({
   fontFamily: 'base',
   color: 'white',
   backgroundColor: 'background',

@@ -69,10 +69,10 @@ export const MinesweeperProvider = ({ children }: any) => {
     }
   }, [gameOver])
 
-  const onClick = (type: string) => {
+  const onClick = (type: 'flag' | 'reveal') => {
     if (!grid) return
 
-    const block: any = Object.values(grid).find(({ x, y }) => x === selectedBlock.x && y === selectedBlock.y)
+    const block: IPosition | undefined = Object.values(grid).find(({ x, y }) => x === selectedBlock.x && y === selectedBlock.y)
 
     if (!block) return
 
@@ -80,7 +80,7 @@ export const MinesweeperProvider = ({ children }: any) => {
       setGameActive(true)
     }
 
-    const actions: any = {
+    const actions = {
       reveal,
       flag
     }
