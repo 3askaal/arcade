@@ -13,28 +13,28 @@ export const Directions = ({ controls = {} }: any) => {
       </SDirectionsMiddle>
       <SDirectionsButton
         type="left"
-        onClick={() => onLeft && onLeft()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onLeft && onLeft() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
         <ChevronLeft />
       </SDirectionsButton>
       <SDirectionsButton
         type="up"
-        onClick={() => onUp && onUp()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onUp && onUp() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
         <ChevronUp />
       </SDirectionsButton>
       <SDirectionsButton
         type="down"
-        onClick={() => onDown && onDown()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onDown && onDown() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
         <ChevronDown />
       </SDirectionsButton>
       <SDirectionsButton
         type="right"
-        onClick={() => onRight && onRight()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onRight && onRight() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
         <ChevronRight />
