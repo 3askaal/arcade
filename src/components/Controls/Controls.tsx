@@ -7,8 +7,7 @@ import { GameContext } from "../../context";
 import { Contexts } from "../../modules";
 
 export const Controls = () => {
-  const { onStart, controls } = useContext(GameContext)
-  const { selectedGame, menuActive, gameOver } = useContext(GameContext)
+  const { selectedGame, menuActive, gameOver, onStart, controls } = useContext(GameContext)
   const { controls: currentControls }: any = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
   const { onUp, onDown, onLeft, onRight, onA, onB, onSelect }: any = (menuActive || gameOver) ? controls : selectedGame ? currentControls : controls
 

@@ -1,5 +1,6 @@
 import React, { createContext, Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import ReactGA4 from 'react-ga4'
+import useMousetrap from 'react-hook-mousetrap';
 import { useLocalstorageState } from 'rooks';
 import { MapDimensions } from '../modules';
 import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperContext';
@@ -68,7 +69,7 @@ export const GameProvider: FC = ({ children }) => {
   const SelectedProvider = selectedGame && PROVIDERS[selectedGame]
   const dimensions = selectedGame && MapDimensions[selectedGame]
 
-  const start = () => {
+  const launch = () => {
     setGameOver(null)
     setGameActive(true)
 
@@ -85,6 +86,15 @@ export const GameProvider: FC = ({ children }) => {
       ...newControls
     })
   }
+
+  useMousetrap(['w', 'up'], () => controls?.onUp)
+  useMousetrap(['a', 'left'], () => controls?.onLeft)
+  useMousetrap(['s', 'down'], () => controls?.onDown)
+  useMousetrap(['d', 'right'], () => controls?.onRight)
+  useMousetrap(['enter'], () => controls?.onA)
+  useMousetrap(['space'], () => controls?.onB)
+  useMousetrap(['CMD', 'CTRL', 'ALT'], () => controls?.onSelect)
+  useMousetrap(['ESC'], () => controls?.onStart)
 
   const onStart = () => {
     setMenuActive(!menuActive)
@@ -107,7 +117,7 @@ export const GameProvider: FC = ({ children }) => {
         selectedGame,
         setSelectedGame,
         dimensions,
-        start,
+        launch,
         gameActive,
         setGameActive,
         gameOver,

@@ -5,7 +5,7 @@ import { SnakeContext } from '../context/SnakeContext'
 import { useSnakeKeyboard } from '../keyboard'
 import { SMapFood, SMapSnake } from './SnakeMap.styled'
 
-export const SnakeMapContent = ({ blockSize }: any) => {
+export const SnakeMapContent = () => {
   const { dimensions } = useContext(GameContext)
   const { snake, food } = useContext(SnakeContext)
 
