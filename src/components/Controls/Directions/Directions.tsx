@@ -1,11 +1,6 @@
 import React from 'react'
 import { SDirections, SDirectionsButton, SDirectionsMiddle, SDirectionsMiddleCircle } from './Directions.styled'
-import {
-  ChevronUp,
-  ChevronLeft,
-  ChevronRight,
-  ChevronDown,
-} from 'react-feather'
+import { ChevronUp, ChevronLeft, ChevronRight, ChevronDown } from 'react-feather'
 import isMobile from 'is-mobile'
 
 export const Directions = ({ controls = {} }: any) => {
@@ -18,55 +13,31 @@ export const Directions = ({ controls = {} }: any) => {
       </SDirectionsMiddle>
       <SDirectionsButton
         type="left"
-        {...isMobile() ? {
-          onTouchStart: () => onLeft && onLeft()
-        } : {
-          onMouseDown: () => onLeft && onLeft()
-        }}
-        s={{
-          touchAction: isMobile() ? 'auto' : 'none',
-        }}
+        onClick={() => onLeft && onLeft()}
+        s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
-        <ChevronLeft size={'auto'} />
+        <ChevronLeft />
       </SDirectionsButton>
       <SDirectionsButton
         type="up"
-        {...isMobile() ? {
-          onTouchStart: () => onUp && onUp()
-        } : {
-          onMouseDown: () => onUp && onUp()
-        }}
-        s={{
-          touchAction: isMobile() ? 'auto' : 'none',
-        }}
+        onClick={() => onUp && onUp()}
+        s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
-        <ChevronUp size={'auto'} />
+        <ChevronUp />
       </SDirectionsButton>
       <SDirectionsButton
         type="down"
-        {...isMobile() ? {
-          onTouchStart: () => onDown && onDown()
-        } : {
-          onMouseDown: () => onDown && onDown()
-        }}
-        s={{
-          touchAction: isMobile() ? 'auto' : 'none',
-        }}
+        onClick={() => onDown && onDown()}
+        s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
-        <ChevronDown size={'auto'} />
+        <ChevronDown />
       </SDirectionsButton>
       <SDirectionsButton
         type="right"
-        {...isMobile() ? {
-          onTouchStart: () => onRight && onRight()
-        } : {
-          onMouseDown: () => onRight && onRight()
-        }}
-        s={{
-          touchAction: isMobile() ? 'auto' : 'none',
-        }}
+        onClick={() => onRight && onRight()}
+        s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
-        <ChevronRight size={'auto'} />
+        <ChevronRight />
       </SDirectionsButton>
     </SDirections>
   )

@@ -5,11 +5,21 @@ import { Settings } from "./Settings/Settings";
 import { createContext, useContext } from "react";
 import { GameContext } from "../../context";
 import { Contexts } from "../../modules";
+import { useKey } from "rooks";
 
 export const Controls = () => {
   const { selectedGame, menuActive, gameOver, onStart, controls } = useContext(GameContext)
   const { controls: currentControls }: any = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
   const { onUp, onDown, onLeft, onRight, onA, onB, onSelect }: any = (menuActive || gameOver) ? controls : selectedGame ? currentControls : controls
+
+  useKey(['w', 'ArrowUp'], () => onUp())
+  useKey(['a', 'ArrowLeft'], () => onLeft())
+  useKey(['s', 'ArrowDown'], () => onDown())
+  useKey(['d', 'ArrowRight'], () => onRight())
+  useKey(['Space', 'Enter'], () => onA())
+  useKey(['Shift'], () => onB())
+  useKey([], () => onSelect())
+  useKey(['Escape', 'Control', 'Meta', 'Alt'], () => onStart())
 
   return (
     <Box s={{

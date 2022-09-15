@@ -2,7 +2,6 @@ import { Box } from '3oilerplate'
 import { useContext } from 'react'
 import { GameContext } from '../../../context'
 import { SnakeContext } from '../context/SnakeContext'
-import { useSnakeKeyboard } from '../keyboard'
 import { SMapFood, SMapSnake } from './SnakeMap.styled'
 
 export const SnakeMapContent = () => {
@@ -11,8 +10,6 @@ export const SnakeMapContent = () => {
 
   const blockSizeX = 100 / dimensions.width
   const blockSizeY = 100 / dimensions.height
-
-  useSnakeKeyboard()
 
   return (
     <>
