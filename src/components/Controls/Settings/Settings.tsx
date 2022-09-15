@@ -10,13 +10,13 @@ export const Settings = ({ controls = {}, color, ...props }: any) => {
       <SSettingsButton
         color={color}
         type="B"
-        onClick={() => onSelect && onSelect()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onSelect && onSelect() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       />
       <SSettingsButton
         color={color}
         type="A"
-        onClick={() => onStart && onStart()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onStart && onStart() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       />
     </SSettings>

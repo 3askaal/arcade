@@ -10,7 +10,7 @@ export const Actions = ({ controls = {}, color, ...props }: any) => {
       <SActionsButton
         color={color}
         type="B"
-        onClick={() => onB && onB()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onB && onB() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
         B
@@ -18,7 +18,7 @@ export const Actions = ({ controls = {}, color, ...props }: any) => {
       <SActionsButton
         color={color}
         type="A"
-        onClick={() => onA && onA()}
+        {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onA && onA() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       >
         A
