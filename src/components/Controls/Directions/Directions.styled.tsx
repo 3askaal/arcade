@@ -1,18 +1,19 @@
 import { s, darken } from '3oilerplate'
 import { bevelEmbossDepth, getBevelEmboss, getDropShadow } from '../helpers'
 
-export const SControls = s.div(() => ({
+export const SDirections = s.div(() => ({
   position: 'relative',
   display: 'flex',
+  flexBasis: '45%',
+  // flexGrow: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  width: '100%',
-  maxWidth: '12rem',
+  // width: '100%',
   aspectRatio: '1 / 1',
   filter: getDropShadow(),
 }))
 
-export const SControlsMiddle = s.div(() => ({
+export const SDirectionsMiddle = s.div(() => ({
   position: 'absolute',
   width: '30%',
   height: '30%',
@@ -21,7 +22,7 @@ export const SControlsMiddle = s.div(() => ({
   zIndex: 100
 }))
 
-export const SControlsMiddleCircle = s.div(() => ({
+export const SDirectionsMiddleCircle = s.div(() => ({
   position: 'absolute',
   top: 0,
   left: 0,
@@ -37,7 +38,7 @@ export const SControlsMiddleCircle = s.div(() => ({
   zIndex: 100
 }))
 
-export const SControlsButton = s.button(({ type }: any) => ({
+export const SDirectionsButton = s.button(({ type }: any) => ({
   position: 'absolute',
   display: 'flex',
   width: '34%',

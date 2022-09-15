@@ -1,5 +1,5 @@
 import React from 'react'
-import { SControls, SControlsButton, SControlsMiddle, SControlsMiddleCircle } from './Directions.styled'
+import { SDirections, SDirectionsButton, SDirectionsMiddle, SDirectionsMiddleCircle } from './Directions.styled'
 import {
   ChevronUp,
   ChevronLeft,
@@ -12,11 +12,11 @@ export const Directions = ({ controls = {} }: any) => {
   const { onLeft, onRight, onDown, onUp } = controls
 
   return (
-    <SControls>
-      <SControlsMiddle>
-        <SControlsMiddleCircle />
-      </SControlsMiddle>
-      <SControlsButton
+    <SDirections>
+      <SDirectionsMiddle>
+        <SDirectionsMiddleCircle />
+      </SDirectionsMiddle>
+      <SDirectionsButton
         type="left"
         {...isMobile() ? {
           onTouchStart: () => onLeft && onLeft()
@@ -28,8 +28,8 @@ export const Directions = ({ controls = {} }: any) => {
         }}
       >
         <ChevronLeft size={'auto'} />
-      </SControlsButton>
-      <SControlsButton
+      </SDirectionsButton>
+      <SDirectionsButton
         type="up"
         {...isMobile() ? {
           onTouchStart: () => onUp && onUp()
@@ -41,8 +41,8 @@ export const Directions = ({ controls = {} }: any) => {
         }}
       >
         <ChevronUp size={'auto'} />
-      </SControlsButton>
-      <SControlsButton
+      </SDirectionsButton>
+      <SDirectionsButton
         type="down"
         {...isMobile() ? {
           onTouchStart: () => onDown && onDown()
@@ -54,8 +54,8 @@ export const Directions = ({ controls = {} }: any) => {
         }}
       >
         <ChevronDown size={'auto'} />
-      </SControlsButton>
-      <SControlsButton
+      </SDirectionsButton>
+      <SDirectionsButton
         type="right"
         {...isMobile() ? {
           onTouchStart: () => onRight && onRight()
@@ -67,7 +67,7 @@ export const Directions = ({ controls = {} }: any) => {
         }}
       >
         <ChevronRight size={'auto'} />
-      </SControlsButton>
-    </SControls>
+      </SDirectionsButton>
+    </SDirections>
   )
 }

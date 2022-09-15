@@ -4,10 +4,8 @@ import { getBevelEmboss, getDropShadow } from '../helpers'
 export const SActions = s.div(({ theme, index }: any) => ({
   position: 'relative',
   display: 'flex',
-  flexDirection: 'row',
-  width: '100%',
-  maxWidth: '11rem',
-  height: '6rem',
+  flexBasis: '38%',
+  aspectRatio: '1 / 0.6',
   justifyContent: 'flex-end',
 }))
 
@@ -17,18 +15,19 @@ export const SActionsButton = s.button(({ theme }: any) => ({
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '100%',
-  width: '4.4rem',
-  height: '4.4rem',
+  flexBasis: '50%',
+  aspectRatio: '1 / 1',
   overflow: 'hidden',
   padding: 0,
-  fontSize: '1.4em',
+  fontSize: '1.2em',
   fontWeight: 'bold',
   color: 'controls.text',
+  lineHeight: 1,
   backgroundColor: 'controls.bg',
   filter: getDropShadow(),
 
   '+ *': {
-    ml: 'm',
+    ml: '12%',
   },
 
   boxShadow: getBevelEmboss(),
