@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react"
-import { SMapBlock, SMapMine, SMapMineThread, SMapSelector } from "./MapContent.styled"
+import { SMapBlock, SMapMine, SMapMineThread, SMapSelector } from "./MinesweeperMap.styled"
 import { MinesweeperContext } from "../context/MinesweeperContext"
 import { useLongPress } from "use-long-press"
 import { flag } from "../mutations"
@@ -29,7 +29,7 @@ export const MinesweeperMapContent = () => {
           blockSizeY={blockSizeY}
         >
           { position.selected ? (
-            <SMapSelector block={position.block} />
+            <SMapSelector />
             ) : null }
           { position.mine ? (
             <SMapMine />

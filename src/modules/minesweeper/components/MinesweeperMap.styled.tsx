@@ -1,6 +1,5 @@
 import { s, rgba } from '3oilerplate'
 import chroma from 'chroma-js'
-import styleToCss from 'style-object-to-css-string';
 import styled, { css, keyframes } from 'styled-components'
 
 const blockColors = (color: string | false, alpha = 1) => ({
@@ -73,12 +72,9 @@ export const SMapSelector = styled.div<any>(
     position: 'absolute',
     width: '100%',
     height: '100%',
-    // borderStyle: 'solid',
-    // borderWidth: '.25rem',
     zIndex: 1,
-    // backgroundColor: 'transparent',
   }),
-  ({ block, theme }: any) => css`
+  ({ theme }: any) => css`
     animation: ${flash(theme.colors.accent)} 2000ms ease both infinite
   `
 )

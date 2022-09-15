@@ -1,30 +1,25 @@
-import { TetrisMapContent } from "./tetris/components/MapContent";
-import { SnakeMapContent } from "./snake/components/MapContent";
-import { MinesweeperMapContent } from "./minesweeper/components/MapContent";
-import { BombermanMapContent } from "./bomberman/components/MapContent";
+import { TetrisMapContent } from "./tetris/components/TetrisMap";
+import { SnakeMapContent } from "./snake/components/SnakeMap";
+import { MinesweeperMapContent } from "./minesweeper/components/MinesweeperMap";
 
 import { TetrisTheme } from "./tetris/theme";
 import { SnakeTheme } from "./snake/theme";
 import { MinesweeperTheme } from "./minesweeper/theme";
-import { BombermanTheme } from "./bomberman/theme";
 
 import { TetrisContext } from "./tetris/context/TetrisContext";
 import { SnakeContext } from "./snake/context/SnakeContext";
 import { MinesweeperContext } from "./minesweeper/context/MinesweeperContext";
-import { BombermanContext } from "./bomberman/context/BombermanContext";
 
 export const Contexts: any = {
   tetris: TetrisContext,
   snake: SnakeContext,
   minesweeper: MinesweeperContext,
-  bomberman: BombermanContext,
 }
 
 export const MapContent: any = {
   tetris: TetrisMapContent,
   snake: SnakeMapContent,
   minesweeper: MinesweeperMapContent,
-  bomberman: BombermanMapContent,
 }
 
 export const MapDimensions: any = {
@@ -38,5 +33,4 @@ export const Themes: any = {
   tetris: TetrisTheme,
   snake: SnakeTheme,
   minesweeper: MinesweeperTheme,
-  bomberman: BombermanTheme,
 }

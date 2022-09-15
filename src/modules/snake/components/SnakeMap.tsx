@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { GameContext } from '../../../context'
 import { SnakeContext } from '../context/SnakeContext'
 import { useSnakeKeyboard } from '../keyboard'
-import { SMapFood, SMapSnake } from './MapContent.styled'
+import { SMapFood, SMapSnake } from './SnakeMap.styled'
 
 export const SnakeMapContent = ({ blockSize }: any) => {
   const { dimensions } = useContext(GameContext)

@@ -1,8 +1,7 @@
-import React, { createContext, Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react'
+import React, { createContext, Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import ReactGA4 from 'react-ga4'
 import { useLocalstorageState } from 'rooks';
 import { MapDimensions } from '../modules';
-import { BombermanProvider } from '../modules/bomberman/context/BombermanContext';
 import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperContext';
 import { SnakeProvider } from '../modules/snake/context/SnakeContext';
 import { TetrisProvider } from '../modules/tetris/context/TetrisContext';
@@ -48,7 +47,6 @@ export const GameContextDefaults = {
 }
 
 const PROVIDERS: any = {
-  bomberman: BombermanProvider,
   tetris: TetrisProvider,
   snake: SnakeProvider,
   minesweeper: MinesweeperProvider,
