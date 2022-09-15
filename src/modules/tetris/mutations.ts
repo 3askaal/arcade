@@ -1,5 +1,6 @@
 import { groupBy, includes, sum } from "lodash";
-import { Dimensions, Score } from "../../modules/tetris/context/TetrisContext";
+import { TetrisScore } from "../../context";
+import { Dimensions } from "../../modules/tetris/context/TetrisContext";
 import { Block, generateShape, Shape } from "./generate";
 
 export const checkShapePosition = (nextShape: Shape, currentBlocks: Block[], dimensions: Dimensions) => {
@@ -116,18 +117,16 @@ const getFullRows = (currentBlocks: Block[], dimensions: Dimensions): number[] =
 
 export const checkBlocks = (
   currentBlocks: Block[],
-  score: Score,
+  score: TetrisScore,
   dimensions: Dimensions
-): [Score | null, Block[] | null, Block[] | null] | null => {
+): [TetrisScore | null, Block[] | null, Block[] | null] | null => {
   let newScore = null
   let deadBlocks = null
   let newBlocks = null
 
   const fullRows = getFullRows(currentBlocks, dimensions)
 
-  if (!fullRows.length) {
-    return null
-  }
+  if (!fullRows.length) { return null }
 
   const pointsForAmountRows = [40, 100, 300, 1200]
   const amountRowsIndex = fullRows.length - 1

@@ -3,10 +3,6 @@ import { SnakeMapContent } from "./snake/components/MapContent";
 import { MinesweeperMapContent } from "./minesweeper/components/MapContent";
 import { BombermanMapContent } from "./bomberman/components/MapContent";
 
-import { TetrisControls } from "./tetris/components/Controls/Controls";
-import { SnakeControls } from "./snake/components/Controls/Controls";
-import { BombermanControls } from "./bomberman/components/Controls/Controls";
-
 import { TetrisTheme } from "./tetris/theme";
 import { SnakeTheme } from "./snake/theme";
 import { MinesweeperTheme } from "./minesweeper/theme";
@@ -36,13 +32,6 @@ export const MapDimensions: any = {
   snake: { width: 32, height: 32 },
   minesweeper: { width: 16, height: 16, mines: 40 },
   bomberman: { height: 16, width: 16 },
-}
-
-export const Controls: any = {
-  tetris: SnakeControls,
-  snake: SnakeControls,
-  minesweeper: null,
-  bomberman: BombermanControls,
 }
 
 export const Themes: any = {

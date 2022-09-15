@@ -5,10 +5,8 @@ export const SDirections = s.div(() => ({
   position: 'relative',
   display: 'flex',
   flexBasis: '45%',
-  // flexGrow: 1,
   justifyContent: 'center',
   alignItems: 'center',
-  // width: '100%',
   aspectRatio: '1 / 1',
   filter: getDropShadow(),
 }))
