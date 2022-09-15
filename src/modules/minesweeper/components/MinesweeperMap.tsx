@@ -1,20 +1,13 @@
 import { useContext, useMemo } from "react"
 import { SMapBlock, SMapMine, SMapMineThread, SMapSelector } from "./MinesweeperMap.styled"
 import { MinesweeperContext } from "../context/MinesweeperContext"
-import { useLongPress } from "use-long-press"
-import { flag } from "../mutations"
-import { IGrid, IPosition } from "../types"
-import { useMinesweeperKeyboard } from "../keyboard"
 import { GameContext } from "../../../context"
 import { SMapPos } from "../../../components/Map/Map.styled"
 
 export const MinesweeperMapContent = () => {
   const { dimensions } = useContext(GameContext)
-  const { grid, gameResult, onClick } = useContext(MinesweeperContext)
+  const { grid, gameResult } = useContext(MinesweeperContext)
   const positions = useMemo(() => Object.values(grid || {}), [grid])
-  const bindLongPress = useLongPress((e, { context }) => flag(grid as IGrid, context as IPosition));
-
-  useMinesweeperKeyboard()
 
   const blockSizeX = 100 / dimensions.width
   const blockSizeY = 100 / dimensions.height
@@ -43,8 +36,6 @@ export const MinesweeperMapContent = () => {
             <SMapBlock
               flag={position.flag}
               hide={!position.block}
-              onClick={(e: React.MouseEvent) => onClick(e, position)}
-              {...bindLongPress(position)}
             />
           )}
         </SMapPos>

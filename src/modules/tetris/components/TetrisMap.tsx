@@ -1,14 +1,11 @@
 import React, { useContext } from "react"
 import { GameContext } from "../../../context"
 import { TetrisContext } from "../context/TetrisContext"
-import { useTetrisKeyboard } from "../keyboard"
 import { SMapBlock } from "./TetrisMap.styled"
 
 export const TetrisMapContent = () => {
   const { dimensions } = useContext(GameContext)
   const { shape, blocks } = useContext(TetrisContext)
-
-  useTetrisKeyboard()
 
   const blockSizeX = 100 / dimensions.width
   const blockSizeY = 100 / dimensions.height
