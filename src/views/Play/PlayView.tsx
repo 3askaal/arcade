@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom'
 
 const PlayView = () => {
   const { gameId }: any = useParams()
-  const { selectedGame, setSelectedGame, start } = useContext(GameContext)
+  const { selectedGame, setSelectedGame, launch } = useContext(GameContext)
 
   useEffect(() => {
-    if (selectedGame !== 'bomberman') start()
+    launch()
   }, [])
 
   useEffect(() => {

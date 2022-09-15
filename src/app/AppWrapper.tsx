@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 export const AppWrapper: FC = ({ children }) => {
   const history = useHistory()
-  const { menuActive, gameOver, start } = useContext(GameContext)
+  const { menuActive, gameOver, launch } = useContext(GameContext)
 
   const menuNavItems = [
     { name: 'home', action: () => history.push(`/`)},
@@ -15,7 +15,7 @@ export const AppWrapper: FC = ({ children }) => {
   ]
 
   const gameOverItems = [
-    { name: 'restart', action: () => start()},
+    { name: 'restart', action: () => launch()},
   ]
 
   return (

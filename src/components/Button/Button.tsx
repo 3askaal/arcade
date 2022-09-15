@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react'
 import { s } from '3oilerplate'
 import { Outline } from '../Retro/Outline'
 
-export const SButton: any = s.div(({ color, selected }: any) =>
+export const SButton = s.div(({ color, selected }: any) =>
   ({
     position: 'relative',
     display: 'flex',
