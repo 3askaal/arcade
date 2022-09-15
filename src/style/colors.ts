@@ -52,7 +52,7 @@ export const lightColors = {
     border: greys.grey60,
   },
   controls: {
-    bg: greys.grey34,
+    bg: greys.grey32,
     text: greys.grey50,
   },
 }

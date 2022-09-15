@@ -32,14 +32,14 @@ export const Controls = () => {
       alignItems: 'center',
       width: '100%',
       maxWidth: '420px',
-      px: 'm'
+      px: 's'
     }}>
       <Box s={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        mb: 'xxl'
+        mb: 'xl'
       }}>
         <Directions controls={{ onUp, onDown, onLeft, onRight }} />
         <Actions controls={{ onA, onB }} />
