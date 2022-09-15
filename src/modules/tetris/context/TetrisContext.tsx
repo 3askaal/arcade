@@ -1,6 +1,6 @@
-import React, { createContext, Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react'
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
 import { useIntervalWhen } from 'rooks';
-import { GameContext } from '../../../context';
+import { Controls, GameContext } from '../../../context';
 import { Block, generateShape, Shape } from '../generate';
 import { checkBlocks, moveX, moveY, rotate } from '../mutations';
 
@@ -9,30 +9,20 @@ export interface Dimensions {
   height: number;
 }
 
-export interface Score {
-  level: number;
-  points: number;
-  rows: number;
-}
-
 export interface TetrisContextType {
   shape: Shape | null;
-  setShape: any;
   blocks: Block[];
-  setBlocks: Dispatch<SetStateAction<Block[]>>;
-  dimensions: Dimensions;
   onMoveX(direction: string): void;
   onRotate(): void;
   onDrop(): void;
-  [key: string]: any;
+  controls: Controls;
 }
 
 export const TetrisContextDefaults = {
-  shape: generateShape({ height: 36, width: 20 }),
+  shape: null,
   setShape: () => {},
   blocks: [],
   setBlocks: () => {},
-  dimensions: { height: 36, width: 20 },
   onMoveX: () => {},
   onRotate: () => {},
   onDrop: () => {},
@@ -42,14 +32,11 @@ export const TetrisContextDefaults = {
 export const TetrisContext = createContext<TetrisContextType>(TetrisContextDefaults)
 
 export const TetrisProvider = ({ children }: any) => {
-  const { gameOver, setGameOver, gameActive, score, setScore } = useContext(GameContext)
+  const { gameOver, setGameOver, gameActive, score, setScore, dimensions } = useContext(GameContext)
   const [shape, setShapeState] = useState<Shape | null>(null)
   const shapeRef = useRef<any>(null)
-
   const [blocks, setBlocksState] = useState<Block[]>([])
   const blocksRef = useRef<any>([])
-
-  const [dimensions] = useState({ height: 36, width: 20 })
 
   const reset = () => {
     setShape(generateShape({ height: 36, width: 20 }))
@@ -138,14 +125,11 @@ export const TetrisProvider = ({ children }: any) => {
   return (
     <TetrisContext.Provider
       value={{
-        dimensions,
+        shape,
+        blocks,
         onMoveX,
         onDrop,
         onRotate,
-        blocks,
-        setBlocks,
-        shape,
-        setShape,
         controls
       }}
     >

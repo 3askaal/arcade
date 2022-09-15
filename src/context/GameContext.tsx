@@ -7,15 +7,44 @@ import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperC
 import { SnakeProvider } from '../modules/snake/context/SnakeContext';
 import { TetrisProvider } from '../modules/tetris/context/TetrisContext';
 
+export interface Controls {
+  onUp?: Function;
+  onDown?: Function;
+  onLeft?: Function;
+  onRight?: Function;
+  onA?: Function;
+  onB?: Function;
+  onSelect?: Function;
+  onStart?: Function;
+}
+
+export interface TetrisScore {
+  level: number;
+  points: number;
+  rows: number;
+}
+
+export interface SnakeScore {
+  length: number;
+}
+export interface MinesweeperScore {
+  remaining: number;
+}
+
+type Score = TetrisScore | SnakeScore | MinesweeperScore | {};
 export interface GameContextType {
   selectedGame: string | null;
   setSelectedGame: Dispatch<SetStateAction<string | null>>;
-  [key: string]: any; // TODO: make typesafe
+  controls: Controls;
+  setControls: (controls: Controls) => void;
+  [key: string]: any;
 }
 
 export const GameContextDefaults = {
   selectedGame: null,
   setSelectedGame: () => {},
+  controls: {},
+  setControls: () => {},
 }
 
 const PROVIDERS: any = {
@@ -33,10 +62,10 @@ export const GameProvider: FC = ({ children }) => {
   const [menuActive, setMenuActive] = useState<boolean | null>(null)
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
-  const [score, setScore] = useState<any>({})
+  const [score, setScore] = useState<Score>({})
   const [startTime, setStartTime] = useState<number | null>(null)
   const [endTime, setEndTime] = useState<number | null>(null)
-  const [controls, setControlsState] = useState<any>({})
+  const [controls, setControlsState] = useState<Controls>({})
 
   const SelectedProvider = selectedGame && PROVIDERS[selectedGame]
   const dimensions = selectedGame && MapDimensions[selectedGame]
@@ -52,7 +81,7 @@ export const GameProvider: FC = ({ children }) => {
     });
   }
 
-  const setControls = (newControls: any) => {
+  const setControls = (newControls: Controls) => {
     setControlsState({
       ...controls,
       ...newControls

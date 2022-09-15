@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { SScore, SScoreDivider, SScoreItem } from './Score.styled'
 import { GameContext } from '../../context'
 import { capitalize } from 'lodash'
-import { Outline } from '../Retro/Outline'
 
 export const Score = () => {
   const { score } = useContext(GameContext)

@@ -6,19 +6,6 @@ import { createContext, useContext } from "react";
 import { GameContext } from "../../context";
 import { Contexts } from "../../modules";
 
-interface ControlsParams {
-  controls: {
-    onUp?: Function;
-    onDown?: Function;
-    onLeft?: Function;
-    onRight?: Function;
-    onA?: Function;
-    onB?: Function;
-    onSelect?: Function;
-    onStart?: Function;
-  }
-}
-
 export const Controls = () => {
   const { onStart, controls } = useContext(GameContext)
   const { selectedGame, menuActive, gameOver } = useContext(GameContext)
