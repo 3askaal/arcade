@@ -24,7 +24,7 @@ export const generateGrid = ({ mode }: ISettings) => {
   let newGrid: any = {}
   const positionAmount = (mode.width * mode.height)
 
-  if (random(1, 100) > 90) {
+  if (random(1, 100) === 69) {
     return generateEasterEgg({ mode })
   }
 
