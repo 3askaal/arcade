@@ -36,7 +36,7 @@ export const Controls = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        mb: '8%'
+        mb: '5%'
       }}>
         <Directions
           onUp={onUp}
