@@ -2,11 +2,11 @@ import { rgba } from '3oilerplate'
 
 export const bevelEmbossDepth = .15
 
-export const getBevelEmboss = (depth = bevelEmbossDepth, inverted = false, whiteColor?: string, blackColor?: string) => {
+export const getBevelEmboss = (depth = bevelEmbossDepth, inverted = false) => {
   const depthString = `${depth}rem`;
 
-  return `inset ${depthString} ${depthString} ${depthString} 0 ${rgba(inverted ? blackColor || 'black' : whiteColor || 'white', 0.3)},
-    inset -${depthString} -${depthString} ${depthString} 0 ${rgba(inverted ? whiteColor || 'white' : blackColor || 'black', 0.3)}`;
+  return `inset ${depthString} ${depthString} ${depthString} 0 ${rgba(inverted ? 'black' : 'white', 0.25)},
+    inset -${depthString} -${depthString} ${depthString} 0 ${rgba(inverted ? 'white' : 'black', 0.25)}`;
 }
 
 export const getDropShadow = () => {
