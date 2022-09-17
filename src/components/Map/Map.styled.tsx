@@ -6,7 +6,6 @@ export const SMap = s.div(() => ({
   display: 'flex',
   position: 'relative',
   margin: 'auto',
-  overflow: 'hidden',
   width: 'auto',
   flexWrap: 'wrap',
   backgroundColor: 'map',
