@@ -4,7 +4,7 @@ import { bevelEmbossDepth, getBevelEmboss, getDropShadow } from '../helpers'
 export const SDirections = s.div(() => ({
   position: 'relative',
   display: 'flex',
-  flexBasis: '45%',
+  flexBasis: '42%',
   justifyContent: 'center',
   alignItems: 'center',
   aspectRatio: '1 / 1',
