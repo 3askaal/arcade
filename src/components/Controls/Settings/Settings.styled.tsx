@@ -16,7 +16,7 @@ export const SSettingsButton = s.button(() => ({
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '1rem',
-  width: '4rem',
+  width: '3rem',
   height: '1.5rem',
   overflow: 'hidden',
   padding: 0,
