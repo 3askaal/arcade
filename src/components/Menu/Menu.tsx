@@ -1,20 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { Spacer, Text } from '3oilerplate';
-import { Button } from '../Button/Button';
 import { capitalize } from 'lodash';
-import { FC } from 'react';
 import { GameContext } from '../../context';
+import { MenuItem } from './Menu.styled';
 
-interface MenuItem {
+export interface MenuItemProps {
   name: string;
   action: () => void;
   color?: string;
   disabled?: boolean;
+  selected?: boolean;
 }
 
 interface MenuProps {
   content?: string;
-  items: MenuItem[];
+  items: MenuItemProps[];
 }
 
 export const Menu: FC<MenuProps> = ({ items, content }) => {
@@ -40,15 +40,14 @@ export const Menu: FC<MenuProps> = ({ items, content }) => {
   return (
     <Spacer size="m" s={{ alignItems: 'center' }}>
       { content && <Text>{ content }</Text> }
-      { items.map(({ name, color, disabled }, index) => (
-        <Button
+      { items.map((props, index) => (
+        <MenuItem
           key={`list-item-${index}`}
-          isDisabled={disabled}
-          isSelected={index === selectedIndex}
-          color={color}
+          {...props}
+          selected={index === selectedIndex}
         >
-          { capitalize(name) }
-        </Button>
+          { capitalize(props.name) }
+        </MenuItem>
       ))}
     </Spacer>
   )

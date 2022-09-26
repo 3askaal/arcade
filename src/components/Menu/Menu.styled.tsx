@@ -1,14 +1,9 @@
 import React, { FC, ReactElement } from 'react'
 import { s } from '3oilerplate'
+import { MenuItemProps } from './Menu'
 import { Outline } from '../Retro/Outline'
 
-interface ButtonProps {
-  color?: string;
-  isSelected?: boolean;
-  isDisabled?: boolean;
-}
-
-export const SButton = s.div(({ color, isSelected }: ButtonProps) =>
+export const SMenuItem = s.div(({ color, selected }: MenuItemProps) =>
   ({
     position: 'relative',
     display: 'flex',
@@ -20,22 +15,22 @@ export const SButton = s.div(({ color, isSelected }: ButtonProps) =>
     paddingY: 's',
     color: 'white',
 
-    ...(isSelected && {
+    ...(selected && {
       color
     })
   }),
   {
-    isDisabled: {
+    disabled: {
       opacity: '.4'
     }
   },
 )
 
-export const Button: FC<ButtonProps> = ({ children, color = '#fff', ...props }): ReactElement => {
+export const MenuItem: FC<MenuItemProps> = ({ children, color = '#fff', ...props }): ReactElement => {
   return (
-    <SButton color={color} {...props}>
-      <Outline color={color} isSelected={props.isSelected} />
+    <SMenuItem color={color} {...props}>
+      <Outline color={color} isSelected={props.selected} />
       { children }
-    </SButton>
+    </SMenuItem>
   )
 }

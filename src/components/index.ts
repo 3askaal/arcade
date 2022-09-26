@@ -1,4 +1,4 @@
-export * from './Button/Button'
+export * from './Menu/Menu'
 export * from './Map/Map'
 export * from './Score/Score'
 export * from './Screen/Screen'
