@@ -18,6 +18,7 @@ export const SScreen = s.div(() => ({
   textTransform: 'uppercase',
   p: 'm',
   px: 'l',
+  overflowY: 'auto',
 
   '> *': {
     margin: 'auto'

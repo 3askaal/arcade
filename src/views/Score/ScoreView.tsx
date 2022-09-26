@@ -4,6 +4,7 @@ import useAxios from 'axios-hooks'
 import { API_URL } from '../../config'
 import { useParams } from 'react-router-dom';
 import { List } from '../../components/List/List';
+import { sortBy } from 'lodash';
 
 interface Score {
   gameId: string;
@@ -20,18 +21,24 @@ const ScoreView = () => {
       hitType: "pageview",
       page: `/score`
     });
-  }, [])
+  }, [data])
 
-  const formatScore = (score: string) => Object.entries(JSON.parse(score))
+  const formatScore = (score: any) => Object.entries(score)
     .map(([key, value]) => `${key}: ${value}`)
     .join(' | ')
 
-  const navItems = data?.map(({ name, score }: Score) =>
-    ({
-      name,
-      value: formatScore(score || '{}')
-    })
-  ) || []
+  const parseScore = (score = '{}') => {
+    return Object.entries(JSON.parse(score))
+      .reduce((acc, [key, value]) => ({
+        ...acc,
+        [key]: typeof Number(value) === 'number' ? Number(value) : value
+      }), {})
+  }
+
+  const navItems = sortBy(
+    data?.map(({ name, score }: Score) => ({ name, value: parseScore(score) })),
+    'value.time'
+  ).map(({ name, value }) => ({ name, value: formatScore(value) })) || []
 
   return data && (
     <List items={navItems} />
