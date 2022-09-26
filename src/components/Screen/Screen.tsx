@@ -17,6 +17,7 @@ export const SScreen = s.div(() => ({
   fontFamily: 'retro',
   textTransform: 'uppercase',
   p: 'm',
+  px: 'l',
 
   '> *': {
     margin: 'auto'

@@ -1,7 +1,9 @@
-import PlayView from './Play/PlayView'
 import HomeView from './Home/HomeView'
+import PlayView from './Play/PlayView'
+import ScoreView from './Score/ScoreView'
 
 export {
-  PlayView,
   HomeView,
+  PlayView,
+  ScoreView,
 }

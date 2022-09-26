@@ -4,7 +4,7 @@ import { ThemeProvider, GlobalStyle, theme } from '3oilerplate'
 import deepmerge from 'deepmerge'
 import ReactGA from 'react-ga4'
 import { GameContext, GameProvider } from '../context'
-import { HomeView, PlayView } from '../views'
+import { HomeView, PlayView, ScoreView } from '../views'
 import { LocalGlobalStyle } from '../style'
 import { SApp } from './App.styled'
 import { AppWrapper } from './AppWrapper'
@@ -41,6 +41,9 @@ const App = () => {
                     </Route>
                     <Route exact path="/play/:gameId?">
                       <PlayView />
+                    </Route>
+                    <Route exact path="/score/:gameId?">
+                      <ScoreView />
                     </Route>
                   </Switch>
                 </AppWrapper>

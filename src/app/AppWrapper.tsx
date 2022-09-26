@@ -11,7 +11,7 @@ export const AppWrapper: FC = ({ children }) => {
 
   const menuNavItems = [
     { name: 'home', action: () => history.push(`/`)},
-    { name: 'leaderboards', action: () => history.push(`/leaderboards`), disabled: true },
+    { name: 'scoreboard', action: () => history.push(`/score`), disabled: true },
   ]
 
   const gameOverItems = [
