@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import ReactGA4 from 'react-ga4'
 import useAxios from 'axios-hooks'
 import { API_URL } from '../../config'
 import { useParams } from 'react-router-dom';
@@ -13,6 +14,13 @@ interface Score {
 const ScoreView = () => {
   const { gameId } = useParams<{ gameId?: string }>()
   const [{ data }, refetch] = useAxios(`${API_URL}/score/${gameId || ''}`)
+
+  useEffect(() => {
+    ReactGA4.send({
+      hitType: "pageview",
+      page: `/score`
+    });
+  }, [])
 
   const formatScore = (score: string) => Object.entries(JSON.parse(score))
     .map(([key, value]) => `${key}: ${value}`)
