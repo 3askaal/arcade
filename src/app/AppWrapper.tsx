@@ -1,21 +1,19 @@
 import React, { FC, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Spacer, Container, Wrapper } from '3oilerplate'
 import { GameContext } from '../context';
 import { Controls, Screen } from '../components';
 import { Menu } from '../components/Menu/Menu';
-import { useHistory } from 'react-router-dom';
+import { GameOver } from '../components/GameOver/GameOver';
+import { Overlay } from '../components/Overlay/Overlay';
 
 export const AppWrapper: FC = ({ children }) => {
   const history = useHistory()
-  const { menuActive, gameOver, launch } = useContext(GameContext)
+  const { menuActive, gameOver } = useContext(GameContext)
 
   const menuNavItems = [
     { name: 'home', action: () => history.push(`/`)},
     { name: 'scoreboard', action: () => history.push(`/score`), disabled: true },
-  ]
-
-  const gameOverItems = [
-    { name: 'restart', action: () => launch()},
   ]
 
   return (
@@ -24,13 +22,15 @@ export const AppWrapper: FC = ({ children }) => {
         <Spacer size="10%" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
           <Box s={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
             <Screen>
-              { menuActive && !gameOver && (
-                <Menu items={menuNavItems} />
+              { children }
+              { menuActive && (
+                <Overlay>
+                  <Menu items={menuNavItems} />
+                </Overlay>
               ) }
               { gameOver && (
-                <Menu content="Game over" items={gameOverItems} />
+                <GameOver />
               ) }
-              { !menuActive && !gameOver && children }
             </Screen>
           </Box>
           <Controls />

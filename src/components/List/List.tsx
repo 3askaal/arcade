@@ -28,12 +28,12 @@ export const List: FC<ListProps> = ({ items, content }) => {
     }
   }
 
-  useEffect(() => {
-    setControls({
-      onUp: () => setSelectedIndex(selectedIndex - 1),
-      onDown: () => setSelectedIndex(selectedIndex + 1),
-    })
-  }, [selectedIndex])
+  // useEffect(() => {
+  //   setControls({
+  //     onUp: () => setSelectedIndex(selectedIndex - 1),
+  //     onDown: () => setSelectedIndex(selectedIndex + 1),
+  //   })
+  // }, [selectedIndex])
 
   return (
     <SList>

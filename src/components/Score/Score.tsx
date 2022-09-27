@@ -10,8 +10,8 @@ export const Score = () => {
     <SScore>
       { Object.entries(score).map(([scoreKey, scoreValue], index) => (
         <>
-          { index ? <SScoreDivider key={`divider-${index}`} /> : null }
-          <SScoreItem key={scoreKey}>{ capitalize(scoreKey) }: { scoreValue }</SScoreItem>
+          { index ? <SScoreDivider key={`divider-${scoreKey}`} /> : null }
+          <SScoreItem key={`score-${scoreKey}`}>{ capitalize(scoreKey) }: { scoreValue }</SScoreItem>
         </>
       )) }
     </SScore>
