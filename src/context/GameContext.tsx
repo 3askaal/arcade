@@ -39,7 +39,7 @@ export interface GameContextType {
   selectedGame: string | null;
   setSelectedGame: Dispatch<SetStateAction<string | null>>;
   controls: IControls;
-  setControls: (controls: IControls) => void;
+  setControls: (controls: IControls, comp?: string) => void;
   [key: string]: any;
 }
 
@@ -64,6 +64,7 @@ export const GameProvider: FC = ({ children }) => {
   const [menuActive, setMenuActive] = useState<boolean | null>(null)
   const [gameActive, setGameActive] = useState(false)
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
+  const [usingKeyboard, setUsingKeyboard] = useState<boolean | null>(null)
   const [score, setScore] = useState<Score>({})
   const [startTime, setStartTime] = useState<number | null>(null)
   const [endTime, setEndTime] = useState<number | null>(null)
@@ -91,14 +92,12 @@ export const GameProvider: FC = ({ children }) => {
     });
   }
 
-  const setControls = (newControls: IControls) => {
+  const setControls = (newControls: IControls, comp?: string) => {
     setControlsState({
       ...controls,
       ...newControls
     })
   }
-
-
 
   useEffect(() => {
     if (gameOver) {
@@ -132,7 +131,9 @@ export const GameProvider: FC = ({ children }) => {
         onStart,
         menuActive,
         controls,
-        setControls
+        setControls,
+        usingKeyboard,
+        setUsingKeyboard
       }}
     >
       { selectedGame ? (

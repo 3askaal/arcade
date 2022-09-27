@@ -8,19 +8,19 @@ import { Contexts } from "../../modules";
 import { useKey } from "rooks";
 
 export const Controls = () => {
-  const { selectedGame, menuActive, gameOver, onStart, controls: defaultControls } = useContext(GameContext)
+  const { selectedGame, menuActive, gameOver, onStart, controls: defaultControls, usingKeyboard } = useContext(GameContext)
   const { controls: currentControls }: { controls: IControls } = useContext((selectedGame && Contexts[selectedGame]) || createContext({}))
   const controls = (menuActive || gameOver) ? defaultControls : selectedGame ? currentControls : defaultControls
   const { onUp, onDown, onLeft, onRight, onA, onB, onSelect } = controls
 
-  useKey(['w', 'ArrowUp'], () => onUp && onUp())
-  useKey(['a', 'ArrowLeft'], () => onLeft && onLeft())
-  useKey(['s', 'ArrowDown'], () => onDown && onDown())
-  useKey(['d', 'ArrowRight'], () => onRight && onRight())
-  useKey(['Space', 'Enter'], () => onA && onA())
-  useKey(['Shift'], () => onB && onB())
-  useKey([], () => onSelect && onSelect())
-  useKey(['Escape', 'Control', 'Meta', 'Alt'], () => onStart && onStart())
+  useKey(['w', 'ArrowUp'], () => !usingKeyboard && onUp && onUp())
+  useKey(['a', 'ArrowLeft'], () => !usingKeyboard && onLeft && onLeft())
+  useKey(['s', 'ArrowDown'], () => !usingKeyboard && onDown && onDown())
+  useKey(['d', 'ArrowRight'], () => !usingKeyboard && onRight && onRight())
+  useKey(['Space', 'Enter'], () => !usingKeyboard && onA && onA())
+  useKey(['Shift'], () => !usingKeyboard && onB && onB())
+  useKey([], () => !usingKeyboard && onSelect && onSelect())
+  useKey(['Escape', 'Control', 'Meta', 'Alt'], () => !usingKeyboard && onStart && onStart())
 
   return (
     <Box s={{
