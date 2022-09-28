@@ -1,5 +1,6 @@
-import React, { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { Spacer, Text, Title } from '3oilerplate';
+import useState from 'react-usestateref'
 import { Overlay } from "../Overlay/Overlay";
 import { GameContext } from "../../context";
 import { Input } from "../Input/Input";
@@ -7,44 +8,41 @@ import { Menu } from "../Menu/Menu";
 import useAxios from "axios-hooks";
 import { API_URL } from "../../config";
 import { useHistory } from "react-router-dom";
-import { displayPartsToString } from "typescript";
 
 export const GameOver: FC = () => {
   const history = useHistory()
   const [selectedIndex, setSelectedIndexState] = useState(0)
   const { selectedGame, setControls, score, launch } = useContext(GameContext)
-  const [name, setName] = useState('')
-  const [scoreSubmitted, setScoreSubmitted] = useState(false)
+  const [name, setName, nameRef] = useState('')
+  const [, setScoreSubmitted, scoreSubmittedRef] = useState(false)
 
   const [{ data }, submitScore] = useAxios(
     {
       url: `${API_URL}/score`,
-      method: 'POST',
-      data: {
-        gameId: selectedGame,
-        score: JSON.stringify(score),
-        name
-      }
+      method: 'POST'
     },
     { manual: true }
   )
 
   useEffect(() => {
     if (data?._id) {
+      setName('')
       setScoreSubmitted(true)
       setSelectedIndexState(2)
     }
   }, [data])
 
-  useEffect(() => {
-    console.log(name)
-  }, [name])
-
-  const items: any[] = useMemo(() => [
+  const items = () => [
     {
-      name: 'submit score',
-      action: submitScore,
-      disabled: name.length <= 2 && !scoreSubmitted,
+      name: 'submit',
+      action: () => submitScore({
+        data: {
+          gameId: selectedGame,
+          score: JSON.stringify(score),
+          name: nameRef.current
+        }
+      }),
+      disabled: nameRef?.current?.length <= 2 || scoreSubmittedRef?.current,
       index: 1,
     },
     {
@@ -57,22 +55,32 @@ export const GameOver: FC = () => {
       action: () => launch(),
       index: 3
     },
-  ], [name, scoreSubmitted])
+  ]
 
-  const setSelectedIndex = (newSelectedIndex: number) => {
-    const item = items.find(({ index }) => index === newSelectedIndex) || items[newSelectedIndex];
+  const setSelectedIndex = (add: number) => {
+    const newSelectedIndex = selectedIndex + add
+    const item = items().find(({ index }) => index === newSelectedIndex);
 
-    if (item && !item.disabled) {
+    if (newSelectedIndex === 0 && !scoreSubmittedRef.current) {
+      setSelectedIndexState(0);
+      return
+    }
+
+    if (!item) return
+
+    if (item.disabled) {
+      setSelectedIndex(add * 2)
+    } else {
       setSelectedIndexState(newSelectedIndex);
     }
   }
 
   useEffect(() => {
-    const item = items.find(({ index }) => index === selectedIndex) || items[selectedIndex];
+    const item = items().find(({ index }) => index === selectedIndex);
 
     setControls({
-      onUp: () => setSelectedIndex(selectedIndex - 1),
-      onDown: () => setSelectedIndex(selectedIndex + 1),
+      onUp: () => setSelectedIndex(-1),
+      onDown: () => setSelectedIndex(1),
       onA: () => item?.action(),
     })
   }, [selectedIndex])
@@ -83,10 +91,10 @@ export const GameOver: FC = () => {
       <Spacer s={{ textAlign: 'center' }}>
         <Text s={{ fontSize: '.8em' }}>Your score:</Text>
         <Text s={{ fontSize: '.8em' }}>{ Object.entries(score).map(([key, value]) => `${key}: ${value}`) }</Text>
-        <Input focus={selectedIndex === 0 && !scoreSubmitted} placeholder="Fill in your name" value={name} onChange={(e: any) => setName(e.target.value)} />
-        <Menu items={[items[0]]} controlledSelectedIndex={selectedIndex} />
+        <Input focus={selectedIndex === 0} placeholder="Fill in your name" value={name} onChange={(e: any) => setName(e.target.value)} />
+        <Menu items={[items()[0]]} controlledSelectedIndex={selectedIndex} />
       </Spacer>
-      <Menu items={[items[1], items[2]]} controlledSelectedIndex={selectedIndex} />
+      <Menu items={[items()[1], items()[2]]} controlledSelectedIndex={selectedIndex} />
     </Overlay>
   )
 }
