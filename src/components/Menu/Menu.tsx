@@ -21,7 +21,7 @@ interface MenuProps {
 
 export const Menu: FC<MenuProps> = ({ items, controlledSelectedIndex }) => {
   const { setControls } = useContext(GameContext)
-  const [selectedIndex, setSelectedIndexState] = useState(!controlledSelectedIndex && 0)
+  const [selectedIndex, setSelectedIndexState] = useState(0)
 
   const setSelectedIndex = (newSelectedIndex: number) => {
     const item = items[newSelectedIndex];
@@ -32,7 +32,7 @@ export const Menu: FC<MenuProps> = ({ items, controlledSelectedIndex }) => {
   }
 
   useEffect(() => {
-    if (selectedIndex !== false) {
+    if (controlledSelectedIndex === undefined) {
       setControls({
         onUp: () => setSelectedIndex(selectedIndex - 1),
         onDown: () => setSelectedIndex(selectedIndex + 1),
