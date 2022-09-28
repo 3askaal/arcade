@@ -47,7 +47,7 @@ export const GameOver: FC = () => {
     },
     {
       name: 'scoreboard',
-      action: () => history.push(`/score`),
+      action: () => history.push(`/score/${selectedGame}`),
       index: 2
     },
     {
