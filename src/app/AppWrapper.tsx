@@ -13,7 +13,7 @@ export const AppWrapper: FC = ({ children }) => {
 
   const menuNavItems = [
     { name: 'home', action: () => history.push(`/`)},
-    { name: 'scoreboard', action: () => history.push(`/score`), disabled: true },
+    { name: 'scoreboard', action: () => history.push(`/score`) },
   ]
 
   return (

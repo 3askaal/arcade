@@ -1,13 +1,14 @@
 import React, { FC, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { tail } from "lodash";
 import { Spacer, Text, Title } from '3oilerplate';
 import useState from 'react-usestateref'
 import { Overlay } from "../Overlay/Overlay";
 import { GameContext } from "../../context";
 import { Input } from "../Input/Input";
-import { Menu } from "../Menu/Menu";
+import { Menu, MenuItemProps } from "../Menu/Menu";
 import useAxios from "axios-hooks";
 import { API_URL } from "../../config";
-import { useHistory } from "react-router-dom";
 
 export const GameOver: FC = () => {
   const history = useHistory()
@@ -32,16 +33,18 @@ export const GameOver: FC = () => {
     }
   }, [data])
 
-  const items = () => [
+  const items = (): MenuItemProps[] => [
     {
       name: 'submit',
-      action: () => submitScore({
-        data: {
-          gameId: selectedGame,
-          score: JSON.stringify(score),
-          name: nameRef.current
-        }
-      }),
+      action: () => {
+        submitScore({
+          data: {
+            gameId: selectedGame,
+            score: JSON.stringify(score),
+            name: nameRef.current
+          }
+        })
+      },
       disabled: nameRef?.current?.length <= 2 || scoreSubmittedRef?.current,
       index: 1,
     },
@@ -94,7 +97,7 @@ export const GameOver: FC = () => {
         <Input focus={selectedIndex === 0} placeholder="Fill in your name" value={name} onChange={(e: any) => setName(e.target.value)} />
         <Menu items={[items()[0]]} controlledSelectedIndex={selectedIndex} />
       </Spacer>
-      <Menu items={[items()[1], items()[2]]} controlledSelectedIndex={selectedIndex} />
+      <Menu items={tail(items())} controlledSelectedIndex={selectedIndex} />
     </Overlay>
   )
 }
