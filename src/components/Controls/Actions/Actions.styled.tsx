@@ -4,7 +4,7 @@ import { getBevelEmboss, getDropShadow } from '../helpers'
 export const SActions = s.div(() => ({
   position: 'relative',
   display: 'flex',
-  flexBasis: '38%',
+  flexBasis: '40%',
   aspectRatio: '1 / 0.6',
   justifyContent: 'flex-end',
 }))
