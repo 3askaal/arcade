@@ -1,0 +1,83 @@
+import React, { FC, ReactElement, useEffect, useRef } from 'react'
+import { s } from '3oilerplate'
+import { Outline } from '../Retro/Outline'
+import styled from 'styled-components'
+
+export const SSelectWrapper = s.div(({ color, selected }: any) =>
+  ({
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 's',
+    color: 'white',
+  }),
+  {
+    disabled: {
+      opacity: '.4'
+    }
+  },
+)
+
+export const SSelect = styled.select(({ theme, color, selected }: any): any =>
+  ({
+    width: '100%',
+    alignItems: 'center',
+    paddingLeft: theme?.space?.m,
+    paddingRight: theme?.space?.m,
+    paddingTop: theme?.space?.s,
+    paddingBottom: theme?.space?.s,
+    color: 'white',
+    backgroundColor: 'transparent',
+    border: 0,
+    zIndex: 1000,
+    appearance: 'none',
+    outline: 'none',
+    // textTransform: 'uppercase',
+
+    // ':focus': {
+    //   '+ * > *': {
+    //     backgroundColor: '#fff',
+
+    //     ':after,:before': {
+    //       backgroundColor: '#fff',
+    //     }
+    //   }
+    // },
+  })
+)
+
+const SelectComp: FC<any> = ({ children, focus, options, ref, ...props }): ReactElement => {
+  useEffect(() => {
+    console.log(ref)
+    if (ref && focus) {
+      ref.focus()
+    }
+  }, [ref, focus])
+
+  return (
+    <SSelectWrapper>
+      <SSelect ref={ref} autoFocus={focus} {...props}>
+        {options && options.map((option: any) => (
+          <option
+            value={option.value}
+            key={`selectOption${option.value}`}
+            selected={option.selected}
+            data-testid="select-option"
+          >
+            {option.label}
+          </option>
+        ))}
+      </SSelect>
+      <Outline isSelected={props.selected} />
+    </SSelectWrapper>
+  )
+}
+
+export const Select = React.forwardRef((
+  {...props}: any,
+  ref: ((instance: HTMLInputElement | null) => void) | React.MutableRefObject<HTMLInputElement | null> | null
+) => {
+  return <SelectComp ref={ref} {...props} />
+})

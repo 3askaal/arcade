@@ -9,20 +9,17 @@ export const SScreen = s.div(() => ({
   fontSize: '.8em',
   fontWeight: 'bold',
   maxWidth: '420px',
-  justifyContent: 'center',
-  alignItems: 'center',
   width: '100%',
   aspectRatio: '1 / 1',
   borderRadius: '1.2rem',
   fontFamily: 'retro',
   textTransform: 'uppercase',
-  p: 'm',
-  px: 'l',
+  p: 'l',
   overflowY: 'auto',
 
-  '> *': {
-    margin: 'auto'
-  }
+  // '> *': {
+  //   margin: 'auto'
+  // }
 }))
 
 

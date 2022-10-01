@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ReactGA4 from 'react-ga4'
 import useAxios from 'axios-hooks'
-import { API_URL } from '../../config'
-import { useParams } from 'react-router-dom';
-import { List } from '../../components/List/List';
+import { Spacer } from '3oilerplate';
+import { API_URL, GAMES, SCOREBOARD_SORTING, } from '../../config'
+import { useHistory, useParams } from 'react-router-dom';
+import { Select, Table } from '../../components';
 import { sortBy } from 'lodash';
+import { GameContext } from '../../context';
 
 interface Score {
   gameId: string;
@@ -13,7 +15,10 @@ interface Score {
 }
 
 const ScoreView = () => {
+  const history = useHistory();
   const { gameId } = useParams<{ gameId?: string }>()
+  const [selectFocus, setSelectFocus] = useState(false)
+  const { setControls } = useContext(GameContext)
   const [{ data }, refetch] = useAxios(`${API_URL}/score/${gameId || ''}`)
 
   useEffect(() => {
@@ -21,7 +26,16 @@ const ScoreView = () => {
       hitType: "pageview",
       page: `/score`
     });
-  }, [data])
+  }, [])
+
+  useEffect(() => {
+    if (!gameId) {
+      history.push(`score/${GAMES[0].name}`)
+      return
+    }
+
+    refetch({ url: `${API_URL}/score/${gameId}` })
+  }, [gameId])
 
   const formatScore = (score: any) => Object.entries(score)
     .map(([key, value]) => `${key}: ${value}`)
@@ -37,11 +51,29 @@ const ScoreView = () => {
 
   const navItems = sortBy(
     data?.map(({ name, score }: Score) => ({ name, value: parseScore(score) })),
-    'value.time'
-  ).map(({ name, value }) => ({ name, value: formatScore(value) })) || []
+    gameId ? SCOREBOARD_SORTING[gameId] : 'value.points'
+  ).map(({ name, value }) => ({ name, value })) || []
+
+  const onSelectChange = (e: any) => {
+    history.push(`${e.target.value}`)
+  }
+
+  useEffect(() => {
+    setControls({
+      onA: () => setSelectFocus(!selectFocus)
+    })
+  }, [selectFocus])
 
   return data && (
-    <List items={navItems} />
+    <Spacer size="xl">
+      <Select
+        focus={selectFocus}
+        value={gameId}
+        options={GAMES.map(({name}) => ({ value: name, label: name.toUpperCase() }))}
+        onChange={onSelectChange}
+      />
+      <Table items={navItems} />
+    </Spacer>
   )
 }
 
