@@ -25,7 +25,9 @@ export const AppWrapper: FC = ({ children }) => {
               { children }
               { menuActive && (
                 <Overlay>
-                  <Menu items={menuNavItems} />
+                  <Box df aic w100p h100p>
+                    <Menu items={menuNavItems} />
+                  </Box>
                 </Overlay>
               ) }
               { gameOver && (

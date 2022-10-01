@@ -1,6 +1,7 @@
 import React from 'react';
 import { capitalize } from 'lodash';
 import { FC } from 'react';
+import { Text } from '3oilerplate';
 import { STable, STableRow, STableBody, STableHeader, STableCell } from './Table.styled';
 
 export interface TableItem {
@@ -19,7 +20,6 @@ export interface TableProps {
 export const Table: FC<TableProps> = ({ items }) => {
   return (
     <STable>
-      {/* { content && <Text>{ content }</Text> } */}
       <STableHeader>
         <STableCell />
         { items[0] && Object.keys(items[0].value).map((key) => (

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import ReactGA4 from 'react-ga4'
+import { Box } from '3oilerplate'
 import { Menu } from '../../components/Menu/Menu'
 import { useHistory } from 'react-router-dom'
 
@@ -20,7 +21,9 @@ const PlayView = () => {
   ];
 
   return (
-    <Menu items={navItems} />
+    <Box df aic h100p>
+      <Menu items={navItems} />
+    </Box>
   )
 }
 

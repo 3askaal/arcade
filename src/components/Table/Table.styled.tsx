@@ -18,7 +18,8 @@ export const STableBody = s.div({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  overflowY: 'scroll'
+  overflowY: 'scroll',
+  alignItems: 'center'
 })
 
 export const STableRow = s.div({
