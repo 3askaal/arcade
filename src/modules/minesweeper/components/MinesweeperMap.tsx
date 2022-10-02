@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from "react"
+import { useContext, useMemo } from "react"
 import { SMapBlock, SMapMine, SMapMineThread, SMapSelector } from "./MinesweeperMap.styled"
 import { MinesweeperContext } from "../context/MinesweeperContext"
 import { GameContext } from "../../../context"
@@ -11,10 +11,6 @@ export const MinesweeperMapContent = () => {
 
   const blockSizeX = 100 / dimensions.width
   const blockSizeY = 100 / dimensions.height
-
-  useEffect(() => {
-    console.log(positions, grid)
-  }, [positions, grid])
 
   return (
     <>

@@ -117,8 +117,15 @@ export const GameProvider: FC = ({ children }) => {
     }
   }, [gameOver])
 
+  useEffect(() => {
+    if (gameActive) {
+      updateTime('start')
+    } else {
+      updateTime('end')
+    }
+  }, [gameActive])
+
   const updateTime = (type: 'start' | 'end') => {
-    // console.log(type)
     if (type === 'start') {
       setTime([...time, [Date.now()]])
     }
@@ -133,6 +140,13 @@ export const GameProvider: FC = ({ children }) => {
 
   const isRunning = () => last(time)?.length === 1
 
+  const milliseconds = (): number => {
+    return time.reduce((acc, [startTime, endTime]) => {
+      acc += (endTime || Date.now()) - startTime
+      return acc;
+    }, 0)
+  }
+
   useIntervalWhen(() => {
     setScore({
       ...score,
@@ -141,19 +155,13 @@ export const GameProvider: FC = ({ children }) => {
   }, 1000, isRunning())
 
   useEffect(() => {
-    if (gameActive) {
-      updateTime('start')
-    } else {
-      updateTime('end')
+    if (gameOver) {
+      setScore({
+        ...score,
+        time: time.length ? milliseconds() : 0
+      })
     }
-  }, [gameActive])
-
-  const milliseconds = (): number => {
-    return time.reduce((acc, [startTime, endTime]) => {
-      acc += (endTime || Date.now()) - startTime
-      return acc;
-    }, 0)
-  }
+  }, [time, gameOver])
 
   return (
     <GameContext.Provider
