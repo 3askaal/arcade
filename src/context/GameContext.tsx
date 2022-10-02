@@ -108,7 +108,6 @@ export const GameProvider: FC = ({ children }) => {
   useEffect(() => {
     if (gameOver) {
       updateTime('end')
-      console.log('test')
 
       ReactGA4.event({
         category: "actions",
@@ -130,8 +129,6 @@ export const GameProvider: FC = ({ children }) => {
       time.pop()
       setTime([ ...time, [currentTime[0], Date.now()] ])
     }
-
-    // setScore({ ...score, time: milliseconds() / 1000 })
   }
 
   const isRunning = () => last(time)?.length === 1
@@ -153,15 +150,10 @@ export const GameProvider: FC = ({ children }) => {
 
   const milliseconds = (): number => {
     return time.reduce((acc, [startTime, endTime]) => {
-      acc += (endTime || Date.now()) - startTime || Date.now()
-      console.log(acc)
+      acc += (endTime || Date.now()) - startTime
       return acc;
     }, 0)
   }
-
-  useEffect(() => {
-    console.log(JSON.stringify(time))
-  }, [time])
 
   return (
     <GameContext.Provider

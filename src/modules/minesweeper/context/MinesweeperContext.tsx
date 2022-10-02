@@ -25,7 +25,7 @@ export const MinesweeperContext = createContext<MinesweeperContextType>({
 })
 
 export const MinesweeperProvider = ({ children }: any) => {
-  const { gameActive, setGameActive, gameOver, setGameOver, setStartTime, setEndTime, setScore } = useContext(GameContext)
+  const { gameActive, setGameActive, gameOver, setGameOver, setScore } = useContext(GameContext)
   const [selectedBlock, setSelectedBlock] = useState({ x: 0, y: 0 });
 
   const [settings, setSettings] = useState({ mode: GAME_MODES.intermediate })
@@ -51,6 +51,12 @@ export const MinesweeperProvider = ({ children }: any) => {
       }
     }
   }, [grid, setGameOver])
+
+  useEffect(() => {
+    if (!gameOver) {
+      reset()
+    }
+  }, [gameOver])
 
   const onClick = (type: 'flag' | 'reveal') => {
     if (!grid) return
