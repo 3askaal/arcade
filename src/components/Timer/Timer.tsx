@@ -1,20 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Box } from '3oilerplate'
+import { s } from '3oilerplate'
 import moment from 'moment'
 import { GameContext } from '../../context'
 import { useIntervalWhen } from 'rooks'
+import { last } from 'lodash'
+
+const STimer = s.div({
+  fontSize: '.7em'
+})
 
 export const Timer = () => {
-  const { startTime, endTime }: any = useContext(GameContext)
+  const { time, milliseconds } = useContext(GameContext)
   const [currentTime, setCurrentTime] = useState('')
 
-  useEffect(() => {
-    setCurrentTime('0:00')
-  }, [startTime])
-
-  useIntervalWhen(() => {
-    setCurrentTime(moment.utc(Date.now() - startTime).format('m:ss'))
-  }, 1000, !!startTime && !endTime)
-
-  return <Box>{ currentTime }</Box>
+  return <STimer>{ currentTime }</STimer>
 }

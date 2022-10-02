@@ -9,6 +9,7 @@ import { Input } from "../Input/Input";
 import { Menu, MenuItemProps } from "../Menu/Menu";
 import useAxios from "axios-hooks";
 import { API_URL } from "../../config";
+import { Score } from "../Score/Score";
 
 export const GameOver: FC = () => {
   const history = useHistory()
@@ -93,7 +94,7 @@ export const GameOver: FC = () => {
       <Title>Game Over</Title>
       <Spacer s={{ textAlign: 'center' }}>
         <Text s={{ fontSize: '.8em' }}>Your score:</Text>
-        <Text s={{ fontSize: '.8em' }}>{ Object.entries(score).map(([key, value]) => `${key}: ${value}`) }</Text>
+        <Score />
         <Input focus={selectedIndex === 0} placeholder="Fill in your name" value={name} onChange={(e: any) => setName(e.target.value)} />
         <Menu items={[items()[0]]} controlledSelectedIndex={selectedIndex} />
       </Spacer>

@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, useEffect, useRef } from 'react'
 import { s } from '3oilerplate'
+import SelectEl from 'react-select'
 import { Outline } from '../Retro/Outline'
 import styled from 'styled-components'
 
@@ -12,6 +13,10 @@ export const SSelectWrapper = s.div(({ color, selected }: any) =>
     alignItems: 'center',
     borderRadius: 's',
     color: 'white',
+
+    select: {
+      zIndex: 10000
+    }
   }),
   {
     disabled: {
@@ -48,17 +53,20 @@ export const SSelect = styled.select(({ theme, color, selected }: any): any =>
   })
 )
 
-const SelectComp: FC<any> = ({ children, focus, options, ref, ...props }): ReactElement => {
+export const Select: FC<any> = ({ children, focus, options, ...props }): ReactElement => {
+  const ref = useRef<any>(null)
+
   useEffect(() => {
-    console.log(ref)
-    if (ref && focus) {
-      ref.focus()
+    if (ref.current && focus) {
+      console.log(ref.current)
+      ref.current.focus()
     }
   }, [ref, focus])
 
   return (
     <SSelectWrapper>
-      <SSelect ref={ref} autoFocus={focus} {...props}>
+      <Outline isSelected={props.selected} />
+      <SSelect ref={ref} {...props}>
         {options && options.map((option: any) => (
           <option
             value={option.value}
@@ -70,14 +78,13 @@ const SelectComp: FC<any> = ({ children, focus, options, ref, ...props }): React
           </option>
         ))}
       </SSelect>
-      <Outline isSelected={props.selected} />
     </SSelectWrapper>
   )
 }
 
-export const Select = React.forwardRef((
-  {...props}: any,
-  ref: ((instance: HTMLInputElement | null) => void) | React.MutableRefObject<HTMLInputElement | null> | null
-) => {
-  return <SelectComp ref={ref} {...props} />
-})
+// export const Select = React.forwardRef((
+//   {...props}: any,
+//   ref: ((instance: HTMLInputElement | null) => void) | React.MutableRefObject<HTMLInputElement | null> | null
+// ) => {
+//   return <SelectComp ref={ref} {...props} />
+// })

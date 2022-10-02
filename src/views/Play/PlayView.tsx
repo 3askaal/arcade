@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import ReactGA4 from 'react-ga4'
-import { Map, Score } from '../../components'
+import { Box } from '3oilerplate'
+import { Map, Score, Timer } from '../../components'
 import { GameContext } from '../../context'
 import { useParams } from 'react-router-dom'
 
@@ -25,7 +26,10 @@ const PlayView = () => {
 
   return (
     <>
-      <Score />
+      <Box df jcsb s={{ pb: 's', px: 'm' }}>
+        <Timer />
+        <Score />
+      </Box>
       <Map />
     </>
   )

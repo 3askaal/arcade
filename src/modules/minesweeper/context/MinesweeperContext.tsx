@@ -52,23 +52,6 @@ export const MinesweeperProvider = ({ children }: any) => {
     }
   }, [grid, setGameOver])
 
-  useEffect(() => {
-    if (gameActive) {
-      setStartTime(Date.now())
-    } else {
-      setStartTime(null)
-    }
-  }, [gameActive])
-
-  useEffect(() => {
-    if (gameOver) {
-      setEndTime(Date.now())
-    } else {
-      setEndTime(null)
-      reset()
-    }
-  }, [gameOver])
-
   const onClick = (type: 'flag' | 'reveal') => {
     if (!grid) return
 
