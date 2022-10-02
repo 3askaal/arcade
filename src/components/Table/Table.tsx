@@ -19,7 +19,6 @@ export interface TableProps {
 }
 
 export const Table: FC<TableProps> = ({ items }) => {
-
   return (
     <STable>
       <STableHeader>

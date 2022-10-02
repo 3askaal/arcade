@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ReactGA4 from 'react-ga4'
 import useAxios from 'axios-hooks'
-import { Spacer } from '3oilerplate';
+import { Text, Spacer, Box } from '3oilerplate';
 import { API_URL, GAMES, SCOREBOARD_SORTING, } from '../../config'
 import { useHistory, useParams } from 'react-router-dom';
 import { Select, Table } from '../../components';
@@ -49,7 +49,7 @@ const ScoreView = () => {
       }), {})
   }
 
-  const navItems = sortBy(
+  const scores = sortBy(
     data?.map(({ name, score }: Score) => ({ name, value: parseScore(score) })),
     gameId ? SCOREBOARD_SORTING[gameId] : 'value.points'
   ).map(({ name, value }) => ({ name, value })) || []
@@ -65,14 +65,20 @@ const ScoreView = () => {
   }, [selectFocus])
 
   return data && (
-    <Spacer size="xl">
+    <Spacer size="l">
       <Select
         focus={selectFocus}
         value={gameId}
         options={GAMES.map(({name}) => ({ value: name, label: name.toUpperCase() }))}
         onChange={onSelectChange}
       />
-      <Table items={navItems} />
+      { scores.length ? (
+        <Table items={scores} />
+      ) : (
+        <Box df jcc w100p>
+          <Text>No scores found</Text>
+        </Box>
+      ) }
     </Spacer>
   )
 }

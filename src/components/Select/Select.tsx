@@ -1,6 +1,5 @@
 import React, { FC, ReactElement, useEffect, useRef } from 'react'
 import { s } from '3oilerplate'
-import SelectEl from 'react-select'
 import { Outline } from '../Retro/Outline'
 import styled from 'styled-components'
 
@@ -12,11 +11,7 @@ export const SSelectWrapper = s.div(({ color, selected }: any) =>
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 's',
-    color: 'white',
-
-    select: {
-      zIndex: 10000
-    }
+    color: 'white'
   }),
   {
     disabled: {
@@ -58,7 +53,6 @@ export const Select: FC<any> = ({ children, focus, options, ...props }): ReactEl
 
   useEffect(() => {
     if (ref.current && focus) {
-      console.log(ref.current)
       ref.current.focus()
     }
   }, [ref, focus])
