@@ -3,6 +3,7 @@ import { s } from '3oilerplate'
 export const SScore = s.div(() => ({
   position: 'relative',
   display: 'flex',
+  width: '100%',
   justifyContent: 'center',
   fontSize: '.7em',
 }))
