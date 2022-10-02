@@ -4,18 +4,10 @@ export const SScore = s.div(() => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
-  fontSize: '.6em',
-  fontWeight: 'bold',
-  fontFamily: 'retro',
-  marginBottom: 'l',
-  paddingTop: 'xxs',
-  paddingBottom: 's',
-  margin: 'auto',
-  height: '2rem',
+  fontSize: '.7em',
 }))
 
 export const SScoreDivider = s.div(() => ({
-  display: 'block',
   position: 'relative',
   width: '.125rem',
   height: '100%',

@@ -1,5 +1,8 @@
+import { last } from 'lodash';
+import moment from 'moment';
 import React, { createContext, Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import ReactGA4 from 'react-ga4'
+import { useIntervalWhen } from 'rooks';
 import { MapDimensions } from '../modules';
 import { MinesweeperProvider } from '../modules/minesweeper/context/MinesweeperContext';
 import { SnakeProvider } from '../modules/snake/context/SnakeContext';
@@ -40,6 +43,8 @@ export interface GameContextType {
   setSelectedGame: Dispatch<SetStateAction<string | null>>;
   controls: IControls;
   setControls: (controls: IControls, comp?: string) => void;
+  time: number[][];
+  setTime: Dispatch<SetStateAction<number[][]>>;
   [key: string]: any;
 }
 
@@ -48,6 +53,8 @@ export const GameContextDefaults = {
   setSelectedGame: () => {},
   controls: {},
   setControls: () => {},
+  time: [],
+  setTime: () => {},
 }
 
 const PROVIDERS: any = {
@@ -66,8 +73,7 @@ export const GameProvider: FC = ({ children }) => {
   const [gameOver, setGameOver] = useState<{ won: boolean } | null>(null)
   const [usingKeyboard, setUsingKeyboard] = useState<boolean | null>(null)
   const [score, setScore] = useState<Score>({})
-  const [startTime, setStartTime] = useState<number | null>(null)
-  const [endTime, setEndTime] = useState<number | null>(null)
+  const [time, setTime] = useState<number[][]>([])
 
   const onStart = () => {
     setMenuActive(!menuActive)
@@ -101,6 +107,9 @@ export const GameProvider: FC = ({ children }) => {
 
   useEffect(() => {
     if (gameOver) {
+      updateTime('end')
+      console.log('test')
+
       ReactGA4.event({
         category: "actions",
         action: "game:over",
@@ -108,6 +117,51 @@ export const GameProvider: FC = ({ children }) => {
       });
     }
   }, [gameOver])
+
+  const updateTime = (type: 'start' | 'end') => {
+    // console.log(type)
+    if (type === 'start') {
+      setTime([...time, [Date.now()]])
+    }
+
+    if (type === 'end') {
+      const currentTime = last(time)
+      if (!currentTime) return
+      time.pop()
+      setTime([ ...time, [currentTime[0], Date.now()] ])
+    }
+
+    // setScore({ ...score, time: milliseconds() / 1000 })
+  }
+
+  const isRunning = () => last(time)?.length === 1
+
+  useIntervalWhen(() => {
+    setScore({
+      ...score,
+      time: time.length ? milliseconds() : 0
+    })
+  }, 1000, isRunning())
+
+  useEffect(() => {
+    if (gameActive) {
+      updateTime('start')
+    } else {
+      updateTime('end')
+    }
+  }, [gameActive])
+
+  const milliseconds = (): number => {
+    return time.reduce((acc, [startTime, endTime]) => {
+      acc += (endTime || Date.now()) - startTime || Date.now()
+      console.log(acc)
+      return acc;
+    }, 0)
+  }
+
+  useEffect(() => {
+    console.log(JSON.stringify(time))
+  }, [time])
 
   return (
     <GameContext.Provider
@@ -122,10 +176,6 @@ export const GameProvider: FC = ({ children }) => {
         setGameOver,
         score,
         setScore,
-        startTime,
-        setStartTime,
-        endTime,
-        setEndTime,
         theme,
         setTheme,
         onStart,
@@ -133,7 +183,10 @@ export const GameProvider: FC = ({ children }) => {
         controls,
         setControls,
         usingKeyboard,
-        setUsingKeyboard
+        setUsingKeyboard,
+        time,
+        setTime,
+        milliseconds
       }}
     >
       { selectedGame ? (

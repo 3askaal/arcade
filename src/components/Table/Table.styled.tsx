@@ -4,7 +4,8 @@ export const STable = s.div({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  alignItems: 'flex-end'
+  alignItems: 'flex-end',
+  fontSize: '.8em'
 })
 
 export const STableHeader = s.div({

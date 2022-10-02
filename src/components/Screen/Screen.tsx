@@ -7,14 +7,13 @@ export const SScreen = s.div(() => ({
   display: 'flex',
   flexDirection: 'column',
   fontSize: '.8em',
-  fontWeight: 'bold',
   maxWidth: '420px',
   width: '100%',
   aspectRatio: '1 / 1',
   borderRadius: '1.2rem',
   fontFamily: 'retro',
   textTransform: 'uppercase',
-  p: 'l',
+  p: 'm',
   overflowY: 'auto',
 
   // '> *': {

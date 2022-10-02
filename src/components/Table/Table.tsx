@@ -3,6 +3,7 @@ import { capitalize } from 'lodash';
 import { FC } from 'react';
 import { Text } from '3oilerplate';
 import { STable, STableRow, STableBody, STableHeader, STableCell } from './Table.styled';
+import moment from 'moment';
 
 export interface TableItem {
   name: string;
@@ -18,6 +19,7 @@ export interface TableProps {
 }
 
 export const Table: FC<TableProps> = ({ items }) => {
+
   return (
     <STable>
       <STableHeader>
@@ -27,11 +29,15 @@ export const Table: FC<TableProps> = ({ items }) => {
         )) }
       </STableHeader>
       <STableBody>
-      { items.map((item, index) => (
+      { items.map((item: any, index) => (
         <STableRow key={`list-item-${index}`}>
           <STableCell s={{ textAlign: 'left' }}>{ capitalize(item.name) }</STableCell>
-          { Object.values(item.value).map((item, index) => (
-            <STableCell key={`cell-${index}`}>{ item }</STableCell>
+          { Object.keys(item.value).map((key, index) => (
+            <STableCell key={`cell-${index}`}>{
+              key === 'time' ?
+                moment.utc(item.value[key] || 0).format('m:ss') :
+                item.value[key]
+            }</STableCell>
           )) }
         </STableRow>
       )) }
