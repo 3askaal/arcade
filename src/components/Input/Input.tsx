@@ -34,7 +34,7 @@ export const SInput = s.input(({ color, selected }: any) =>
     outline: 'none',
     textTransform: 'uppercase',
 
-    ':focus': {
+    ...(selected && {
       '+ * > *': {
         backgroundColor: '#fff',
 
@@ -42,27 +42,24 @@ export const SInput = s.input(({ color, selected }: any) =>
           backgroundColor: '#fff',
         }
       }
-    }
+    })
   })
 )
 
-export const Input: FC<any> = ({ children, focus, ...props }): ReactElement => {
+export const Input: FC<any> = ({ children, selected, ...props }): ReactElement => {
   const { setUsingKeyboard } = useContext(GameContext)
-  const [renderInput, setRenderInput] = useState(true)
 
   useEffect(() => {
-    setRenderInput(false)
-
-    setTimeout(() => {
-      setRenderInput(true)
-    }, 10)
-
-    setUsingKeyboard(focus)
-  }, [focus])
+    setUsingKeyboard(selected)
+  }, [selected])
 
   return (
     <SInputWrapper>
-      { renderInput && <SInput type="text" autoFocus={focus} {...props} /> }
+      { selected ? (
+        <SInput type="text" autoFocus={true} selected={selected} {...props} />
+      ) : (
+        <SInput type="text" selected={selected} {...props} />
+      )}
       <Outline isSelected={props.selected} />
     </SInputWrapper>
   )
