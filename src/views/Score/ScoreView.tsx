@@ -7,6 +7,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Select, Table } from '../../components';
 import { sortBy } from 'lodash';
 import { GameContext } from '../../context';
+import { Spinner } from '../../components/Spinner/Spinner';
 
 interface Score {
   gameId: string;
@@ -19,7 +20,7 @@ const ScoreView = () => {
   const { gameId } = useParams<{ gameId?: string }>()
   const [selectFocus, setSelectFocus] = useState(false)
   const { setControls } = useContext(GameContext)
-  const [{ data }, refetch] = useAxios(`${API_URL}/score/${gameId || ''}`)
+  const [{ data, loading }, refetch] = useAxios(`${API_URL}/score/${gameId || ''}`)
 
   useEffect(() => {
     ReactGA4.send({
@@ -36,10 +37,6 @@ const ScoreView = () => {
 
     refetch({ url: `${API_URL}/score/${gameId}` })
   }, [gameId])
-
-  const formatScore = (score: any) => Object.entries(score)
-    .map(([key, value]) => `${key}: ${value}`)
-    .join(' | ')
 
   const parseScore = (score = '{}') => {
     return Object.entries(JSON.parse(score))
@@ -77,6 +74,11 @@ const ScoreView = () => {
       ) : (
         <Box df jcc w100p>
           <Text>No scores found</Text>
+        </Box>
+      ) }
+      { loading && (
+        <Box df jcc w100p>
+          <Spinner />
         </Box>
       ) }
     </Spacer>
