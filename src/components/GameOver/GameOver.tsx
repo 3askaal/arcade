@@ -95,7 +95,7 @@ export const GameOver: FC = () => {
       <Spacer s={{ textAlign: 'center' }}>
         <Text s={{ fontSize: '.8em' }}>Your score:</Text>
         <Score />
-        <Input focus={selectedIndex === 0} placeholder="Fill in your name" value={name} onChange={(e: any) => setName(e.target.value)} />
+        <Input selected={selectedIndex === 0} placeholder="Fill in your name" value={name} onChange={(e: any) => setName(e.target.value)} />
         <Menu items={[items()[0]]} controlledSelectedIndex={selectedIndex} />
       </Spacer>
       <Menu items={tail(items())} controlledSelectedIndex={selectedIndex} />

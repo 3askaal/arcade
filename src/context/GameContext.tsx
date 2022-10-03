@@ -1,5 +1,4 @@
 import { last } from 'lodash';
-import moment from 'moment';
 import React, { createContext, Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import ReactGA4 from 'react-ga4'
 import { useIntervalWhen } from 'rooks';
@@ -44,7 +43,7 @@ export interface GameContextType {
   controls: IControls;
   setControls: (controls: IControls, comp?: string) => void;
   time: number[][];
-  setTime: Dispatch<SetStateAction<number[][]>>;
+  setTime: any;
   [key: string]: any;
 }
 
@@ -90,6 +89,7 @@ export const GameProvider: FC = ({ children }) => {
   const launch = () => {
     setGameOver(null)
     setGameActive(true)
+    setScore({})
 
     ReactGA4.event({
       category: "actions",
@@ -105,26 +105,6 @@ export const GameProvider: FC = ({ children }) => {
     })
   }
 
-  useEffect(() => {
-    if (gameOver) {
-      updateTime('end')
-
-      ReactGA4.event({
-        category: "actions",
-        action: "game:over",
-        label: selectedGame || ''
-      });
-    }
-  }, [gameOver])
-
-  useEffect(() => {
-    if (gameActive) {
-      updateTime('start')
-    } else {
-      updateTime('end')
-    }
-  }, [gameActive])
-
   const updateTime = (type: 'start' | 'end') => {
     if (type === 'start') {
       setTime([...time, [Date.now()]])
@@ -138,7 +118,7 @@ export const GameProvider: FC = ({ children }) => {
     }
   }
 
-  const isRunning = () => last(time)?.length === 1
+  const isRunning = !gameOver && last(time)?.length === 1
 
   const milliseconds = (): number => {
     return time.reduce((acc, [startTime, endTime]) => {
@@ -147,21 +127,33 @@ export const GameProvider: FC = ({ children }) => {
     }, 0)
   }
 
+  useEffect(() => {
+    if (gameActive) {
+      updateTime('start')
+    } else {
+      updateTime('end')
+    }
+  }, [gameActive])
+
+  useEffect(() => {
+    if (gameOver) {
+      setTime([])
+      setGameActive(false)
+
+      ReactGA4.event({
+        category: "actions",
+        action: "game:over",
+        label: selectedGame || ''
+      });
+    }
+  }, [gameOver])
+
   useIntervalWhen(() => {
     setScore({
       ...score,
       time: time.length ? milliseconds() : 0
     })
-  }, 1000, isRunning())
-
-  useEffect(() => {
-    if (gameOver) {
-      setScore({
-        ...score,
-        time: time.length ? milliseconds() : 0
-      })
-    }
-  }, [time, gameOver])
+  }, 1000, isRunning)
 
   return (
     <GameContext.Provider
