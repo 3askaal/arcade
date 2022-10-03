@@ -50,7 +50,6 @@ export const Input: FC<any> = ({ children, selected, ...props }): ReactElement =
   const { setUsingKeyboard } = useContext(GameContext)
 
   useEffect(() => {
-    console.log('selected: ', selected)
     setUsingKeyboard(selected)
   }, [selected])
 
