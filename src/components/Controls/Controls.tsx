@@ -13,10 +13,14 @@ export const Controls = () => {
   const controls = (menuActive || gameOver) ? defaultControls : selectedGame ? currentControls : defaultControls
   const { onUp, onDown, onLeft, onRight, onA, onB, onSelect } = controls
 
-  useKey(['w', 'ArrowUp'], () => !usingKeyboard && onUp && onUp())
-  useKey(['a', 'ArrowLeft'], () => !usingKeyboard && onLeft && onLeft())
-  useKey(['s', 'ArrowDown'], () => !usingKeyboard && onDown && onDown())
-  useKey(['d', 'ArrowRight'], () => !usingKeyboard && onRight && onRight())
+  useKey(['w'], () => !usingKeyboard && onUp && onUp())
+  useKey(['a'], () => !usingKeyboard && onLeft && onLeft())
+  useKey(['s'], () => !usingKeyboard && onDown && onDown())
+  useKey(['d'], () => !usingKeyboard && onRight && onRight())
+  useKey(['ArrowUp'], () => onUp && onUp())
+  useKey(['ArrowLeft'], () => onLeft && onLeft())
+  useKey(['ArrowDown'], () => onDown && onDown())
+  useKey(['ArrowRight'], () => onRight && onRight())
   useKey(['Space', 'Enter'], () => !usingKeyboard && onA && onA())
   useKey(['Shift'], () => !usingKeyboard && onB && onB())
   useKey([], () => !usingKeyboard && onSelect && onSelect())
