@@ -60,12 +60,6 @@ const ScoreView = () => {
     })
   }, [selectFocus])
 
-  useEffect(() => {
-    if (!gameId) return
-    console.log(SCOREBOARD_SORTING[gameId])
-    console.log(scores)
-  }, [scores, gameId])
-
   return (
     <Spacer size="l">
       <Select
