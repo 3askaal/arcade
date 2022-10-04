@@ -61,7 +61,7 @@ const ScoreView = () => {
     })
   }, [selectFocus])
 
-  return data && (
+  return (
     <Spacer size="l">
       <Select
         focus={selectFocus}
@@ -69,7 +69,7 @@ const ScoreView = () => {
         options={GAMES.map(({name}) => ({ value: name, label: name.toUpperCase() }))}
         onChange={onSelectChange}
       />
-      { scores.length ? (
+      { data && scores.length ? (
         <Table items={scores} />
       ) : (
         <Box df jcc w100p>
