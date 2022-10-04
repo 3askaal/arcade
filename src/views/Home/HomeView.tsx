@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import ReactGA4 from 'react-ga4'
 import { Box } from '3oilerplate'
-import { Menu } from '../../components/Menu/Menu'
-import { useHistory } from 'react-router-dom'
+import { Menu } from '../../components'
 
 const PlayView = () => {
   const history = useHistory()

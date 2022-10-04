@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import ReactGA4 from 'react-ga4'
 import { Box } from '3oilerplate'
 import { Map, Score } from '../../components'
 import { GameContext } from '../../context'
-import { useParams } from 'react-router-dom'
 
 const PlayView = () => {
   const { gameId } = useParams<{ gameId?: string }>()

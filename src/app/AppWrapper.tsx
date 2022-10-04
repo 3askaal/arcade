@@ -2,10 +2,7 @@ import React, { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Spacer, Container, Wrapper } from '3oilerplate'
 import { GameContext } from '../context';
-import { Controls, Screen } from '../components';
-import { Menu } from '../components/Menu/Menu';
-import { GameOver } from '../components/GameOver/GameOver';
-import { Overlay } from '../components/Overlay/Overlay';
+import { Controls, Screen, Menu, GameOver, Overlay } from '../components';
 
 export const AppWrapper: FC = ({ children }) => {
   const history = useHistory()
@@ -19,8 +16,8 @@ export const AppWrapper: FC = ({ children }) => {
   return (
     <Wrapper s={{ p: ['s', 'm', 'l'] }}>
       <Container s={{ p: 0 }}>
-        <Spacer size="10%" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
-          <Box s={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+        <Spacer size="l" s={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
+          <Box df w100p jcc>
             <Screen>
               { children }
               { menuActive && (
