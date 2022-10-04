@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom';
 import ReactGA4 from 'react-ga4'
 import useAxios from 'axios-hooks'
 import { Text, Spacer, Box } from '3oilerplate';
+import { orderBy } from 'lodash';
 import { API_URL, GAMES, SCOREBOARD_SORTING, } from '../../config'
-import { useHistory, useParams } from 'react-router-dom';
-import { Select, Table } from '../../components';
-import { sortBy } from 'lodash';
 import { GameContext } from '../../context';
-import { Spinner } from '../../components/Spinner/Spinner';
+import { Select, Table, Spinner } from '../../components';
 
 interface Score {
   gameId: string;
@@ -46,10 +45,10 @@ const ScoreView = () => {
       }), {})
   }
 
-  const scores = sortBy(
+  const scores = orderBy(
     data?.map(({ name, score }: Score) => ({ name, value: parseScore(score) })),
-    gameId ? SCOREBOARD_SORTING[gameId] : 'value.points'
-  ).map(({ name, value }) => ({ name, value })) || []
+    ...(gameId ? SCOREBOARD_SORTING[gameId] : [])
+  ) || []
 
   const onSelectChange = (e: any) => {
     history.push(`${e.target.value}`)
@@ -61,6 +60,12 @@ const ScoreView = () => {
     })
   }, [selectFocus])
 
+  useEffect(() => {
+    if (!gameId) return
+    console.log(SCOREBOARD_SORTING[gameId])
+    console.log(scores)
+  }, [scores, gameId])
+
   return (
     <Spacer size="l">
       <Select
@@ -69,17 +74,18 @@ const ScoreView = () => {
         options={GAMES.map(({name}) => ({ value: name, label: name.toUpperCase() }))}
         onChange={onSelectChange}
       />
-      { data && scores.length ? (
-        <Table items={scores} />
-      ) : (
-        <Box df jcc w100p>
-          <Text>No scores found</Text>
-        </Box>
-      ) }
-      { loading && (
-        <Box df jcc w100p>
+      { loading ? (
+        <Box df jcc w100p h100p>
           <Spinner />
         </Box>
+      ) : (
+        scores.length ? (
+          <Table items={scores} />
+        ) : (
+          <Box df jcc w100p>
+            <Text>No scores found</Text>
+          </Box>
+        )
       ) }
     </Spacer>
   )

@@ -1,7 +1,7 @@
 import { s, ButtonReset } from '3oilerplate'
 import { getBevelEmboss, getDropShadow } from '../helpers'
 
-export const SSettings = s.div(() => ({
+export const SOptions = s.div(() => ({
   position: 'relative',
   display: 'flex',
   flexDirection: 'row',
@@ -10,14 +10,14 @@ export const SSettings = s.div(() => ({
   justifyContent: 'flex-end',
 }))
 
-export const SSettingsButton = s.button(() => ({
+export const SOptionsButton = s.button(() => ({
   ...ButtonReset,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: '1rem',
-  width: '3.6rem',
-  height: '1.5rem',
+  width: '4rem',
+  height: '1.75rem',
   overflow: 'hidden',
   padding: 0,
   fontSize: '1.4em',

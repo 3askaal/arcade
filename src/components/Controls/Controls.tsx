@@ -1,7 +1,7 @@
 import { Box } from "3oilerplate";
 import { Directions } from "./Directions/Directions";
 import { Actions } from "./Actions/Actions";
-import { Settings } from "./Settings/Settings";
+import { Options } from "./Options/Options";
 import { createContext, useContext } from "react";
 import { IControls, GameContext } from "../../context";
 import { Contexts } from "../../modules";
@@ -57,7 +57,7 @@ export const Controls = () => {
         display: 'flex',
         justifyContent: 'center',
       }}>
-        <Settings
+        <Options
           onStart={onStart}
           onSelect={onSelect}
         />

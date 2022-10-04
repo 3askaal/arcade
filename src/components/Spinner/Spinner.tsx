@@ -1,7 +1,25 @@
 import React, { FC } from 'react'
 import { s } from '3oilerplate'
-import { times } from 'lodash'
 import styled, { css, keyframes } from 'styled-components'
+
+const spinnerDotPositions = [
+  { x: 1, y: 1 },
+  { x: 2, y: 0 },
+  { x: 3, y: 0 },
+  { x: 4, y: 0 },
+  { x: 5, y: 1 },
+  { x: 6, y: 2 },
+  { x: 6, y: 3 },
+  { x: 6, y: 4 },
+  { x: 5, y: 5 },
+  { x: 4, y: 6 },
+  { x: 3, y: 6 },
+  { x: 2, y: 6 },
+  { x: 1, y: 5 },
+  { x: 0, y: 4 },
+  { x: 0, y: 3 },
+  { x: 0, y: 2 }
+]
 
 export const SSpinner = s.div({
   display: 'flex',
@@ -27,37 +45,18 @@ export const SSpinnerDot = styled.div<any>(
     opacity: 0,
   }),
   ({ index }: any) => css`
-    animation: ${100 * 16}ms ${flash} ${index * 100}ms infinite running forwards;
+    animation: ${100 * spinnerDotPositions.length}ms ${flash} ${index * 100}ms infinite running forwards;
   `
 )
-
-const positions = [
-  { x: 1, y: 1 },
-  { x: 2, y: 0 },
-  { x: 3, y: 0 },
-  { x: 4, y: 0 },
-  { x: 5, y: 1 },
-  { x: 6, y: 2 },
-  { x: 6, y: 3 },
-  { x: 6, y: 4 },
-  { x: 5, y: 5 },
-  { x: 4, y: 6 },
-  { x: 3, y: 6 },
-  { x: 2, y: 6 },
-  { x: 1, y: 5 },
-  { x: 0, y: 4 },
-  { x: 0, y: 3 },
-  { x: 0, y: 2 }
-]
 
 export const Spinner: FC = () => {
   return (
     <SSpinner>
-      { times(positions.length, (index) => (
+      { spinnerDotPositions.map((pos, index) => (
         <SSpinnerDot
           index={index}
-          x={positions[index]?.x || 0}
-          y={positions[index]?.y || 0}
+          x={pos.x}
+          y={pos.y}
         />
       )) }
     </SSpinner>

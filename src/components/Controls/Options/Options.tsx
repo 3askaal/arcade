@@ -1,22 +1,22 @@
 import React from 'react'
-import { SSettings, SSettingsButton } from './Settings.styled'
+import { SOptions, SOptionsButton } from './Options.styled'
 import isMobile from 'is-mobile'
 import { IControls } from '../../../context'
 
-export const Settings = ({ onStart, onSelect }: IControls) => {
+export const Options = ({ onStart, onSelect }: IControls) => {
 
   return (
-    <SSettings>
-      <SSettingsButton
+    <SOptions>
+      <SOptionsButton
         type="B"
         {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onSelect && onSelect() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       />
-      <SSettingsButton
+      <SOptionsButton
         type="A"
         {...{ [isMobile() ? 'onTouchStart' : 'onMouseDown']: () => onStart && onStart() }}
         s={{ touchAction: isMobile() ? 'auto' : 'none' }}
       />
-    </SSettings>
+    </SOptions>
   )
 }
