@@ -36,6 +36,7 @@ export const GameOver: FC = () => {
     {
       name: 'input',
       hidden: true,
+      color: nameIsValid ? 'positive' : undefined,
       index: 0,
     },
     {
@@ -50,7 +51,6 @@ export const GameOver: FC = () => {
         })
       },
       disabled: !nameIsValid || !!data,
-      color: nameIsValid ? 'positive' : '',
       index: 1,
     },
     {
@@ -73,7 +73,7 @@ export const GameOver: FC = () => {
       <Spacer s={{ textAlign: 'center' }}>
         <Text s={{ fontSize: '.8em' }}>Your score:</Text>
         <Score />
-        <Input selected={selectedIndex === 0} placeholder="Fill in your name" onChange={(e: any) => setName(e.target.value)} />
+        <Input selected={selectedIndex === 0} color={items[0].color} placeholder="Fill in your name" onChange={(e: any) => setName(e.target.value)} />
       </Spacer>
       <Menu items={items} controlledSelectedIndex={selectedIndex} />
     </Overlay>

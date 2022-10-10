@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useContext, useEffect, useState } from 'react'
+import React, { FC, ReactElement, useContext, useEffect } from 'react'
 import { s } from '3oilerplate'
 import { Outline } from '../Retro/Outline'
 import { GameContext } from '../../context'
@@ -26,13 +26,13 @@ export const SInput = s.input(({ color, selected }: any) =>
     alignItems: 'center',
     paddingX: 'm',
     paddingY: 's',
-    color: 'white',
     backgroundColor: 'transparent',
     border: 0,
     zIndex: 1000,
     appearance: 'none',
     outline: 'none',
     textTransform: 'uppercase',
+    color,
 
     ...(selected && {
       '+ * > *': {
@@ -46,7 +46,7 @@ export const SInput = s.input(({ color, selected }: any) =>
   })
 )
 
-export const Input: FC<any> = ({ children, selected, ...props }): ReactElement => {
+export const Input: FC<any> = ({ children, selected, color = '#fff', ...props }): ReactElement => {
   const { setUsingKeyboard } = useContext(GameContext)
 
   useEffect(() => {
@@ -55,12 +55,8 @@ export const Input: FC<any> = ({ children, selected, ...props }): ReactElement =
 
   return (
     <SInputWrapper>
-      { selected ? (
-        <SInput type="text" autoFocus={true} selected={selected} {...props} />
-      ) : (
-        <SInput type="text" selected={selected} {...props} />
-      )}
-      <Outline isSelected={props.selected} />
+      <SInput type="text" autoFocus={selected} selected={selected} color={color} {...props} />
+      <Outline isSelected={selected} color={color} />
     </SInputWrapper>
   )
 }

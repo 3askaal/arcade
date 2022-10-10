@@ -66,15 +66,18 @@ export const SOutline = s.div(({ color, isSelected }: OutlineProps) =>
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    opacity: .4,
+
+    [SOutlineBorder]: {
+      backgroundColor: color,
+
+      '&:after': {
+        backgroundColor: color,
+      },
+    },
 
     ...(isSelected && {
-      [SOutlineBorder]: {
-        backgroundColor: color,
-
-        '&:after': {
-          backgroundColor: color,
-        }
-      }
+      opacity: 1,
     })
   }),
   {
