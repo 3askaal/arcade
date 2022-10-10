@@ -1,17 +1,8 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Spacer } from '3oilerplate';
 import { capitalize } from 'lodash';
-import { GameContext } from '../../context';
 import { MenuItem } from './Menu.styled';
-
-export interface MenuItemProps {
-  name: string;
-  action: () => void;
-  color?: string;
-  disabled?: boolean;
-  selected?: boolean;
-  index?: number
-}
+import { MenuItemProps, useMenu } from '../../helpers/useMenu';
 
 interface MenuProps {
   content?: string;
@@ -20,30 +11,11 @@ interface MenuProps {
 }
 
 export const Menu: FC<MenuProps> = ({ items, controlledSelectedIndex }) => {
-  const { setControls } = useContext(GameContext)
-  const [selectedIndex, setSelectedIndexState] = useState(0)
-
-  const setSelectedIndex = (newSelectedIndex: number) => {
-    const item = items[newSelectedIndex];
-
-    if (item && !item.disabled) {
-      setSelectedIndexState(newSelectedIndex);
-    }
-  }
-
-  useEffect(() => {
-    if (controlledSelectedIndex === undefined) {
-      setControls({
-        onUp: () => setSelectedIndex(selectedIndex - 1),
-        onDown: () => setSelectedIndex(selectedIndex + 1),
-        onA: () => items[selectedIndex] ? items[selectedIndex].action() : null
-      })
-    }
-  }, [selectedIndex])
+  const [selectedIndex] = useMenu(controlledSelectedIndex !== undefined ? null : items)
 
   return (
     <Spacer size="m" s={{ alignItems: 'center' }}>
-      { items.map(({ action, ...item }: any, index) => (
+      { items.filter(({ hidden }) => !hidden).map(({ action, ...item }: any, index) => (
         <MenuItem
           key={`list-item-${index}`}
           {...item}

@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react'
 import { s, rgba } from '3oilerplate'
-import { MenuItemProps } from './Menu'
 import { Outline } from '../Retro/Outline'
+import { MenuItemProps } from '../../helpers/useMenu'
 
 export const SMenu = s.div(({ theme }: any) => ({
   display: 'flex',
